@@ -9,6 +9,17 @@ public class Tache implements Serializable {
     private Long id;
     private Date date;
     private int NbrHeures;
+    private String commentaire;
+
+    public Tache() {
+    }
+
+    public Tache(Long id, Date date, int nbrHeures, String commentaire) {
+        this.id = id;
+        this.date = date;
+        NbrHeures = nbrHeures;
+        this.commentaire = commentaire;
+    }
 
     public Long getId() {
         return id;
@@ -26,13 +37,21 @@ public class Tache implements Serializable {
         this.date = date;
     }
 
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
+
     public int getNbrHeures() {
         return NbrHeures;
     }
 
     public void setNbrHeures(int nbrHeures) {
         NbrHeures = nbrHeures;
-        }
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -54,6 +73,7 @@ public class Tache implements Serializable {
                 "id=" + id +
                 ", date=" + date +
                 ", NbrHeures=" + NbrHeures +
+                ", commentaire='" + commentaire + '\'' +
                 '}';
     }
 }

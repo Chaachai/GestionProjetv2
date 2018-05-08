@@ -13,6 +13,12 @@ public class Manager implements Serializable {
     public Manager() {
     }
 
+    public Manager(Long id, String nom, String prenom) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
     public Manager(Long id) {
         this.id = id;
     }

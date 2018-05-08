@@ -18,6 +18,21 @@ public class Projet implements Serializable {
     public Projet() {
     }
 
+    public Projet(Long id, String nom, String description, Date dateDebut,  BigDecimal budget) {
+        this.id = id;
+        this.nom = nom;
+        this.description = description;
+        this.dateDebut = dateDebut;
+        this.budget = budget;
+    }
+
+    public Projet(Long id, String nom, String description, BigDecimal budget) {
+        this.id = id;
+        this.nom = nom;
+        this.description = description;
+        this.budget = budget;
+    }
+
     public Long getId() {
         return id;
     }

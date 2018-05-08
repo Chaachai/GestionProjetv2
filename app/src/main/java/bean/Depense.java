@@ -16,6 +16,13 @@ public class Depense implements Serializable {
     public Depense() {
     }
 
+    public Depense(Long id, BigDecimal montant, Date date, String commentaire) {
+        this.id = id;
+        this.montant = montant;
+        this.date = date;
+        this.commentaire = commentaire;
+    }
+
     public Long getId() {
         return id;
     }

@@ -4,6 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import bean.Societe;
 import dao.helper.AbstractDao;
 import dao.helper.DbStructure;
@@ -23,7 +28,7 @@ public class SocieteDao extends AbstractDao<Societe> {
         open();
         ContentValues contentValues = new ContentValues();
         contentValues.put(DbStructure.Societe.C_ID, societe.getId());
-        contentValues.put(DbStructure.Societe.C_DATE, societe.getDateFondation().toString());
+        contentValues.put(DbStructure.Societe.C_DATE, societe.getDateFondation().getTime());
         contentValues.put(DbStructure.Societe.C_RAISONSOCIALE, societe.getRaisonSociale());
         contentValues.put(DbStructure.Societe.C_ID_MANAGER, societe.getManager().getId());
         return getDb().insert(DbStructure.Societe.T_NAME, null, contentValues);
@@ -48,7 +53,22 @@ public class SocieteDao extends AbstractDao<Societe> {
 
 
     protected Societe transformeCursorToBean(Cursor cursor) {
-        return new Societe(cursor.getLong(0), cursor.getString(0));
+
+        String dateFromCursor = cursor.getString(cursor.getColumnIndex(DbStructure.Societe.C_DATE));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        Date dateFondation = new Date();
+        try {
+            dateFondation = dateFormat.parse(dateFromCursor);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        return new Societe(
+                cursor.getLong(cursor.getColumnIndex(DbStructure.Societe.C_ID)),
+                cursor.getString(cursor.getColumnIndex(DbStructure.Societe.C_RAISONSOCIALE)),
+                dateFondation
+        );
 //        return new Societe(cursor.getString(0), cursor.getString(1));
     }
 }
