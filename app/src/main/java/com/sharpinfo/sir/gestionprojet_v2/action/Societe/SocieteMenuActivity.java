@@ -33,7 +33,7 @@ public class SocieteMenuActivity extends AppCompatActivity implements View.OnCli
 
         switch (view.getId()) {
             case R.id.societeCardView:
-                Dispacher.forward(SocieteMenuActivity.this, SocieteCreateActivity.class);
+                Dispacher.forward(SocieteMenuActivity.this, SocieteListActivity.class);
                 break;
             case R.id.projetCardView:
                 Dispacher.forward(SocieteMenuActivity.this, MainActivity.class);

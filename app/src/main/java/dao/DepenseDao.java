@@ -62,14 +62,14 @@ public class DepenseDao extends AbstractDao<Depense> {
         String s = cursor.getString(cursor.getColumnIndex(DbStructure.Depense.C_MONTANT));
         BigDecimal montant = new BigDecimal(s);
         //date
-        String dateFromCursor = cursor.getString(cursor.getColumnIndex(DbStructure.Depense.C_DATE));
+        Long dateFromCursor = cursor.getLong(cursor.getColumnIndex(DbStructure.Depense.C_DATE));
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        Date date = new Date();
-        try {
-            date = dateFormat.parse(dateFromCursor);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Date date = new Date(dateFromCursor);
+//        try {
+//            date = dateFormat.parse(dateFromCursor);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
         //
         return new Depense(
                 cursor.getLong(cursor.getColumnIndex(DbStructure.Depense.C_ID)),

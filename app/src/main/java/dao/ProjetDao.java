@@ -69,14 +69,14 @@ public class ProjetDao extends AbstractDao<Projet> {
         BigDecimal budget = new BigDecimal(s);
 
 
-        String dateFromCursor = cursor.getString(cursor.getColumnIndex(DbStructure.Projet.C_DATE));
+        Long dateFromCursor = cursor.getLong(cursor.getColumnIndex(DbStructure.Projet.C_DATE));
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        Date dateDebut = new Date();
-        try {
-            dateDebut = dateFormat.parse(dateFromCursor);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Date dateDebut = new Date(dateFromCursor);
+//        try {
+//            dateDebut = dateFormat.parse(dateFromCursor);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
         return new Projet(
                 cursor.getLong(cursor.getColumnIndex(DbStructure.Projet.C_ID)),
                 cursor.getString(cursor.getColumnIndex(DbStructure.Projet.C_NOM)),

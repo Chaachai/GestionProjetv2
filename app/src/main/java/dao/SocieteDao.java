@@ -3,7 +3,9 @@ package dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,14 +56,16 @@ public class SocieteDao extends AbstractDao<Societe> {
 
     protected Societe transformeCursorToBean(Cursor cursor) {
 
-        String dateFromCursor = cursor.getString(cursor.getColumnIndex(DbStructure.Societe.C_DATE));
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        Date dateFondation = new Date();
-        try {
-            dateFondation = dateFormat.parse(dateFromCursor);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Long dateFromCursor = cursor.getLong(cursor.getColumnIndex(DbStructure.Societe.C_DATE));
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date dateFondation = new Date(dateFromCursor);
+//        try {
+//            dateFondation = dateFormat.parse(dateFromCursor);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
 
 
         return new Societe(

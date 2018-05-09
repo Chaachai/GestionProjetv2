@@ -60,14 +60,14 @@ public class TacheDao extends AbstractDao<Tache> {
 //    public Tache(Long id, Date date, int nbrHeures, String commentaire) {
 
         //date
-        String dateFromCursor = cursor.getString(cursor.getColumnIndex(DbStructure.Tache.C_DATE));
+        Long dateFromCursor = cursor.getLong(cursor.getColumnIndex(DbStructure.Tache.C_DATE));
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        Date date = new Date();
-        try {
-            date = dateFormat.parse(dateFromCursor);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Date date = new Date(dateFromCursor);
+//        try {
+//            date = dateFormat.parse(dateFromCursor);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
         //
         return new Tache(
                 cursor.getLong(cursor.getColumnIndex(DbStructure.Tache.C_ID)),

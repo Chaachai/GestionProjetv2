@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
@@ -19,7 +18,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import bean.Societe;
 import service.SocieteService;
 
 public class SocieteCreateActivity extends AppCompatActivity {
@@ -33,7 +31,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
     Calendar myCalendar = Calendar.getInstance();
     String dateFormat = "dd-MM-yyyy";
     DatePickerDialog.OnDateSetListener date;
-    SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.getDefault());
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +41,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
 
         // init - set date to current date
         long currentdate = System.currentTimeMillis();
-        String dateString = sdf.format(currentdate);
+        String dateString = simpleDateFormat.format(currentdate);
         editDate.setText(dateString);
 
         // set calendar date and update editDate
@@ -74,7 +72,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
     }
 
     private void updateDate() {
-        editDate.setText(sdf.format(myCalendar.getTime()));
+        editDate.setText(simpleDateFormat.format(myCalendar.getTime()));
 
     }
 
@@ -84,11 +82,12 @@ public class SocieteCreateActivity extends AppCompatActivity {
         Log.d("tag8", "1");
         try {
             //hadi hya la date li khsha tmchi l sqllite
-            dateFondation = sdf.parse(sdf.format(myCalendar.getTime()));
+            Log.d("tag2",""+myCalendar.getTime());
+            dateFondation = simpleDateFormat.parse(simpleDateFormat.format(myCalendar.getTime()));
             raisonSociale = findViewById(R.id.textViewRaisonSociale);
             int res = societeService.create(String.valueOf(raisonSociale.getText()), dateFondation);
             if (res == 1) {
-                Toast.makeText(getBaseContext(), "Societe cree avec succes! with date " + dateFondation + " !", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Societe cree avec succes! with date " + myCalendar.getTime() + ", !", Toast.LENGTH_LONG).show();
             }
         } catch (ParseException e) {
             e.printStackTrace();
