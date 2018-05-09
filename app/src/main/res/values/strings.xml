@@ -1,5 +1,13 @@
 <resources>
-    <string name="app_name">GestionProjet_v2</string>
+    <string name="app_name">MY PROJECTS</string>
     <string name="title_activity_societe_list">SocieteListActivity</string>
     <string name="societe">Societe</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="username_or_password_incorrect">Username or password incorrect !</string>
+    <string name="user_created">User has been created successfully!</string>
 </resources>
