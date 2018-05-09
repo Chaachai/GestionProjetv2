@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 public final class DbStructure {
 
     public static final String dbName = "gestion_projet";
-    public static final int DB_VERSION = 2;
+    public static final int DB_VERSION = 4;
 
     public static abstract class User implements BaseColumns {
 
@@ -27,7 +27,7 @@ public final class DbStructure {
         public static final String C_ID_MANAGER = "id_manager";
 
         public static final String SQL_CREATE = "create table " + T_NAME + "("
-                + C_ID + " INTEGER AUTO_INCREMENT PRIMARY KEY ,"
+                + C_ID + " INTEGER PRIMARY KEY  NOT NULL ,"
                 + C_RAISONSOCIALE + " TEXT , "
                 + C_DATE + " DATE,"
                 + C_ID_MANAGER + " INTEGER, FOREIGN KEY( " + C_ID_MANAGER + " ) REFERENCES " + Manager.T_NAME + "(" + Manager.C_ID + ") )";
@@ -56,7 +56,7 @@ public final class DbStructure {
         public static final String C_COMMENTAIRE = "commentaire";
 
         public static final String SQL_CREATE = "create table " + T_NAME + "("
-                + C_ID + " INTEGER AUTO_INCREMENT PRIMARY KEY ,"
+                + C_ID + " INTEGER PRIMARY KEY  NOT NULL ,"
                 + C_DATE + " DATE,"
                 + C_NBRHEURES + " INTEGER,"
                 + C_COMMENTAIRE + " TEXT)";
@@ -73,7 +73,7 @@ public final class DbStructure {
         public static final String C_COMMENTAIRE = "commentaire";
 
         public static final String SQL_CREATE = "create table " + T_NAME + "("
-                + C_ID + " INTEGER AUTO_INCREMENT PRIMARY KEY,"
+                + C_ID + " INTEGER PRIMARY KEY  NOT NULL,"
                 + C_MONTANT + " INTEGER,"
                 + C_DATE + " DATE,"
                 + C_COMMENTAIRE + " TEXT)";
@@ -91,7 +91,7 @@ public final class DbStructure {
         public static final String C_ID_SOCIETE = "id_societe";
 
         public static final String SQL_CREATE = "create table " + T_NAME + "("
-                + C_ID + " INTEGER AUTO_INCREMENT PRIMARY KEY,"
+                + C_ID + " INTEGER PRIMARY KEY  NOT NULL,"
                 + C_NOM + " TEXT,"
                 + C_DESCRIPTION + " TEXT,"
                 + C_DATE + " DATE,"

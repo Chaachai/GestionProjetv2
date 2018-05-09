@@ -52,6 +52,9 @@ public class Societe implements Serializable {
     }
 
     public Manager getManager() {
+        if (manager == null) {
+            manager = new Manager();
+        }
         return manager;
     }
 

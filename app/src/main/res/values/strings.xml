@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GestionProjet_v2</string>
+    <string name="title_activity_societe_list">SocieteListActivity</string>
+    <string name="societe">Societe</string>
 </resources>
