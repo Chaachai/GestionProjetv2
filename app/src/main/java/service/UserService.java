@@ -24,19 +24,13 @@ public class UserService extends UserDao {
         return -2;
     }
 
-    public void createUser(String username, String password) {
-        User user = new User();
-        user.setId(username);
-        user.setPassword(password);
-        create(user);
-    }
-
-    public int testConnect(String username, String password) {
-        if (username.equals("chaachai") && password.equals("8950")) {
-            return 1;
-        } else {
-            return -1;
-        }
+    public void createUser(User user) {
+        User u = new User();
+        u.setId(user.getId());
+        u.setPassword(user.getPassword());
+        u.setLastName(user.getLastName());
+        u.setFirstName(user.getFirstName());
+        create(u);
     }
 
 }

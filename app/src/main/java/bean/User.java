@@ -11,15 +11,18 @@ public class User implements Serializable {
     private static final Long serialVersionUID = 1L;
     private String id;
     private String password;
+    private String lastName;
+    private String firstName;
 
+    public User(String id, String password, String lastName, String firstName) {
+        this.id = id;
+        this.password = password;
+        this.lastName = lastName;
+        this.firstName = firstName;
+    }
 
     public User(String id) {
         this.id = id;
-    }
-
-    public User(String id, String password) {
-        this.id = id;
-        this.password = password;
     }
 
     public User() {
@@ -42,6 +45,21 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -61,8 +79,10 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", password='" + password + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
                 '}';
     }
 }
