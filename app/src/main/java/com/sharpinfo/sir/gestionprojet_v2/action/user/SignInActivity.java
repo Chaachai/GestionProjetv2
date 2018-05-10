@@ -13,6 +13,7 @@ import com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteMenuActivity;
 
 import bean.User;
 import helper.Dispacher;
+import helper.Session;
 import service.UserService;
 
 public class SignInActivity extends AppCompatActivity {
@@ -62,7 +63,9 @@ public class SignInActivity extends AppCompatActivity {
             textMsg.setText(R.string.username_or_password_incorrect);
             clear();
         } else {
-            Toast.makeText(getBaseContext(), "WELCOME BACK SIR !", Toast.LENGTH_LONG).show();
+            User u = userService.find(user.getId());
+            Session.updateAttribute(u,"connectedUser");
+            Toast.makeText(getBaseContext(), "WELCOME BACK MR. "+u.getLastName()+" "+u.getFirstName(), Toast.LENGTH_LONG).show();
             Dispacher.forward(SignInActivity.this, SocieteMenuActivity.class);
         }
 

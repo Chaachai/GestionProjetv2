@@ -17,8 +17,8 @@ public class UserDao extends AbstractDao<User> {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DbStructure.User.C_ID, user.getId());
         contentValues.put(DbStructure.User.C_PASSWORD, user.getPassword());
-        contentValues.put(DbStructure.User.C_LASTNAME, user.getPassword());
-        contentValues.put(DbStructure.User.C_FIRSTNAME, user.getPassword());
+        contentValues.put(DbStructure.User.C_LASTNAME, user.getLastName());
+        contentValues.put(DbStructure.User.C_FIRSTNAME, user.getFirstName());
         return getDb().insert(DbStructure.User.T_NAME, null, contentValues);
     }
 

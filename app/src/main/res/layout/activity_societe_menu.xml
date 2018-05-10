@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background_stars"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -32,6 +33,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#d82020"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -46,20 +48,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/societe"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/colorSecondary" />
+                    android:background="#FFFFFF" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Gestion De Societe"
+                    android:text="Manage the Companies"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -76,6 +79,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#9e2ac1"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -89,21 +93,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Projets"
+                    android:text="Projects"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/colorSecondary" />
+                    android:background="#FFFFFF" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Gestion De Projets"
+                    android:text="Manage the Projects"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -135,6 +140,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#188092"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -148,21 +154,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Depense"
+                    android:text="Expenses"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/colorSecondary" />
+                    android:background="#FFFFFF" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Gestion De Depense"
+                    android:text="Manage the Expenses"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -179,6 +186,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#ea6117"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -192,21 +200,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Taches"
+                    android:text="Tasks"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/colorSecondary" />
+                    android:background="#FFFFFF" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Gestion De Projets"
+                    android:text="Manage the Tasks"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -238,6 +247,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#199346"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -251,21 +261,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Stats"
+                    android:text="Statistics"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/colorSecondary" />
+                    android:background="#FFFFFF" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Statistiques"
+                    android:text="View the Statistics"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

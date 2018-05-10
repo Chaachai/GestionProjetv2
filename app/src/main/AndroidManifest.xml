@@ -16,12 +16,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".action.user.SignUpActivity" />
+        <activity
+            android:name=".action.user.SignUpActivity"
+            android:parentActivityName=".action.user.SignInActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.user.SignInActivity" />
+        </activity>
+
         <activity android:name=".action.Societe.SocieteCreateActivity"></activity>
         <activity
             android:name=".action.Societe.SocieteListActivity"
             android:label="@string/title_activity_societe_list"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".action.Societe.SocieteMenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteMenuActivity" />
+        </activity>
+
         <activity android:name=".action.Societe.SocieteMenuActivity">
 
         </activity>

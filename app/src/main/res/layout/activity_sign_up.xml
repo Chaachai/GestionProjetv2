@@ -129,7 +129,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/rounded_button"
         android:onClick="signUp"
-        android:text="@string/sign_in"
+        android:text="@string/sign_up"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/viewPager"
         app:layout_constraintEnd_toEndOf="@+id/viewPager"

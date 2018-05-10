@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">MY PROJECTS</string>
+    <string name="app_name">SHARPROJECTS</string>
     <string name="title_activity_societe_list">SocieteListActivity</string>
-    <string name="societe">Societe</string>
+    <string name="societe">Companies</string>
     <string name="sign_in">SIGN IN</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
