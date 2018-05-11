@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
+import com.sharpinfo.sir.gestionprojet_v2.action.SideMenuActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteMenuActivity;
 
 import bean.User;
@@ -66,7 +67,7 @@ public class SignInActivity extends AppCompatActivity {
             User u = userService.find(user.getId());
             Session.updateAttribute(u,"connectedUser");
             Toast.makeText(getBaseContext(), "WELCOME BACK MR. "+u.getLastName()+" "+u.getFirstName(), Toast.LENGTH_LONG).show();
-            Dispacher.forward(SignInActivity.this, SocieteMenuActivity.class);
+            Dispacher.forward(SignInActivity.this, SideMenuActivity.class);
         }
 
     }

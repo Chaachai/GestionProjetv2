@@ -18,4 +18,11 @@
     <string name="manager_first_name">Manager First Name</string>
     <string name="manager_creation_fail">Please fill atleast one field</string>
     <string name="manager_creation_success">Manager created</string>
+    <string name="title_activity_side_menu">SideMenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 </resources>

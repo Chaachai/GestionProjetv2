@@ -12,6 +12,8 @@ public class Depense implements Serializable {
     private BigDecimal montant;
     private Date date;
     private String commentaire;
+    //projet
+    //societe
 
     public Depense() {
     }
