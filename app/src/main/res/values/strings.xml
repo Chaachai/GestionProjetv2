@@ -10,4 +10,11 @@
     <string name="sign_up">Sign Up</string>
     <string name="username_or_password_incorrect">Username or password incorrect !</string>
     <string name="user_created">User has been created successfully!</string>
+    <string name="title_activity_side_menu">SideMenuActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 </resources>

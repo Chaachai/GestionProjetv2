@@ -6,4 +6,9 @@
     <color name="backgroundColor">#fcfcfc</color>
     <color name="colorSecondary">#12B8D6</color>
     <color name="colorError">#b70000</color>
+    <color name="lightGrey">#c9c9c9</color>
+    <color name="green">#26A49D</color>
+    <color name="pink">#FF5580</color>
+    <color name="purple">#7A5AFF</color>
+    <color name="yello">#FFE481</color>
 </resources>

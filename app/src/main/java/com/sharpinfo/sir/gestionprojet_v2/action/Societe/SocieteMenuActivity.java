@@ -1,9 +1,12 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.Societe;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.action.MainActivity;
@@ -22,6 +25,10 @@ public class SocieteMenuActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_societe_menu);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
         projetCard = (CardView) findViewById(R.id.projetCardView);
         societeCard = (CardView) findViewById(R.id.societeCardView);
         projetCard.setOnClickListener(this);
@@ -49,5 +56,12 @@ public class SocieteMenuActivity extends AppCompatActivity implements View.OnCli
         Dispacher.forward(SocieteMenuActivity.this, SocieteCreateActivity.class);
     }
 
+//    public void testStatistics(View view) {
+//    }
 
+
+//    public void manageCompany(View view) {
+//        Toast.makeText(getBaseContext(), "HHHHHHHHHHHHHHHHHHHHHHHHHHH", Toast.LENGTH_LONG).show();
+//
+//    }
 }
