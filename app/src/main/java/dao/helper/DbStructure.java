@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 public final class DbStructure {
 
     public static final String dbName = "gestion_projet";
-    public static final int DB_VERSION = 5;
+    public static final int DB_VERSION = 6;
 
     public static abstract class User implements BaseColumns {
 
@@ -14,8 +14,8 @@ public final class DbStructure {
         public static final String C_PASSWORD = "password";
         public static final String C_LASTNAME = "lastName";
         public static final String C_FIRSTNAME = "firstName";
-        public static final String SQL_CREATE = "create table " + T_NAME + "("+ C_ID + " TEXT PRIMARY KEY, "
-                + C_PASSWORD + " TEXT, "+ C_LASTNAME +" TEXT, "+ C_FIRSTNAME +" TEXT )";
+        public static final String SQL_CREATE = "create table " + T_NAME + "(" + C_ID + " TEXT PRIMARY KEY, "
+                + C_PASSWORD + " TEXT, " + C_LASTNAME + " TEXT, " + C_FIRSTNAME + " TEXT )";
         public static final String SQL_DROP = "DROP TABLE IF EXISTS " + T_NAME;
     }
 
@@ -43,7 +43,7 @@ public final class DbStructure {
         public static final String C_PRENOM = "prenom";
 
         public static final String SQL_CREATE = "create table " + T_NAME + "("
-                + C_ID + " TEXT PRIMARY KEY, "
+                + C_ID + " INTEGER PRIMARY KEY NOT NULL, "
                 + C_NOM + " TEXT,"
                 + C_PRENOM + " TEXT )";
         public static final String SQL_DROP = "DROP TABLE IF EXISTS " + T_NAME;

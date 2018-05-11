@@ -13,6 +13,11 @@ public class SocieteService extends SocieteDao {
         super(context);
     }
 
+    public int createSociete(Societe societe) {
+        create(societe);
+        return 1;
+    }
+
     public int create(String raisonSociale, Date dateFondation) {
         Societe societe = new Societe();
         societe.setRaisonSociale(raisonSociale);
