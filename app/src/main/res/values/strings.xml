@@ -10,4 +10,12 @@
     <string name="sign_up">Sign Up</string>
     <string name="username_or_password_incorrect">Username or password incorrect !</string>
     <string name="user_created">User has been created successfully!</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="create_company">Create Company</string>
+    <string name="create_manager">CREATE MANAGER</string>
+    <string name="manager_last_name">Manager Last name</string>
+    <string name="manager_first_name">Manager First Name</string>
+    <string name="manager_creation_fail">Please fill atleast one field</string>
+    <string name="manager_creation_success">Manager created</string>
 </resources>

@@ -5,10 +5,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 
@@ -22,31 +25,85 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
 
     private List<Societe> msocietes;
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView nameTextView;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            nameTextView = (TextView) itemView.findViewById(R.id.societe_raisonSociale);
-
-        }
-    }
 
     public SocieteAdapter(List<Societe> societes) {
         msocietes = societes;
     }
 
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView nameTextView;
+        public TextView seeMore;
+        public LinearLayout societeitem;
+
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            societeitem = (LinearLayout) itemView.findViewById(R.id.societe_item);
+            seeMore = (TextView) itemView.findViewById(R.id.societe_seeMore);
+            nameTextView = (TextView) itemView.findViewById(R.id.societe_raisonSociale);
+
+        }
+    }
+
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        final Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
         View societeView = inflater.inflate(R.layout.item_societe_list, parent, false);
 
         // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(societeView);
+        //final was added here because of toast
+        final ViewHolder viewHolder = new ViewHolder(societeView);
+
+
+        viewHolder.seeMore.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.d("ta5", "insideOnCLickListener");
+                //onclick the see more 3buttons
+                //popupmenu
+                PopupMenu popupMenu = new PopupMenu(context, viewHolder.seeMore);
+                //inflating menu from xml
+                popupMenu.inflate(R.menu.societe_options_menu);
+                //onclick
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.edit_item_options_menu:
+                                Log.d("ta5", "menu1");
+                                break;
+                            case R.id.edit_item_option_menu:
+                                Log.d("ta5", "menu2");
+                                ;
+                                break;
+                            default:
+                                break;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
+
+        viewHolder.societeitem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //on click the whole line
+                Toast.makeText(context, "test  societe " + String.valueOf(viewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                Log.d("tad", "" + msocietes.get(viewHolder.getAdapterPosition()).getRaisonSociale());
+            }
+        });
+
+
         return viewHolder;
     }
 
