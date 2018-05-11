@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_stars"
+    tools:context=".action.depense.DepenseCreateActivity">
+
+
+    <Spinner
+        android:id="@+id/projet_spinner"
+        android:layout_width="308dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="14dp"
+        android:background="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/societe_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/montant" />
+
+    <Spinner
+        android:id="@+id/societe_spinner"
+        android:layout_width="308dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="6dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/date_depense"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/projet_spinner" />
+
+    <EditText
+        android:id="@+id/montant"
+        android:layout_width="308dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="40dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Montant (DH)"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/projet_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/date_depense"
+        android:layout_width="308dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="4dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Date"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/commentaire_depense"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/societe_spinner" />
+
+    <EditText
+        android:id="@+id/commentaire_depense"
+        android:layout_width="308dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="5dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Commentaire"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/ajouter_depense"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_depense" />
+
+    <Button
+        android:id="@+id/ajouter_depense"
+        android:layout_width="131dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="102dp"
+        android:layout_marginEnd="114dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="15dp"
+        android:text="Ajouter"
+        android:onClick="createDepense"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentaire_depense" />
+
+</android.support.constraint.ConstraintLayout>

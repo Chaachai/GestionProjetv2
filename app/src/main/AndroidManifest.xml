@@ -40,8 +40,13 @@
         <activity
             android:name=".action.SideMenuActivity"
             android:label="@string/title_activity_side_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".action.TestChartActivity" />
+        <activity android:name=".action.depense.DepenseCreateActivity" />
+        <activity
+            android:name=".action.depense.DepenseListActivity"
+            android:label="@string/title_activity_depense_list2"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".action.TestChartActivity"></activity>
     </application>
 
 </manifest>

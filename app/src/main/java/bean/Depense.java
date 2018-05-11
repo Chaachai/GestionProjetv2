@@ -12,8 +12,8 @@ public class Depense implements Serializable {
     private BigDecimal montant;
     private Date date;
     private String commentaire;
-    //projet
-    //societe
+    private Projet projet;
+    private Societe societe;
 
     public Depense() {
     }
@@ -55,6 +55,22 @@ public class Depense implements Serializable {
 
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
+    }
+
+    public Projet getProjet() {
+        return projet;
+    }
+
+    public void setProjet(Projet projet) {
+        this.projet = projet;
+    }
+
+    public Societe getSociete() {
+        return societe;
+    }
+
+    public void setSociete(Societe societe) {
+        this.societe = societe;
     }
 
     @Override

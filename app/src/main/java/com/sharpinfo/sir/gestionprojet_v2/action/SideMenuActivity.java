@@ -24,6 +24,7 @@ import com.sharpinfo.sir.gestionprojet_v2.SecondFragment;
 import com.sharpinfo.sir.gestionprojet_v2.ThirdFragment;
 import com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteMenuActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.SocieteAdapter;
 
 import java.util.List;
@@ -124,6 +125,10 @@ public class SideMenuActivity extends AppCompatActivity
 
     public void manageCompany(View view) {
         Dispacher.forward(SideMenuActivity.this, SocieteListActivity.class);
+    }
+
+    public void manageExpenses(View view) {
+        Dispacher.forward(SideMenuActivity.this, DepenseListActivity.class);
     }
 
 }

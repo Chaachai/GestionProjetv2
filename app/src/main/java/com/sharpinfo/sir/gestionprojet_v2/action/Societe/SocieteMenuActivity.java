@@ -56,6 +56,9 @@ public class SocieteMenuActivity extends AppCompatActivity implements View.OnCli
         Dispacher.forward(SocieteMenuActivity.this, SocieteCreateActivity.class);
     }
 
+//    public void manageExpenses(View view) {
+//    }
+
 //    public void testStatistics(View view) {
 //    }
 
