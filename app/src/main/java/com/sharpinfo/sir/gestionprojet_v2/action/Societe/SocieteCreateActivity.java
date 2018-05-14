@@ -2,12 +2,15 @@ package com.sharpinfo.sir.gestionprojet_v2.action.Societe;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -16,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
+import com.sharpinfo.sir.gestionprojet_v2.adapter.ManagerSpinnerAdapter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,18 +30,29 @@ import java.util.List;
 import java.util.Locale;
 
 import bean.Manager;
+import bean.Societe;
 import helper.Dispacher;
 import service.ManagerService;
 import service.SocieteService;
 
 public class SocieteCreateActivity extends AppCompatActivity {
 
+    //tag for log
+    private static final String TAG = "SocieteCreate";
+
     private EditText raisonSociale;
     private Spinner managerSpinner;
     private Button managerCreateBtn;
+
+
+    private ManagerSpinnerAdapter managerSpinnerAdapter;
+
     SocieteService societeService = new SocieteService(this);
     ManagerService managerService = new ManagerService(this);
 
+    //list dyal les id dyal managers
+    List<Long> managerIds = new ArrayList();
+    private Manager manager = null;
     //Date
     Context context = this;
     EditText editDate;
@@ -49,17 +64,28 @@ public class SocieteCreateActivity extends AppCompatActivity {
 
     private void initManagerSpinner() {
         managerSpinner = (Spinner) findViewById(R.id.manager_spinner);
-        List<String> managerNames = new ArrayList<>();
+//        List<String> managerNames = new ArrayList();
         List<Manager> managers = managerService.findAll();
-        if (managers.isEmpty()) {
-            managerNames.add("There is no manager");
-        } else {
-            for (int i = 0; i < managers.size(); i++) {
-                managerNames.add(managers.get(i).getNom() + " " + managers.get(i).getPrenom());
-            }
-        }
-        ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, managerNames);
-        managerSpinner.setAdapter(stringArrayAdapter);
+//
+//        if (managers.isEmpty()) {
+//            managerNames.add("There is no manager");
+//        } else {
+//            managerNames.add("Please select a manager");
+//            for (int i = 0; i < managers.size(); i++) {
+//                managerNames.add("Nom et Prenom :" + managers.get(i).getNom() + " " + managers.get(i).getPrenom());
+//            }
+//        }
+        managerSpinnerAdapter = new ManagerSpinnerAdapter(this, android.R.layout.simple_spinner_item, managers);
+        managerSpinner.setAdapter(managerSpinnerAdapter);
+        managerSpinnerAdapter.notifyDataSetChanged();
+        managerSpinner.setSelection(0, true);
+    }
+
+    private void updateManageSpinner() {
+        List<Manager> managers = managerService.findAll();
+        managerSpinnerAdapter = new ManagerSpinnerAdapter(this, android.R.layout.simple_spinner_item, managers);
+        managerSpinner.setAdapter(managerSpinnerAdapter);
+        managerSpinnerAdapter.notifyDataSetChanged();
     }
 
     private void initPopupCreateManager() {
@@ -79,13 +105,17 @@ public class SocieteCreateActivity extends AppCompatActivity {
                             R.string.manager_creation_fail,
                             Toast.LENGTH_SHORT)
                             .show();
-
                 } else {
+                    Log.d(TAG, String.valueOf(managerFirstNameText.getText()));
+                    Log.d(TAG, String.valueOf(managerLastNameText.getText()));
+                    res = managerService.create(String.valueOf(managerFirstNameText.getText()), String.valueOf(managerLastNameText.getText()));
+                    Log.d("manager create", "result " + res);
+                    Log.d("manager create", "error");
                     Toast.makeText(getBaseContext(),
                             R.string.manager_creation_success,
                             Toast.LENGTH_SHORT)
                             .show();
-                    Dispacher.forward(context,SocieteCreateActivity.class);
+                    updateManageSpinner();
 
                 }
             }
@@ -99,7 +129,8 @@ public class SocieteCreateActivity extends AppCompatActivity {
     private void updateDate() {
         editDate.setText(simpleDateFormat.format(myCalendar.getTime()));
     }
-    private void initPopupDate(){
+
+    private void initPopupDate() {
         // set calendar date and update editDate
         editDate = (EditText) findViewById(R.id.textViewDate);
         date = new DatePickerDialog.OnDateSetListener() {
@@ -133,39 +164,72 @@ public class SocieteCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_societe_create);
         initManagerSpinner();
-        managerCreateBtn =(Button) findViewById(R.id.create_manager_btn);
+
+        getManagerFromSpinner();
+        managerCreateBtn = (Button) findViewById(R.id.create_manager_btn);
         managerCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 initPopupCreateManager();
+//                initPopupCreateManager2();
             }
         });
         // init - set date to current date
         long currentdate = System.currentTimeMillis();
         String dateString = simpleDateFormat.format(currentdate);
+        editDate = (EditText) findViewById(R.id.textViewDate);
         editDate.setText(dateString);
         initPopupDate();
     }
 
 
-
-
-    //create btn
     public void create(View view) {
+
+        Societe societe = setParam();
+        societeService.create(societe);
+        Toast.makeText(getBaseContext(), "Societe cree avec succes! with date " + societe.getDateFondation() + " " + societe.getManager().getNom() + ", !", Toast.LENGTH_LONG).show();
+        Dispacher.forward(this, SocieteListActivity.class);
+
+    }
+
+    private Societe setParam() {
+        raisonSociale = findViewById(R.id.textViewRaisonSociale);
+        Societe societe = new Societe();
+        societe.setRaisonSociale(String.valueOf(raisonSociale.getText()));
+        societe.setManager(manager);
+
         Date dateFondation = new Date();
-        Log.d("tag8", "1");
+
         try {
             //hadi hya la date li khsha tmchi l sqllite
-            Log.d("tag2", "" + myCalendar.getTime());
             dateFondation = simpleDateFormat.parse(simpleDateFormat.format(myCalendar.getTime()));
-            raisonSociale = findViewById(R.id.textViewRaisonSociale);
-            int res = societeService.create(String.valueOf(raisonSociale.getText()), dateFondation);
-            if (res == 1) {
-                Toast.makeText(getBaseContext(), "Societe cree avec succes! with date " + myCalendar.getTime() + ", !", Toast.LENGTH_LONG).show();
-            }
+            societe.setDateFondation(dateFondation);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        return societe;
+
+    }
+
+    private Manager getManagerFromSpinner() {
+
+        managerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0) {
+                    manager = managerSpinnerAdapter.getItem(position);
+                    Log.d("test", "no error");
+                    Log.d(TAG, "2");
+                    Log.d(TAG, manager.getNom() + " 2" + manager.getPrenom());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        return manager;
     }
 
 }

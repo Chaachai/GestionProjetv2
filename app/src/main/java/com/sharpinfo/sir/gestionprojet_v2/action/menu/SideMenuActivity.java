@@ -31,10 +31,13 @@ import java.util.List;
 
 import bean.Societe;
 import helper.Dispacher;
+import service.ProjetService;
 import service.SocieteService;
 
 public class SideMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ProjetService projetService = new ProjetService(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

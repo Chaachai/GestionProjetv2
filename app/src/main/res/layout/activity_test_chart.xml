@@ -10,7 +10,13 @@
         android:id="@+id/chart"
         android:layout_width="345dp"
         android:layout_height="283dp"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_marginBottom="341dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

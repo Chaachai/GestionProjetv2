@@ -43,7 +43,7 @@ public final class DbStructure {
         public static final String C_PRENOM = "prenom";
 
         public static final String SQL_CREATE = "create table " + T_NAME + "("
-                + C_ID + " TEXT PRIMARY KEY NOT NULL, "
+                + C_ID + " INTEGER PRIMARY KEY NOT NULL, "
                 + C_NOM + " TEXT,"
                 + C_PRENOM + " TEXT )";
         public static final String SQL_DROP = "DROP TABLE IF EXISTS " + T_NAME;
