@@ -1,17 +1,13 @@
-package com.sharpinfo.sir.gestionprojet_v2.action.Societe;
+package com.sharpinfo.sir.gestionprojet_v2.action.societe;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -51,7 +47,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
     ManagerService managerService = new ManagerService(this);
 
     //list dyal les id dyal managers
-    List<Long> managerIds = new ArrayList();
+    List<Long> managerIds = new ArrayList<>();
     private Manager manager = null;
     //Date
     Context context = this;
@@ -96,6 +92,9 @@ public class SocieteCreateActivity extends AppCompatActivity {
         final EditText managerLastNameText = (EditText) mView.findViewById(R.id.manager_lastname_textView);
         Button managerCreatebtn = (Button) mView.findViewById(R.id.managerCreatebtn);
 
+        builder.setView(mView);
+        final AlertDialog alertDialog = builder.create();
+
         managerCreatebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,12 +115,11 @@ public class SocieteCreateActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT)
                             .show();
                     updateManageSpinner();
-
+                    alertDialog.dismiss();
                 }
             }
         });
-        builder.setView(mView);
-        AlertDialog alertDialog = builder.create();
+
         alertDialog.show();
 
     }
@@ -159,6 +157,15 @@ public class SocieteCreateActivity extends AppCompatActivity {
         });
     }
 
+    private void initDate() {
+        long currentdate = System.currentTimeMillis();
+        String dateString = simpleDateFormat.format(currentdate);
+        editDate = (EditText) findViewById(R.id.textViewDate);
+        editDate.setText(dateString);
+        initPopupDate();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -171,15 +178,12 @@ public class SocieteCreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 initPopupCreateManager();
-//                initPopupCreateManager2();
             }
         });
+
         // init - set date to current date
-        long currentdate = System.currentTimeMillis();
-        String dateString = simpleDateFormat.format(currentdate);
-        editDate = (EditText) findViewById(R.id.textViewDate);
-        editDate.setText(dateString);
-        initPopupDate();
+        initDate();
+
     }
 
 
@@ -189,6 +193,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
         societeService.create(societe);
         Toast.makeText(getBaseContext(), "Societe cree avec succes! with date " + societe.getDateFondation() + " " + societe.getManager().getNom() + ", !", Toast.LENGTH_LONG).show();
         Dispacher.forward(this, SocieteListActivity.class);
+        finish();
 
     }
 

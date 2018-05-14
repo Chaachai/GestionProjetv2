@@ -1,4 +1,4 @@
-package com.sharpinfo.sir.gestionprojet_v2.action.Societe;
+package com.sharpinfo.sir.gestionprojet_v2.action.menu;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -6,14 +6,15 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
-import com.sharpinfo.sir.gestionprojet_v2.action.MainActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.projet.ProjetListActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteCreateActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
 
 import helper.Dispacher;
 
-public class SocieteMenuActivity extends AppCompatActivity implements View.OnClickListener {
+public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
     private CardView projetCard;
     private CardView societeCard;
     private CardView depenseCard;
@@ -24,7 +25,7 @@ public class SocieteMenuActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_societe_menu);
+        setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
@@ -40,12 +41,13 @@ public class SocieteMenuActivity extends AppCompatActivity implements View.OnCli
 
         switch (view.getId()) {
             case R.id.societeCardView:
-                Dispacher.forward(SocieteMenuActivity.this, SocieteListActivity.class);
+                Dispacher.forward(MenuActivity.this, SocieteListActivity.class);
                 break;
             case R.id.projetCardView:
-                Dispacher.forward(SocieteMenuActivity.this, MainActivity.class);
+                Dispacher.forward(MenuActivity.this, ProjetListActivity.class);
                 break;
-                default:break;
+            default:
+                break;
         }
 
 
@@ -53,7 +55,7 @@ public class SocieteMenuActivity extends AppCompatActivity implements View.OnCli
 
     public void goToProjets(View view) {
         projetCard = (CardView) findViewById(R.id.projetCardView);
-        Dispacher.forward(SocieteMenuActivity.this, SocieteCreateActivity.class);
+        Dispacher.forward(MenuActivity.this, SocieteCreateActivity.class);
     }
 
 //    public void testStatistics(View view) {

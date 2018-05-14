@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.action.SideMenuActivity;
-import com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteMenuActivity;
 
 import bean.User;
 import helper.Dispacher;

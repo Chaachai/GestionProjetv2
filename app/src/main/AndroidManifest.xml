@@ -23,30 +23,34 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sharpinfo.sir.gestionprojet_v2.action.user.SignInActivity" />
         </activity>
-        <activity android:name=".action.Societe.SocieteCreateActivity" />
+        <activity android:name=".action.societe.SocieteCreateActivity" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteListActivity" />
+            android:value="com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity" />
 
         <activity
-            android:name=".action.Societe.SocieteListActivity"
+            android:name=".action.societe.SocieteListActivity"
             android:label="@string/title_activity_societe_list"
-            android:parentActivityName=".action.Societe.SocieteMenuActivity"
+            android:parentActivityName=".action.menu.MenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteMenuActivity" />
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.menu.MenuActivity" />
         </activity>
-        <activity android:name=".action.Societe.SocieteMenuActivity" />
+        <activity android:name=".action.menu.MenuActivity" />
         <activity
             android:name=".action.MainActivity"
             android:label="@string/app_name" />
         <activity
             android:name=".action.SideMenuActivity"
             android:label="@string/title_activity_side_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".action.TestChartActivity" />
+        <activity
+            android:name=".action.projet.ProjetListActivity"
+            android:label="@string/title_activity_projet_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".action.TestChartActivity"></activity>
     </application>
 
 </manifest>
