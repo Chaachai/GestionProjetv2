@@ -32,25 +32,26 @@
         <activity
             android:name=".action.Societe.SocieteListActivity"
             android:label="@string/title_activity_societe_list"
-            android:parentActivityName=".action.Societe.SocieteMenuActivity"
+            android:parentActivityName=".action.menu.MenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteMenuActivity" />
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.menu.MenuActivity" />
         </activity>
-        <activity android:name=".action.Societe.SocieteMenuActivity" />
+        <activity android:name=".action.menu.MenuActivity" />
         <activity
             android:name=".action.MainActivity"
             android:label="@string/app_name" />
         <activity
-            android:name=".action.SideMenuActivity"
+            android:name=".action.menu.SideMenuActivity"
             android:label="@string/title_activity_side_menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".action.TestChartActivity" />
         <activity android:name=".action.depense.DepenseCreateActivity" />
         <activity
             android:name=".action.depense.DepenseListActivity"
-            android:label="@string/title_activity_depense_list2"
+            android:parentActivityName=".action.menu.SideMenuActivity"
+            android:label="Expenses List"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

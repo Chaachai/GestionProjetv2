@@ -58,6 +58,9 @@ public class Depense implements Serializable {
     }
 
     public Projet getProjet() {
+        if (projet == null) {
+            projet = new Projet();
+        }
         return projet;
     }
 
@@ -66,6 +69,9 @@ public class Depense implements Serializable {
     }
 
     public Societe getSociete() {
+        if (societe == null) {
+            societe = new Societe();
+        }
         return societe;
     }
 

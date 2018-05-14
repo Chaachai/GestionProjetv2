@@ -11,4 +11,6 @@
     <color name="pink">#FF5580</color>
     <color name="purple">#7A5AFF</color>
     <color name="yello">#FFE481</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>

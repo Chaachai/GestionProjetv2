@@ -60,6 +60,7 @@ public class ManagerSpinnerAdapter extends ArrayAdapter<Manager> {
         } else return true;
     }
 
+
     // And here is when the "chooser" is popped up
     // Normally is the same view, but you can customize it if you want
     @Override

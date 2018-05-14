@@ -17,18 +17,14 @@ public class DepenseService extends DepenseDao {
         super(context);
     }
 
-    public int create(Projet projet, Societe societe, Date date, BigDecimal montant, String commentaire) {
+    public int create(Date date, BigDecimal montant, String commentaire) {
         Depense depense = new Depense();
-        if (projet == null && societe == null) {
-            return -1;
-        } else {
-            depense.setProjet(projet);
-            depense.setSociete(societe);
+            depense.setProjet(null);
+            depense.setSociete(null);
             depense.setDate(date);
             depense.setMontant(montant);
             depense.setCommentaire(commentaire);
             create(depense);
             return 1;
-        }
     }
 }

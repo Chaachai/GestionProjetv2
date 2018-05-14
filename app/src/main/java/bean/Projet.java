@@ -92,7 +92,6 @@ public class Projet implements Serializable {
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
                 ", dateDebut=" + dateDebut +
-                ", societe=" + societe.getRaisonSociale() +
                 ", budget=" + budget +
                 '}';
     }
