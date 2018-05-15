@@ -86,9 +86,10 @@ public class ProjetCreateActivity extends AppCompatActivity {
         societeSpinner = (Spinner) findViewById(R.id.societe_spinner);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
+        societeSpinnerAdapter.add(new Societe(null, " --SELECT A SOCIETE-- "));
         societeSpinner.setAdapter(societeSpinnerAdapter);
         societeSpinnerAdapter.notifyDataSetChanged();
-        societeSpinner.setSelection(0, true);
+        societeSpinner.setSelection(societeSpinnerAdapter.getCount() + 1, true);
     }
 
     private void updateSocieteSpinner() {
@@ -141,6 +142,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
         editDate = (EditText) findViewById(R.id.projet_date);
 //        editDate.setText(dateString);
         initPopupDate();
+        initDate();
     }
 
     private Societe getSocieteFromSpinner() {
@@ -173,5 +175,13 @@ public class ProjetCreateActivity extends AppCompatActivity {
 
         Dispacher.forward(ProjetCreateActivity.this, ProjetListActivity.class);
         finish();
+    }
+
+    private void initDate() {
+        long currentdate = System.currentTimeMillis();
+        String dateString = simpleDateFormat.format(currentdate);
+        editDate = (EditText) findViewById(R.id.projet_date);
+        editDate.setText(dateString);
+        initPopupDate();
     }
 }

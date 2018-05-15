@@ -61,6 +61,7 @@ public class ProjetListActivity extends AppCompatActivity {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
                 Dispacher.forward(ProjetListActivity.this, ProjetCreateActivity.class);
+                finish();
             }
         });
     }

@@ -70,8 +70,10 @@ public class SocieteCreateActivity extends AppCompatActivity {
 //            }
 //        }
         managerSpinnerAdapter = new ManagerSpinnerAdapter(this, android.R.layout.simple_spinner_item, managers);
+        managerSpinnerAdapter.add(new Manager(null,"---SELECT NONE---",""));
         managerSpinner.setAdapter(managerSpinnerAdapter);
         managerSpinnerAdapter.notifyDataSetChanged();
+        managerSpinner.setSelection(managerSpinnerAdapter.getCount()+1,true);
     }
 
     private void updateManageSpinner() {
@@ -220,6 +222,9 @@ public class SocieteCreateActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 manager = managerSpinnerAdapter.getItem(position);
+                if(manager.getId()==null){
+                    manager = null;
+                }
                 Log.d("test", "no error");
                 Log.d(TAG, "2");
                 Log.d(TAG, manager.getNom() + " 2" + manager.getPrenom());
