@@ -23,6 +23,7 @@ public class DepenseDao extends AbstractDao<Depense> {
                 DbStructure.Depense.C_COMMENTAIRE,
                 DbStructure.Depense.C_DATE,
                 DbStructure.Depense.C_MONTANT,
+                DbStructure.Depense.C_HEUR,
                 DbStructure.Depense.C_ID_PROJET,
                 DbStructure.Depense.C_ID_SOCIETE,
 
@@ -41,6 +42,7 @@ public class DepenseDao extends AbstractDao<Depense> {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DbStructure.Depense.C_ID, depense.getId());
         contentValues.put(DbStructure.Depense.C_COMMENTAIRE, depense.getCommentaire());
+        contentValues.put(DbStructure.Depense.C_HEUR, depense.getHeur());
         contentValues.put(DbStructure.Depense.C_DATE, depense.getDate().getTime());
         contentValues.put(DbStructure.Depense.C_MONTANT, depense.getMontant().intValue());
         contentValues.put(DbStructure.Depense.C_ID_PROJET, depense.getProjet().getId());
@@ -55,6 +57,7 @@ public class DepenseDao extends AbstractDao<Depense> {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DbStructure.Depense.C_ID, depense.getId());
         contentValues.put(DbStructure.Depense.C_COMMENTAIRE, depense.getCommentaire());
+        contentValues.put(DbStructure.Depense.C_HEUR, depense.getHeur());
         contentValues.put(DbStructure.Depense.C_DATE, depense.getDate().getTime());
         contentValues.put(DbStructure.Depense.C_MONTANT, depense.getMontant().intValue());
         contentValues.put(DbStructure.Depense.C_ID_PROJET, depense.getProjet().getId());
@@ -82,7 +85,11 @@ public class DepenseDao extends AbstractDao<Depense> {
                 cursor.getLong(cursor.getColumnIndex(DbStructure.Depense.C_ID)),
                 montant,
                 date,
-                cursor.getString(cursor.getColumnIndex(DbStructure.Depense.C_COMMENTAIRE)));
+                cursor.getString(cursor.getColumnIndex(DbStructure.Depense.C_COMMENTAIRE)),
+                cursor.getString(cursor.getColumnIndex(DbStructure.Depense.C_HEUR)),
+                cursor.getLong(cursor.getColumnIndex(DbStructure.Depense.C_ID_PROJET)),
+                cursor.getLong(cursor.getColumnIndex(DbStructure.Depense.C_ID_SOCIETE))
+        );
     }
 
 

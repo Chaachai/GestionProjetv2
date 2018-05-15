@@ -71,7 +71,7 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
                 //popupmenu
                 PopupMenu popupMenu = new PopupMenu(context, viewHolder.seeMore);
                 //inflating menu from xml
-                popupMenu.inflate(R.menu.societe_options_menu);
+                popupMenu.inflate(R.menu.options_menu);
                 //onclick
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
@@ -80,7 +80,7 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
                             case R.id.edit_item_options_menu:
                                 Log.d("ta5", "menu1");
                                 break;
-                            case R.id.edit_item_option_menu:
+                            case R.id.delete_item_options_menu:
                                 Log.d("ta5", "menu2");
                                 ;
                                 break;

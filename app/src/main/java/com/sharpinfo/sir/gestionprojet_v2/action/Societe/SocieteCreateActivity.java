@@ -159,6 +159,14 @@ public class SocieteCreateActivity extends AppCompatActivity {
         });
     }
 
+    private void initDate() {
+        long currentdate = System.currentTimeMillis();
+        String dateString = simpleDateFormat.format(currentdate);
+        editDate = (EditText) findViewById(R.id.textViewDate);
+        editDate.setText(dateString);
+        initPopupDate();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,6 +188,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
         editDate = (EditText) findViewById(R.id.textViewDate);
         editDate.setText(dateString);
         initPopupDate();
+        initDate();
     }
 
 

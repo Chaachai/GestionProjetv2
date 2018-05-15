@@ -1,6 +1,8 @@
 package service;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
 import java.math.BigDecimal;
@@ -30,14 +32,4 @@ public class ProjetService extends ProjetDao {
         return 1;
     }
 
-    public Projet findByDepense(Depense depense) {
-        List<Projet> projets = findAll();
-        for (int i = 0; i < projets.size(); i++) {
-            Projet projet = projets.get(i);
-            if (projet.equals(depense.getProjet())) {
-                return projet;
-            }
-        }
-        return null;
-    }
 }

@@ -44,14 +44,19 @@
             android:label="@string/app_name" />
         <activity
             android:name=".action.menu.SideMenuActivity"
-            android:label="@string/title_activity_side_menu"
+            android:label="Welcome to SHARPROJECTS"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".action.TestChartActivity" />
         <activity android:name=".action.depense.DepenseCreateActivity" />
+        <activity android:name=".action.tache.TacheCreateActivity" />
         <activity
             android:name=".action.depense.DepenseListActivity"
-            android:parentActivityName=".action.menu.SideMenuActivity"
             android:label="Expenses List"
+            android:parentActivityName=".action.menu.SideMenuActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".action.tache.TacheListActivity"
+            android:label="@string/title_activity_tache_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

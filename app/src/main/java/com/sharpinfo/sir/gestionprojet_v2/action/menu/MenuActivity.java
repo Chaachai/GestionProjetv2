@@ -57,6 +57,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         Dispacher.forward(MenuActivity.this, SocieteCreateActivity.class);
     }
 
+//    public void manageTasks(View view) {
+//    }
+
 //    public void manageExpenses(View view) {
 //    }
 

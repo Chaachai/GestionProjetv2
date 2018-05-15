@@ -1,7 +1,9 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Societe implements Serializable {
@@ -11,6 +13,8 @@ public class Societe implements Serializable {
     private String raisonSociale;
     private Date dateFondation;
     private Manager manager;
+    private List<Depense> depenses;
+    private List<Tache> taches;
 
     public Societe(Long id, String raisonSociale) {
         this.id = id;
@@ -26,6 +30,28 @@ public class Societe implements Serializable {
     public Societe() {
     }
 
+    public List<Tache> getTaches() {
+        if (taches == null) {
+            taches = new ArrayList<>();
+        }
+        return taches;
+    }
+
+    public void setTaches(List<Tache> taches) {
+        this.taches = taches;
+    }
+
+    public List<Depense> getDepenses() {
+        if (depenses == null) {
+            depenses = new ArrayList<>();
+        }
+        return depenses;
+    }
+
+    public void setDepenses(List<Depense> depenses) {
+        this.depenses = depenses;
+    }
+
     public Societe(Long id) {
         this.id = id;
     }
@@ -39,6 +65,9 @@ public class Societe implements Serializable {
     }
 
     public String getRaisonSociale() {
+        if (raisonSociale == null) {
+            raisonSociale = " ";
+        }
         return raisonSociale;
     }
 
@@ -47,6 +76,9 @@ public class Societe implements Serializable {
     }
 
     public Date getDateFondation() {
+        if (dateFondation == null) {
+            dateFondation = new Date();
+        }
         return dateFondation;
     }
 
@@ -81,10 +113,6 @@ public class Societe implements Serializable {
 
     @Override
     public String toString() {
-        return "Societe{" +
-                "id=" + id +
-                ", raisonSociale='" + raisonSociale + '\'' +
-                ", dateFondation=" + dateFondation +
-                '}';
+        return raisonSociale;
     }
 }

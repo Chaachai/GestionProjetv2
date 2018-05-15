@@ -65,7 +65,7 @@ public class ProjetDao extends AbstractDao<Projet> {
     protected Projet transformeCursorToBean(Cursor cursor) {
 //        Projet(Long id, String nom, String description, BigDecimal budget)
         //budget
-        String s = cursor.getString(cursor.getColumnIndex(DbStructure.Projet.C_BUDGET));
+        int s = cursor.getInt(cursor.getColumnIndex(DbStructure.Projet.C_BUDGET));
         BigDecimal budget = new BigDecimal(s);
 
 

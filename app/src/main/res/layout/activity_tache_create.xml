@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".action.tache.TacheCreateActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <EditText
+        android:id="@+id/date_tache"
+        android:layout_width="308dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="79dp"
+        android:ems="10"
+        android:hint="Date : jj-mm-aaaa"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/heur_tache"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/heur_tache"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginStart="50dp"
+        android:ems="10"
+        android:hint="Heurs : HH:mm"
+        android:inputType="time"
+        app:layout_constraintBottom_toTopOf="@+id/duree_tache"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_tache" />
+
+    <EditText
+        android:id="@+id/duree_tache"
+        android:layout_width="308dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginStart="51dp"
+        android:ems="10"
+        android:hint="Durée (Heurs)"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/projet_spinner_tache"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heur_tache" />
+
+    <Spinner
+        android:id="@+id/projet_spinner_tache"
+        android:layout_width="308dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginStart="51dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/societe_spinner_tache"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/duree_tache" />
+
+    <Spinner
+        android:id="@+id/societe_spinner_tache"
+        android:layout_width="308dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginStart="51dp"
+        app:layout_constraintBottom_toTopOf="@+id/commentaire_tache"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/projet_spinner_tache" />
+
+    <EditText
+        android:id="@+id/commentaire_tache"
+        android:layout_width="308dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="23dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginStart="51dp"
+        android:ems="10"
+        android:hint="Commentaire"
+        android:inputType="textMultiLine"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/ajouter_tache"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/societe_spinner_tache" />
+
+    <Button
+        android:id="@+id/ajouter_tache"
+        android:layout_width="131dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginStart="140dp"
+        android:onClick="createDepense"
+        android:text="Ajouter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentaire_tache" />
+
+</android.support.constraint.ConstraintLayout>
