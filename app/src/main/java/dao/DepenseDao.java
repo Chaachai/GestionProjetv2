@@ -23,6 +23,9 @@ public class DepenseDao extends AbstractDao<Depense> {
                 DbStructure.Depense.C_COMMENTAIRE,
                 DbStructure.Depense.C_DATE,
                 DbStructure.Depense.C_MONTANT,
+                DbStructure.Depense.C_ID_PROJET,
+                DbStructure.Depense.C_ID_SOCIETE,
+
         };
         tableName = DbStructure.Depense.T_NAME;
         idName = DbStructure.Depense.C_ID;
@@ -40,6 +43,8 @@ public class DepenseDao extends AbstractDao<Depense> {
         contentValues.put(DbStructure.Depense.C_COMMENTAIRE, depense.getCommentaire());
         contentValues.put(DbStructure.Depense.C_DATE, depense.getDate().getTime());
         contentValues.put(DbStructure.Depense.C_MONTANT, depense.getMontant().intValue());
+        contentValues.put(DbStructure.Depense.C_ID_PROJET, depense.getProjet().getId());
+        contentValues.put(DbStructure.Depense.C_ID_SOCIETE, depense.getSociete().getId());
         return getDb().insert(DbStructure.Depense.T_NAME, null, contentValues);
 
     }
@@ -52,6 +57,8 @@ public class DepenseDao extends AbstractDao<Depense> {
         contentValues.put(DbStructure.Depense.C_COMMENTAIRE, depense.getCommentaire());
         contentValues.put(DbStructure.Depense.C_DATE, depense.getDate().getTime());
         contentValues.put(DbStructure.Depense.C_MONTANT, depense.getMontant().intValue());
+        contentValues.put(DbStructure.Depense.C_ID_PROJET, depense.getProjet().getId());
+        contentValues.put(DbStructure.Depense.C_ID_SOCIETE, depense.getSociete().getId());
         return getDb().update(DbStructure.Depense.T_NAME, contentValues, DbStructure.Depense.C_ID + "=" + depense.getId(), null);
 
     }

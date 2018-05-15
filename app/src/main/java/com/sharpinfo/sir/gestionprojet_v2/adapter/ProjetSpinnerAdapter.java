@@ -9,28 +9,28 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import bean.Manager;
-import dao.helper.DbStructure;
+import bean.Projet;
+import bean.Societe;
 
-public class ManagerSpinnerAdapter extends ArrayAdapter<Manager> {
+public class ProjetSpinnerAdapter extends ArrayAdapter<Projet> {
 
     private Context context;
-    private final List<Manager> managers;
+    private final List<Projet> projets;
 
-    public ManagerSpinnerAdapter(Context context, int textViewResourceId, List<Manager> managers) {
-        super(context, textViewResourceId, managers);
+    public ProjetSpinnerAdapter(Context context, int textViewResourceId, List<Projet> projets) {
+        super(context, textViewResourceId, projets);
         this.context = context;
-        this.managers = managers;
+        this.projets = projets;
     }
 
     @Override
     public int getCount() {
-        return managers.size();
+        return projets.size();
     }
 
     @Override
-    public Manager getItem(int position) {
-        return managers.get(position);
+    public Projet getItem(int position) {
+        return projets.get(position);
     }
 
     @Override
@@ -43,14 +43,14 @@ public class ManagerSpinnerAdapter extends ArrayAdapter<Manager> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // I created a dynamic TextView here, but you can reference your own  custom layout for each spinner item
-        TextView managerView = (TextView) super.getView(position, convertView, parent);
-        managerView.setTextColor(Color.BLACK);
+        TextView projet = (TextView) super.getView(position, convertView, parent);
+        projet.setTextColor(Color.BLACK);
         // Then you can get the current item using the values array (Users array) and the current position
         // You can NOW reference each method you has created in your bean object (User class)
-        managerView.setText(managers.get(position).getNom() + " " + managers.get(position).getPrenom());
+        projet.setText(projets.get(position).getNom());
 
         // And finally return your dynamic (or custom) view for each spinner item
-        return managerView;
+        return projet;
     }
 
     @Override
@@ -59,26 +59,20 @@ public class ManagerSpinnerAdapter extends ArrayAdapter<Manager> {
             return false;
         } else return true;
     }
-
+    
 
     // And here is when the "chooser" is popped up
     // Normally is the same view, but you can customize it if you want
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
-        TextView manager = (TextView) super.getDropDownView(position, convertView, parent);
+        TextView projet = (TextView) super.getDropDownView(position, convertView, parent);
         if (position == 0) {
-            manager.setTextColor(Color.GRAY);
-            manager.setText("Select a manager");
+            projet.setTextColor(Color.GRAY);
+            projet.setText("Select a projet");
         } else {
-            manager.setTextColor(Color.BLACK);
-            if (managers.get(position).getNom().equals("")) {
-                manager.setText(managers.get(position).getPrenom());
-            } else if (managers.get(position).getPrenom().equals("")) {
-                manager.setText(managers.get(position).getNom());
-            } else
-                manager.setText(managers.get(position).getNom() + " " + managers.get(position).getPrenom());
-
+            projet.setTextColor(Color.BLACK);
+            projet.setText(projets.get(position).getNom());
         }
-        return manager;
+        return projet;
     }
 }

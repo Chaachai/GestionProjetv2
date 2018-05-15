@@ -133,7 +133,8 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground">
+            android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="manageExpenses">
 
             <LinearLayout
                 android:layout_width="match_parent"

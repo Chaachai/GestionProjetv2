@@ -18,7 +18,11 @@ public class Projet implements Serializable {
     public Projet() {
     }
 
-    public Projet(Long id, String nom, String description, Date dateDebut,  BigDecimal budget) {
+    public Projet(Long id) {
+        this.id = id;
+    }
+
+    public Projet(Long id, String nom, String description, Date dateDebut, BigDecimal budget) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -88,7 +92,6 @@ public class Projet implements Serializable {
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
                 ", dateDebut=" + dateDebut +
-                ", societe=" + societe.getRaisonSociale() +
                 ", budget=" + budget +
                 '}';
     }

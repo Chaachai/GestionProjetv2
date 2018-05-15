@@ -1,4 +1,4 @@
-package com.sharpinfo.sir.gestionprojet_v2.action;
+package com.sharpinfo.sir.gestionprojet_v2.action.menu;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -18,12 +18,17 @@ import com.sharpinfo.sir.gestionprojet_v2.FirstFragment;
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.SecondFragment;
 import com.sharpinfo.sir.gestionprojet_v2.ThirdFragment;
-import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteListActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.TestChartActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 
 import helper.Dispacher;
+import service.ProjetService;
 
 public class SideMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ProjetService projetService = new ProjetService(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +36,15 @@ public class SideMenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_side_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//
+//        });
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -114,6 +119,10 @@ public class SideMenuActivity extends AppCompatActivity
 
     public void manageCompany(View view) {
         Dispacher.forward(SideMenuActivity.this, SocieteListActivity.class);
+    }
+
+    public void manageExpenses(View view) {
+        Dispacher.forward(SideMenuActivity.this, DepenseListActivity.class);
     }
 
 }

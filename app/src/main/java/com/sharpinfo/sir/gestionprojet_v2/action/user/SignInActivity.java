@@ -9,7 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
-import com.sharpinfo.sir.gestionprojet_v2.action.SideMenuActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.MainActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.menu.MenuActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.menu.SideMenuActivity;
 
 import bean.User;
 import helper.Dispacher;
