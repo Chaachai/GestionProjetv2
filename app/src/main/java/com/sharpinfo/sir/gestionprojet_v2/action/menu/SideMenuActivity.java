@@ -18,7 +18,8 @@ import com.sharpinfo.sir.gestionprojet_v2.FirstFragment;
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.SecondFragment;
 import com.sharpinfo.sir.gestionprojet_v2.ThirdFragment;
-import com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteListActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.projet.ProjetListActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.TestChartActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 
@@ -123,6 +124,10 @@ public class SideMenuActivity extends AppCompatActivity
 
     public void manageExpenses(View view) {
         Dispacher.forward(SideMenuActivity.this, DepenseListActivity.class);
+    }
+
+    public void manageProjects(View view) {
+        Dispacher.forward(SideMenuActivity.this, ProjetListActivity.class);
     }
 
 }

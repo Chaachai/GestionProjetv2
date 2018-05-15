@@ -54,9 +54,10 @@
         <activity android:name=".action.depense.DepenseCreateActivity" />
         <activity
             android:name=".action.depense.DepenseListActivity"
-            android:parentActivityName=".action.menu.SideMenuActivity"
             android:label="Expenses List"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".action.menu.SideMenuActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".action.projet.ProjetCreateActivity"></activity>
     </application>
 
 </manifest>

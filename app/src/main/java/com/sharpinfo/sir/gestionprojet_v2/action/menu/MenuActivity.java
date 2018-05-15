@@ -53,17 +53,4 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void goToProjets(View view) {
-        projetCard = (CardView) findViewById(R.id.projetCardView);
-        Dispacher.forward(MenuActivity.this, SocieteCreateActivity.class);
-    }
-
-//    public void testStatistics(View view) {
-//    }
-
-
-//    public void manageCompany(View view) {
-//        Toast.makeText(getBaseContext(), "HHHHHHHHHHHHHHHHHHHHHHHHHHH", Toast.LENGTH_LONG).show();
-//
-//    }
 }

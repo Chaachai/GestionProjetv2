@@ -59,7 +59,7 @@ public class ProjetSpinnerAdapter extends ArrayAdapter<Projet> {
             return false;
         } else return true;
     }
-    
+
 
     // And here is when the "chooser" is popped up
     // Normally is the same view, but you can customize it if you want

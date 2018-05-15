@@ -46,8 +46,6 @@ public class SocieteCreateActivity extends AppCompatActivity {
     SocieteService societeService = new SocieteService(this);
     ManagerService managerService = new ManagerService(this);
 
-    //list dyal les id dyal managers
-    List<Long> managerIds = new ArrayList<>();
     private Manager manager = null;
     //Date
     Context context = this;
@@ -74,7 +72,6 @@ public class SocieteCreateActivity extends AppCompatActivity {
         managerSpinnerAdapter = new ManagerSpinnerAdapter(this, android.R.layout.simple_spinner_item, managers);
         managerSpinner.setAdapter(managerSpinnerAdapter);
         managerSpinnerAdapter.notifyDataSetChanged();
-        managerSpinner.setSelection(0, true);
     }
 
     private void updateManageSpinner() {
@@ -222,12 +219,10 @@ public class SocieteCreateActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
-                    manager = managerSpinnerAdapter.getItem(position);
-                    Log.d("test", "no error");
-                    Log.d(TAG, "2");
-                    Log.d(TAG, manager.getNom() + " 2" + manager.getPrenom());
-                }
+                manager = managerSpinnerAdapter.getItem(position);
+                Log.d("test", "no error");
+                Log.d(TAG, "2");
+                Log.d(TAG, manager.getNom() + " 2" + manager.getPrenom());
             }
 
             @Override

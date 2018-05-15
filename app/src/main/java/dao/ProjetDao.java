@@ -59,13 +59,12 @@ public class ProjetDao extends AbstractDao<Projet> {
     }
 
     public long remove(Projet projet) {
-        return db.delete(DbStructure.Societe.T_NAME, DbStructure.Projet.C_ID + "=" + projet.getId(), null);
+        return db.delete(DbStructure.Projet.T_NAME, DbStructure.Projet.C_ID + "=" + projet.getId(), null);
     }
 
     protected Projet transformeCursorToBean(Cursor cursor) {
-//        Projet(Long id, String nom, String description, BigDecimal budget)
         //budget
-        String s = cursor.getString(cursor.getColumnIndex(DbStructure.Projet.C_BUDGET));
+        int s = cursor.getInt(cursor.getColumnIndex(DbStructure.Projet.C_BUDGET));
         BigDecimal budget = new BigDecimal(s);
 
 

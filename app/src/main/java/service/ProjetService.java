@@ -11,6 +11,7 @@ import bean.Depense;
 import bean.Projet;
 import bean.Societe;
 import dao.ProjetDao;
+import dao.helper.DbStructure;
 
 public class ProjetService extends ProjetDao {
     public ProjetService(Context context) {
@@ -39,5 +40,14 @@ public class ProjetService extends ProjetDao {
             }
         }
         return null;
+    }
+
+    public long removeBySociete(Societe societe) {
+        return db.delete(DbStructure.Projet.T_NAME, DbStructure.Projet.C_ID_SOCIETE + "=" + societe.getId(), null);
+    }
+
+    public int deleteBySociete(Societe societe) {
+        removeBySociete(societe);
+        return 1;
     }
 }

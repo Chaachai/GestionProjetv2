@@ -4,15 +4,12 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.ProjetSpinnerAdapter;
@@ -51,8 +48,6 @@ public class DepenseCreateActivity extends AppCompatActivity {
     private SocieteSpinnerAdapter societeSpinnerAdapter;
     private ProjetSpinnerAdapter projetSpinnerAdapter;
 
-    List<Long> societeIds = new ArrayList();
-    List<Long> projetIds = new ArrayList();
     private Societe societe = null;
     private Projet projet = null;
 
@@ -141,7 +136,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
 //        injectParam();
         long currentdate = System.currentTimeMillis();
         String dateString = simpleDateFormat.format(currentdate);
-        editDate = (EditText) findViewById(R.id.textViewDate);
+        editDate = (EditText) findViewById(R.id.date_depense);
 //        editDate.setText(dateString);
         initPopupDate();
     }
@@ -150,6 +145,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
         Depense depense = new Depense();
         montantDepense = findViewById(R.id.montant);
         commentaireDepense = findViewById(R.id.commentaire_depense);
+
         double montantDouble = Double.valueOf("" + montantDepense.getText());
         BigDecimal montantBigDecimal = BigDecimal.valueOf(montantDouble);
 
@@ -175,6 +171,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
         Log.d("he", "========= montant: " + depense.getMontant() + " date " + depense.getDate() + " comment " + depense.getCommentaire() + " projet " + depense.getProjet() + " societe " + depense.getSociete());
         depenseService.create(depense);
         Dispacher.forward(this, DepenseListActivity.class);
+        finish();
     }
 
     private Societe getSocieteFromSpinner() {

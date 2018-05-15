@@ -70,6 +70,9 @@ public class Projet implements Serializable {
     }
 
     public Societe getSociete() {
+        if (societe == null) {
+            societe = new Societe();
+        }
         return societe;
     }
 

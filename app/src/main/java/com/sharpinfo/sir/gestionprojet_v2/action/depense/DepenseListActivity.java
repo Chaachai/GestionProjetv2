@@ -37,14 +37,14 @@ public class DepenseListActivity extends AppCompatActivity {
 
     private Context mContext;
     private Activity mActivity;
-
+    private RecyclerView depenseRecyclerView;
 //    private RelativeLayout mRelativeLayout;
 //    private ConstraintLayout mButton;
 
     private PopupWindow mPopupWindow;
 
     DepenseService depenseService = new DepenseService(this);
-    private RecyclerView depenseRecyclerView;
+
 
     private void injecterGUI() {
         depenseRecyclerView = (RecyclerView) findViewById(R.id.depenseRecyclerView);
@@ -160,6 +160,7 @@ public class DepenseListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Dispacher.forward(DepenseListActivity.this, DepenseCreateActivity.class);
+                finish();
             }
         });
     }
