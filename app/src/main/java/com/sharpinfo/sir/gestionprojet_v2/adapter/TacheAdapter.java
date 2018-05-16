@@ -3,13 +3,11 @@ package com.sharpinfo.sir.gestionprojet_v2.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,16 +15,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.PopupMenu;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
-import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.tache.TacheListActivity;
 
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,37 +30,38 @@ import java.util.Locale;
 import bean.Depense;
 import bean.Projet;
 import bean.Societe;
-import service.DepenseService;
+import bean.Tache;
 import service.ProjetService;
 import service.SocieteService;
+import service.TacheService;
 
-public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHolder> {
+public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> {
 
-    private List<Depense> mdepenses;
-    DepenseListActivity depenseListActivity = new DepenseListActivity();
+    private List<Tache> mtaches;
+    TacheListActivity tacheListActivity = new TacheListActivity();
 
 
-    public DepenseAdapter(List<Depense> depenses) {
-        mdepenses = depenses;
+    public TacheAdapter(List<Tache> taches) {
+        mtaches = taches;
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView montant;
-        public TextView heur;
+        public TextView nbrHeur;
         public TextView date;
+        public TextView heur;
         public TextView seeMore;
-        public ConstraintLayout depenseitem;
+        public ConstraintLayout tacheitem;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            depenseitem = (ConstraintLayout) itemView.findViewById(R.id.depense_item);
-            seeMore = (TextView) itemView.findViewById(R.id.depense_seeMore);
-            montant = (TextView) itemView.findViewById(R.id.depense_montant);
-            heur = (TextView) itemView.findViewById(R.id.depense_heur);
-            date = (TextView) itemView.findViewById(R.id.depense_date);
+            tacheitem = (ConstraintLayout) itemView.findViewById(R.id.tache_item);
+            seeMore = (TextView) itemView.findViewById(R.id.tache_seeMore);
+            nbrHeur = (TextView) itemView.findViewById(R.id.tache_nbrheur);
+            date = (TextView) itemView.findViewById(R.id.tache_date);
+            heur = (TextView) itemView.findViewById(R.id.tache_heur);
 
         }
     }
@@ -79,23 +74,19 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHold
         final LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
-        final View depenseView = inflater.inflate(R.layout.item_depense_list, parent, false);
+        final View tacheView = inflater.inflate(R.layout.item_tache_list, parent, false);
 
         // Return a new holder instance
         //final was added here because of toast
-        final ViewHolder viewHolder = new ViewHolder(depenseView);
+        final ViewHolder viewHolder = new ViewHolder(tacheView);
 
 
         viewHolder.seeMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("ta5", "insideOnCLickListener");
-                //onclick the see more 3buttons
-                //popupmenu
                 PopupMenu popupMenu = new PopupMenu(context, viewHolder.seeMore);
-                //inflating menu from xml
                 popupMenu.inflate(R.menu.options_menu);
-                //onclick
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -103,56 +94,55 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHold
                             case R.id.edit_item_options_menu:
 
                                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                                final View mView = inflater.inflate(R.layout.depense_edit_popup, null);
+                                final View mView = inflater.inflate(R.layout.tache_edit_popup, null);
 
-                                ImageButton dismissButton = mView.findViewById(R.id.dismiss_edit);
+                                ImageButton dismissButton = mView.findViewById(R.id.dismiss_edit_tache);
 
-                                final EditText date = mView.findViewById(R.id.date_edit);
-                                final EditText heur = mView.findViewById(R.id.heur_edit);
-                                final EditText montant = mView.findViewById(R.id.montant_edit);
-                                final EditText commentaire = mView.findViewById(R.id.commentaire_edit);
-                                Button button = mView.findViewById(R.id.button_edit);
+                                final EditText date = mView.findViewById(R.id.date_edit_tache);
+                                final EditText heur = mView.findViewById(R.id.heur_edit_tache);
+                                final EditText nbrHeur = mView.findViewById(R.id.nbrheur_edit_tache);
+                                final EditText commentaire = mView.findViewById(R.id.commentaire_edit_tache);
+                                Button button = mView.findViewById(R.id.button_edit_tache);
 
                                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                                String dateString = dateFormat.format(mdepenses.get(viewHolder.getAdapterPosition()).getDate());
+                                String dateString = dateFormat.format(mtaches.get(viewHolder.getAdapterPosition()).getDate());
 
                                 date.setText(dateString);
-                                heur.setText(mdepenses.get(viewHolder.getAdapterPosition()).getHeur());
-                                montant.setText(mdepenses.get(viewHolder.getAdapterPosition()).getMontant() + "");
-                                commentaire.setText(mdepenses.get(viewHolder.getAdapterPosition()).getCommentaire());
+                                heur.setText(mtaches.get(viewHolder.getAdapterPosition()).getHeur());
+                                nbrHeur.setText(mtaches.get(viewHolder.getAdapterPosition()).getNbrHeures() + "");
+                                commentaire.setText(mtaches.get(viewHolder.getAdapterPosition()).getCommentaire());
 
                                 builder.setView(mView);
                                 final AlertDialog alertDialog = builder.create();
-                                final DepenseService depenseService = new DepenseService(context);
+                                final TacheService tacheService = new TacheService(context);
 
                                 button.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Depense depense = mdepenses.get(viewHolder.getAdapterPosition());
+                                        Tache tache = mtaches.get(viewHolder.getAdapterPosition());
 
                                         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
                                         try {
                                             Date dateEdited = format.parse(date.getText() + "");
-                                            depense.setDate(dateEdited);
+                                            tache.setDate(dateEdited);
                                         } catch (ParseException e) {
                                             e.printStackTrace();
                                         }
 
-                                        depense.setMontant(BigDecimal.valueOf(Double.valueOf(montant.getText() + "")));
-                                        depense.setHeur(heur.getText() + "");
-                                        depense.setCommentaire(commentaire.getText() + "");
-                                        depenseService.edit(depense);
-
+                                        tache.setNbrHeures(Double.valueOf(nbrHeur.getText() + ""));
+                                        tache.setHeur(""+heur.getText());
+                                        tache.setCommentaire(commentaire.getText() + "");
+                                        tacheService.edit(tache);
 
                                         Log.d("tag", "************** " + date.getText());
                                         Log.d("tag", "************** " + heur.getText());
-                                        Log.d("tag", "************** " + montant.getText());
+                                        Log.d("tag", "************** " + nbrHeur.getText());
                                         Log.d("tag", "************** " + commentaire.getText());
 
                                         notifyDataSetChanged();
                                         alertDialog.dismiss();
 
-                                        Snackbar snackbar = Snackbar.make(depenseView, "The expense was updated successfully", Snackbar.LENGTH_LONG);
+                                        Snackbar snackbar = Snackbar.make(tacheView, "The task was updated successfully", Snackbar.LENGTH_LONG);
                                         snackbar.show();
                                     }
                                 });
@@ -165,8 +155,6 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHold
                                 });
 
                                 alertDialog.show();
-
-                                Log.d("ta5", "menu1");
                                 break;
                             case R.id.delete_item_options_menu:
                                 Log.d("ta5", "menu2");
@@ -181,33 +169,33 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHold
             }
         });
 
-        viewHolder.depenseitem.setOnClickListener(new View.OnClickListener() {
+        viewHolder.tacheitem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                View mView = inflater.inflate(R.layout.depense_info_popup, null);
+                View mView = inflater.inflate(R.layout.tache_info_popup, null);
 
-                ImageButton dismissButton = mView.findViewById(R.id.dismiss_depense);
+                ImageButton dismissButton = mView.findViewById(R.id.dismiss_tache);
 
-                TextView date = mView.findViewById(R.id.date_popup);
-                TextView heur = mView.findViewById(R.id.heur_popup);
-                TextView montant = mView.findViewById(R.id.montant_popup);
-                TextView commentaire = mView.findViewById(R.id.commentaire_popup);
-                TextView projet = mView.findViewById(R.id.projet_popup);
-                TextView societe = mView.findViewById(R.id.societe_popup);
+                TextView date = mView.findViewById(R.id.date_popup_tache);
+                TextView heur = mView.findViewById(R.id.heur_popup_tache);
+                TextView nbrHeur = mView.findViewById(R.id.nbrheur_popup_tache);
+                TextView commentaire = mView.findViewById(R.id.commentaire_popup_tache);
+                TextView projet = mView.findViewById(R.id.projet_popup_tache);
+                TextView societe = mView.findViewById(R.id.societe_popup_tache);
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                String dateString = dateFormat.format(mdepenses.get(viewHolder.getAdapterPosition()).getDate());
+                String dateString = dateFormat.format(mtaches.get(viewHolder.getAdapterPosition()).getDate());
 
                 date.setText(dateString);
-                heur.setText(mdepenses.get(viewHolder.getAdapterPosition()).getHeur());
-                montant.setText(mdepenses.get(viewHolder.getAdapterPosition()).getMontant() + "");
-                commentaire.setText(mdepenses.get(viewHolder.getAdapterPosition()).getCommentaire() + "");
+                heur.setText(mtaches.get(viewHolder.getAdapterPosition()).getHeur());
+                nbrHeur.setText(mtaches.get(viewHolder.getAdapterPosition()).getNbrHeures() + "");
+                commentaire.setText(mtaches.get(viewHolder.getAdapterPosition()).getCommentaire() + "");
 
 
-                Projet p = mdepenses.get(viewHolder.getAdapterPosition()).getProjet();
-                Societe s = mdepenses.get(viewHolder.getAdapterPosition()).getSociete();
+                Projet p = mtaches.get(viewHolder.getAdapterPosition()).getProjet();
+                Societe s = mtaches.get(viewHolder.getAdapterPosition()).getSociete();
 
 
                 ProjetService projetService = new ProjetService(context);
@@ -246,25 +234,25 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(DepenseAdapter.ViewHolder viewHolder, int position) {
-        Depense depense = mdepenses.get(position);
-        TextView textView = viewHolder.montant;
+    public void onBindViewHolder(TacheAdapter.ViewHolder viewHolder, int position) {
+        Tache tache = mtaches.get(position);
+        TextView textView = viewHolder.nbrHeur;
         TextView textView2 = viewHolder.date;
         TextView textView3 = viewHolder.heur;
 
         //date
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        String dateString = dateFormat.format(depense.getDate());
+        String dateString = dateFormat.format(tache.getDate());
 
-        textView3.setText(depense.getHeur());
+        textView3.setText(tache.getHeur());
         textView2.setText(dateString);
-        textView.setText(depense.getMontant() + "  DHs");
+        textView.setText(tache.getNbrHeures()+"");
 
     }
 
     @Override
     public int getItemCount() {
-        return mdepenses.size();
+        return mtaches.size();
     }
 
 

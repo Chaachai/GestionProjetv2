@@ -177,6 +177,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 initPopupCreateManager();
+//                initPopupCreateManager2();
             }
         });
 

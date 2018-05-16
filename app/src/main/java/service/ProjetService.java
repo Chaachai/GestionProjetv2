@@ -1,6 +1,8 @@
 package service;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
 import java.math.BigDecimal;
@@ -11,7 +13,6 @@ import bean.Depense;
 import bean.Projet;
 import bean.Societe;
 import dao.ProjetDao;
-import dao.helper.DbStructure;
 
 public class ProjetService extends ProjetDao {
     public ProjetService(Context context) {
@@ -31,23 +32,4 @@ public class ProjetService extends ProjetDao {
         return 1;
     }
 
-    public Projet findByDepense(Depense depense) {
-        List<Projet> projets = findAll();
-        for (int i = 0; i < projets.size(); i++) {
-            Projet projet = projets.get(i);
-            if (projet.equals(depense.getProjet())) {
-                return projet;
-            }
-        }
-        return null;
-    }
-
-    public long removeBySociete(Societe societe) {
-        return db.delete(DbStructure.Projet.T_NAME, DbStructure.Projet.C_ID_SOCIETE + "=" + societe.getId(), null);
-    }
-
-    public int deleteBySociete(Societe societe) {
-        removeBySociete(societe);
-        return 1;
-    }
 }

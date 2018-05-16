@@ -44,13 +44,31 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 Dispacher.forward(MenuActivity.this, SocieteListActivity.class);
                 break;
             case R.id.projetCardView:
-                Dispacher.forward(MenuActivity.this, ProjetListActivity.class);
+                Dispacher.forward(MenuActivity.this, MainActivity.class);
                 break;
-            default:
-                break;
+                default:break;
         }
 
 
     }
 
+    public void goToProjets(View view) {
+        projetCard = (CardView) findViewById(R.id.projetCardView);
+        Dispacher.forward(MenuActivity.this, SocieteCreateActivity.class);
+    }
+
+//    public void manageTasks(View view) {
+//    }
+
+//    public void manageExpenses(View view) {
+//    }
+
+//    public void testStatistics(View view) {
+//    }
+
+
+//    public void manageCompany(View view) {
+//        Toast.makeText(getBaseContext(), "HHHHHHHHHHHHHHHHHHHHHHHHHHH", Toast.LENGTH_LONG).show();
+//
+//    }
 }

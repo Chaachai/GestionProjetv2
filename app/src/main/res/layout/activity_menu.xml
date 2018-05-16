@@ -180,6 +180,7 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:clickable="true"
+            android:onClick="manageTasks"
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout

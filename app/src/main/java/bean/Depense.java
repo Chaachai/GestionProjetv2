@@ -12,10 +12,21 @@ public class Depense implements Serializable {
     private BigDecimal montant;
     private Date date;
     private String commentaire;
-    private Projet projet;
-    private Societe societe;
+    private String heur;
+    private Projet projet = new Projet();
+    private Societe societe = new Societe();
 
     public Depense() {
+    }
+
+    public Depense(Long id, BigDecimal montant, Date date, String commentaire, String heur, Long idProjet, Long idSociete) {
+        this.id = id;
+        this.montant = montant;
+        this.date = date;
+        this.commentaire = commentaire;
+        this.heur = heur;
+        projet.setId(idProjet);
+        societe.setId(idSociete);
     }
 
     public Depense(Long id, BigDecimal montant, Date date, String commentaire) {
@@ -24,6 +35,7 @@ public class Depense implements Serializable {
         this.date = date;
         this.commentaire = commentaire;
     }
+
 
     public Long getId() {
         return id;
@@ -55,6 +67,14 @@ public class Depense implements Serializable {
 
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
+    }
+
+    public String getHeur() {
+        return heur;
+    }
+
+    public void setHeur(String heur) {
+        this.heur = heur;
     }
 
     public Projet getProjet() {
@@ -100,6 +120,7 @@ public class Depense implements Serializable {
                 ", montant=" + montant +
                 ", date=" + date +
                 ", commentaire='" + commentaire + '\'' +
+                ", heur='" + heur + '\'' +
                 '}';
     }
 }

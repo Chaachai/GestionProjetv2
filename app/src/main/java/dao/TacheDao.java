@@ -20,8 +20,11 @@ public class TacheDao extends AbstractDao<Tache> {
         columns = new String[]{
                 DbStructure.Tache.C_ID,
                 DbStructure.Tache.C_DATE,
+                DbStructure.Tache.C_HEUR,
                 DbStructure.Tache.C_NBRHEURES,
                 DbStructure.Tache.C_COMMENTAIRE,
+                DbStructure.Tache.C_ID_PROJET,
+                DbStructure.Tache.C_ID_SOCIETE,
         };
         tableName = DbStructure.Tache.T_NAME;
         idName = DbStructure.Tache.C_ID;
@@ -37,8 +40,11 @@ public class TacheDao extends AbstractDao<Tache> {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DbStructure.Tache.C_ID, tache.getId());
         contentValues.put(DbStructure.Tache.C_DATE, tache.getDate().getTime());
+        contentValues.put(DbStructure.Tache.C_HEUR, tache.getHeur());
         contentValues.put(DbStructure.Tache.C_NBRHEURES, tache.getNbrHeures());
         contentValues.put(DbStructure.Tache.C_COMMENTAIRE, tache.getCommentaire());
+        contentValues.put(DbStructure.Depense.C_ID_PROJET, tache.getProjet().getId());
+        contentValues.put(DbStructure.Depense.C_ID_SOCIETE, tache.getSociete().getId());
         return getDb().insert(DbStructure.Tache.T_NAME, null, contentValues);
 
     }
@@ -49,8 +55,11 @@ public class TacheDao extends AbstractDao<Tache> {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DbStructure.Tache.C_ID, tache.getId());
         contentValues.put(DbStructure.Tache.C_DATE, tache.getDate().getTime());
+        contentValues.put(DbStructure.Tache.C_HEUR, tache.getHeur());
         contentValues.put(DbStructure.Tache.C_NBRHEURES, tache.getNbrHeures());
         contentValues.put(DbStructure.Tache.C_COMMENTAIRE, tache.getCommentaire());
+        contentValues.put(DbStructure.Depense.C_ID_PROJET, tache.getProjet().getId());
+        contentValues.put(DbStructure.Depense.C_ID_SOCIETE, tache.getSociete().getId());
         return getDb().update(DbStructure.Tache.T_NAME, contentValues, DbStructure.Tache.C_ID + "=" + tache.getId(), null);
 
     }
@@ -72,8 +81,12 @@ public class TacheDao extends AbstractDao<Tache> {
         return new Tache(
                 cursor.getLong(cursor.getColumnIndex(DbStructure.Tache.C_ID)),
                 date,
+                cursor.getString(cursor.getColumnIndex(DbStructure.Tache.C_HEUR)),
                 cursor.getInt(cursor.getColumnIndex(DbStructure.Tache.C_NBRHEURES)),
-                cursor.getString(cursor.getColumnIndex(DbStructure.Tache.C_COMMENTAIRE)));
+                cursor.getString(cursor.getColumnIndex(DbStructure.Tache.C_COMMENTAIRE)),
+                cursor.getLong(cursor.getColumnIndex(DbStructure.Depense.C_ID_PROJET)),
+                cursor.getLong(cursor.getColumnIndex(DbStructure.Depense.C_ID_SOCIETE))
+        );
     }
 
 }

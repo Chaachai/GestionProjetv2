@@ -26,6 +26,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_depense_list2">DepenseList2Activity</string>
+    <string name="title_activity_tache_list">TacheListActivity</string>
     <string name="title_activity_projet_list">ProjetListActivity</string>
     <string name="search_hint">hint</string>
 </resources>

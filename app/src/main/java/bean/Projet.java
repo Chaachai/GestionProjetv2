@@ -2,7 +2,9 @@ package bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Projet implements Serializable {
@@ -13,6 +15,8 @@ public class Projet implements Serializable {
     private Date dateDebut;
     private Societe societe;
     private BigDecimal budget;
+    private List<Depense> depenses;
+    private List<Tache> taches;
 
 
     public Projet() {
@@ -42,6 +46,28 @@ public class Projet implements Serializable {
         this.budget = budget;
     }
 
+    public List<Tache> getTaches() {
+        if (taches == null) {
+            taches = new ArrayList<>();
+        }
+        return taches;
+    }
+
+    public void setTaches(List<Tache> taches) {
+        this.taches = taches;
+    }
+
+    public List<Depense> getDepenses() {
+        if (depenses == null) {
+            depenses = new ArrayList<>();
+        }
+        return depenses;
+    }
+
+    public void setDepenses(List<Depense> depenses) {
+        this.depenses = depenses;
+    }
+
     public Long getId() {
         return id;
     }
@@ -51,6 +77,9 @@ public class Projet implements Serializable {
     }
 
     public String getNom() {
+        if (nom == null) {
+            nom = " ";
+        }
         return nom;
     }
 
@@ -95,13 +124,7 @@ public class Projet implements Serializable {
 
     @Override
     public String toString() {
-        return "Projet{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", description='" + description + '\'' +
-                ", dateDebut=" + dateDebut +
-                ", budget=" + budget +
-                '}';
+        return nom;
     }
 
     @Override

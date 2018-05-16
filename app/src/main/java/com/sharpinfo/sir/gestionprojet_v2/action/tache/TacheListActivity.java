@@ -1,8 +1,8 @@
-package com.sharpinfo.sir.gestionprojet_v2.action.depense;
+package com.sharpinfo.sir.gestionprojet_v2.action.tache;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,51 +10,50 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
+import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseCreateActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.DepenseAdapter;
+import com.sharpinfo.sir.gestionprojet_v2.adapter.TacheAdapter;
 
 import java.util.List;
 
 import bean.Depense;
+import bean.Tache;
 import helper.Dispacher;
 import service.DepenseService;
+import service.TacheService;
 
+public class TacheListActivity extends AppCompatActivity {
 
-public class DepenseListActivity extends AppCompatActivity {
-
-    DepenseService depenseService = new DepenseService(this);
-    private RecyclerView depenseRecyclerView;
+    TacheService tacheService = new TacheService(this);
+    private RecyclerView tacheRecyclerView;
 
     private void injecterGUI() {
-        depenseRecyclerView = (RecyclerView) findViewById(R.id.depenseRecyclerView);
+        tacheRecyclerView = (RecyclerView) findViewById(R.id.tacheRecyclerView);
     }
 
     private void initAdapter() {
-        List<Depense> depenses = depenseService.findAll();
+        List<Tache> taches = tacheService.findAll();
 
-        DepenseAdapter depenseAdapter = new DepenseAdapter(depenses);
+        TacheAdapter tacheAdapter = new TacheAdapter(taches);
 
-        depenseRecyclerView.setAdapter(depenseAdapter);
-        depenseRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        tacheRecyclerView.setAdapter(tacheAdapter);
+        tacheRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_depense_list);
+        setContentView(R.layout.activity_tache_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-
         injecterGUI();
         initAdapter();
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dispacher.forward(DepenseListActivity.this, DepenseCreateActivity.class);
-                finish();
+                Dispacher.forward(TacheListActivity.this, TacheCreateActivity.class);
             }
         });
     }

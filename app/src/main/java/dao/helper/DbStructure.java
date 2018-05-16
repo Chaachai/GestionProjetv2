@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 public final class DbStructure {
 
     public static final String dbName = "gestion_projet";
-    public static final int DB_VERSION = 15;
+    public static final int DB_VERSION = 16;
 
     public static abstract class User implements BaseColumns {
 
@@ -53,14 +53,20 @@ public final class DbStructure {
         public static final String T_NAME = "tache";
         public static final String C_ID = "id";
         public static final String C_DATE = "date";
+        public static final String C_HEUR = "heur";
         public static final String C_NBRHEURES = "nbr_heures";
         public static final String C_COMMENTAIRE = "commentaire";
+        public static final String C_ID_PROJET = "id_projet";
+        public static final String C_ID_SOCIETE = "id_societe";
 
         public static final String SQL_CREATE = "create table " + T_NAME + "("
                 + C_ID + " INTEGER PRIMARY KEY  NOT NULL ,"
-                + C_DATE + " DATE,"
-                + C_NBRHEURES + " INTEGER,"
-                + C_COMMENTAIRE + " TEXT)";
+                + C_DATE + " DATE, "
+                + C_HEUR + " TEXT, "
+                + C_NBRHEURES + " INTEGER, "
+                + C_COMMENTAIRE + " TEXT, "
+                + C_ID_PROJET + " INTEGER REFERENCES " + Projet.T_NAME + "( " + Projet.C_ID + " ), "
+                + C_ID_SOCIETE + " INTEGER REFERENCES " + Societe.T_NAME + "( " + Societe.C_ID + " ) )";
         public static final String SQL_DROP = "DROP TABLE IF EXISTS " + T_NAME;
 
     }
@@ -72,6 +78,7 @@ public final class DbStructure {
         public static final String C_MONTANT = "montant";
         public static final String C_DATE = "date";
         public static final String C_COMMENTAIRE = "commentaire";
+        public static final String C_HEUR = "heur";
         public static final String C_ID_PROJET = "id_projet";
         public static final String C_ID_SOCIETE = "id_societe";
 
@@ -80,6 +87,7 @@ public final class DbStructure {
                 + C_MONTANT + " INTEGER,"
                 + C_DATE + " DATE,"
                 + C_COMMENTAIRE + " TEXT,"
+                + C_HEUR + " TEXT,"
                 + C_ID_PROJET + " INTEGER REFERENCES " + Projet.T_NAME + "( " + Projet.C_ID + " ), "
                 + C_ID_SOCIETE + " INTEGER REFERENCES " + Societe.T_NAME + "( " + Societe.C_ID + " ) )";
         public static final String SQL_DROP = "DROP TABLE IF EXISTS " + T_NAME;

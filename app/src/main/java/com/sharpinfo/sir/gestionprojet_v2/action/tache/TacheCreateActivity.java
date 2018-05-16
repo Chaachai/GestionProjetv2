@@ -1,9 +1,9 @@
-package com.sharpinfo.sir.gestionprojet_v2.action.depense;
+package com.sharpinfo.sir.gestionprojet_v2.action.tache;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
+import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.ProjetSpinnerAdapter;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.SocieteSpinnerAdapter;
 
@@ -27,23 +28,25 @@ import java.util.Locale;
 import bean.Depense;
 import bean.Projet;
 import bean.Societe;
+import bean.Tache;
 import helper.Dispacher;
 import service.DepenseService;
 import service.ProjetService;
 import service.SocieteService;
+import service.TacheService;
 
-public class DepenseCreateActivity extends AppCompatActivity {
+public class TacheCreateActivity extends AppCompatActivity {
 
     //tag for log
-    private static final String TAG = "DepenseCreate";
+    private static final String TAG = "TacheCreate";
 
-    private EditText montantDepense;
-    private EditText commentaireDepense;
-    private EditText heurDepense;
+    private EditText nbrHeurTache;
+    private EditText commentaireTache;
+    private EditText heurTache;
     private Spinner societeSpinner;
     private Spinner projetSpinner;
 
-    DepenseService depenseService = new DepenseService(this);
+    TacheService tacheService = new TacheService(this);
     SocieteService societeService = new SocieteService(this);
     ProjetService projetService = new ProjetService(this);
 
@@ -62,23 +65,21 @@ public class DepenseCreateActivity extends AppCompatActivity {
 
 
     private void initSocieteSpinner() {
-        societeSpinner = (Spinner) findViewById(R.id.societe_spinner);
+        societeSpinner = (Spinner) findViewById(R.id.societe_spinner_tache);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
-        societeSpinnerAdapter.add(new Societe(null, " --SELECT A SOCIETE-- "));
         societeSpinner.setAdapter(societeSpinnerAdapter);
         societeSpinnerAdapter.notifyDataSetChanged();
-        societeSpinner.setSelection(societeSpinnerAdapter.getCount() + 1, true);
+        societeSpinner.setSelection(0, true);
     }
 
     private void initProjetSpinner() {
-        projetSpinner = (Spinner) findViewById(R.id.projet_spinner);
+        projetSpinner = (Spinner) findViewById(R.id.projet_spinner_tache);
         List<Projet> projets = projetService.findAll();
         projetSpinnerAdapter = new ProjetSpinnerAdapter(this, android.R.layout.simple_spinner_item, projets);
-        projetSpinnerAdapter.add(new Projet(null, " --SELECT A PROJECT-- "));
         projetSpinner.setAdapter(projetSpinnerAdapter);
         projetSpinnerAdapter.notifyDataSetChanged();
-        projetSpinner.setSelection(projetSpinnerAdapter.getCount() + 1, true);
+        projetSpinner.setSelection(0, true);
     }
 
     private void updateSocieteSpinner() {
@@ -101,7 +102,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
 
     private void initPopupDate() {
         // set calendar date and update editDate
-        editDate = (EditText) findViewById(R.id.date_depense);
+        editDate = (EditText) findViewById(R.id.date_tache);
         date = new DatePickerDialog.OnDateSetListener() {
 
             public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -131,7 +132,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
     private void initDate() {
         long currentdate = System.currentTimeMillis();
         String dateString = simpleDateFormat.format(currentdate);
-        editDate = (EditText) findViewById(R.id.date_depense);
+        editDate = (EditText) findViewById(R.id.date_tache);
         editDate.setText(dateString);
         initPopupDate();
     }
@@ -140,52 +141,50 @@ public class DepenseCreateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_depense_create);
+        setContentView(R.layout.activity_tache_create);
         initSocieteSpinner();
         getSocieteFromSpinner();
         initProjetSpinner();
         getProjetFromSpinner();
 //        injectParam();
-        long currentdate = System.currentTimeMillis();
-        String dateString = simpleDateFormat.format(currentdate);
-        editDate = (EditText) findViewById(R.id.date_depense);
+//        long currentdate = System.currentTimeMillis();
+//        String dateString = simpleDateFormat.format(currentdate);
+//        editDate = (EditText) findViewById(R.id.date_tache);
 //        editDate.setText(dateString);
         initPopupDate();
         initDate();
     }
 
-    private Depense setParam() {
-        Depense depense = new Depense();
-        montantDepense = findViewById(R.id.montant);
-        heurDepense = findViewById(R.id.heur_depense);
-        commentaireDepense = findViewById(R.id.commentaire_depense);
+    private Tache setParam() {
+        Tache tache = new Tache();
+        nbrHeurTache = findViewById(R.id.duree_tache);
+        commentaireTache = findViewById(R.id.commentaire_tache);
+        heurTache = findViewById(R.id.heur_tache);
+//        double montantDouble = Double.valueOf("" + montantDepense.getText());
+//        BigDecimal montantBigDecimal = BigDecimal.valueOf(montantDouble);
 
-        double montantDouble = Double.valueOf("" + montantDepense.getText());
-        BigDecimal montantBigDecimal = BigDecimal.valueOf(montantDouble);
+        tache.setNbrHeures(Double.valueOf(nbrHeurTache.getText() + ""));
+        tache.setCommentaire("" + commentaireTache.getText());
+        tache.setHeur("" + heurTache.getText());
+        tache.setSociete(societe);
+        tache.setProjet(projet);
 
-        depense.setMontant(montantBigDecimal);
-        depense.setHeur(heurDepense.getText() + "");
-        depense.setCommentaire("" + commentaireDepense.getText());
-        depense.setSociete(societe);
-        depense.setProjet(projet);
-
-        Date dateDepense = new Date();
+        Date dateTache = new Date();
         try {
-            dateDepense = simpleDateFormat.parse(simpleDateFormat.format(myCalendar.getTime()));
-            depense.setDate(dateDepense);
+            dateTache = simpleDateFormat.parse(simpleDateFormat.format(myCalendar.getTime()));
+            tache.setDate(dateTache);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return depense;
+        return tache;
 
     }
 
     public void createDepense(View view) {
-        Depense depense = setParam();
+        Tache tache = setParam();
 //        Log.d("he", "========= montant: " + depense.getMontant() + " date " + depense.getDate() + " comment " + depense.getCommentaire() + " projet " + depense.getProjet() + " societe " + depense.getSociete());
-        depenseService.create(depense);
-        Dispacher.forward(this, DepenseListActivity.class);
-        finish();
+        tacheService.create(tache);
+        Dispacher.forward(this, TacheListActivity.class);
     }
 
     private Societe getSocieteFromSpinner() {
@@ -193,14 +192,12 @@ public class DepenseCreateActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                societe = societeSpinnerAdapter.getItem(position);
-                if (societe.getId() == null) {
-                    societe = null;
+                if (position > 0) {
+                    societe = societeSpinnerAdapter.getItem(position);
+                    Log.d("test", "no error");
+                    Log.d(TAG, "2");
+                    Log.d(TAG, societe.getRaisonSociale());
                 }
-
-                Log.d("test", "no error");
-                Log.d(TAG, "2");
-                Log.d(TAG, societe.getRaisonSociale());
             }
 
             @Override
@@ -215,14 +212,12 @@ public class DepenseCreateActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                projet = projetSpinnerAdapter.getItem(position);
-                if (projet.getId() == null) {
-                    projet = null;
+                if (position > 0) {
+                    projet = projetSpinnerAdapter.getItem(position);
+                    Log.d("test", "no error");
+                    Log.d(TAG, "2");
+                    Log.d(TAG, projet.getNom());
                 }
-
-                Log.d("test", "no error");
-                Log.d(TAG, "2");
-                Log.d(TAG, projet.getNom());
             }
 
             @Override

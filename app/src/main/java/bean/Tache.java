@@ -8,17 +8,59 @@ public class Tache implements Serializable {
     private static final Long serialVersionUID = 1L;
     private Long id;
     private Date date;
-    private int NbrHeures;
+    private String heur;
+    private double NbrHeures;
     private String commentaire;
+    private Projet projet = new Projet();
+    private Societe societe = new Societe();
 
     public Tache() {
     }
 
-    public Tache(Long id, Date date, int nbrHeures, String commentaire) {
+    public Tache(Long id, Date date, String heur, double nbrHeures, String commentaire, Long idProjet, Long idSociete) {
         this.id = id;
         this.date = date;
-        NbrHeures = nbrHeures;
+        this.heur = heur;
+        this.NbrHeures = nbrHeures;
         this.commentaire = commentaire;
+        projet.setId(idProjet);
+        societe.setId(idSociete);
+    }
+
+    public Tache(Long id, Date date, double nbrHeures, String commentaire) {
+        this.id = id;
+        this.date = date;
+        this.NbrHeures = nbrHeures;
+        this.commentaire = commentaire;
+    }
+
+    public String getHeur() {
+        return heur;
+    }
+
+    public void setHeur(String heur) {
+        this.heur = heur;
+    }
+
+    public Projet getProjet() {
+        if (projet == null) {
+            projet = new Projet();
+        }
+        return projet;
+    }
+
+    public void setProjet(Projet projet) {
+        this.projet = projet;
+    }
+
+    public Societe getSociete() {
+        if (societe == null)
+            societe = new Societe();
+        return societe;
+    }
+
+    public void setSociete(Societe societe) {
+        this.societe = societe;
     }
 
     public Long getId() {
@@ -30,6 +72,8 @@ public class Tache implements Serializable {
     }
 
     public Date getDate() {
+        if(date == null)
+            date = new Date();
         return date;
     }
 
@@ -45,11 +89,11 @@ public class Tache implements Serializable {
         this.commentaire = commentaire;
     }
 
-    public int getNbrHeures() {
+    public double getNbrHeures() {
         return NbrHeures;
     }
 
-    public void setNbrHeures(int nbrHeures) {
+    public void setNbrHeures(double nbrHeures) {
         NbrHeures = nbrHeures;
     }
 
