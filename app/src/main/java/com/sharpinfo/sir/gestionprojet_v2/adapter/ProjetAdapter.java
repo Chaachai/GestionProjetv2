@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.action.projet.ProjetListActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bean.Projet;
@@ -114,6 +115,12 @@ public class ProjetAdapter extends RecyclerView.Adapter<ProjetAdapter.ViewHolder
         descriptiontextView.setText(projet.getDescription());
 
 
+    }
+
+    public void setfilter(List<Projet> filteredprojets) {
+        mProjets = new ArrayList<>();
+        mProjets.addAll(filteredprojets);
+        notifyDataSetChanged();
     }
 
     @Override

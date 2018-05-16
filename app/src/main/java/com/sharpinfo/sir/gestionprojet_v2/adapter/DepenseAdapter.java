@@ -29,6 +29,7 @@ import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -260,6 +261,12 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHold
         textView2.setText(dateString);
         textView.setText(depense.getMontant() + "  DHs");
 
+    }
+
+    public void setfilter(List<Depense> filteredDepenses) {
+        mdepenses = new ArrayList<>();
+        mdepenses.addAll(filteredDepenses);
+        notifyDataSetChanged();
     }
 
     @Override

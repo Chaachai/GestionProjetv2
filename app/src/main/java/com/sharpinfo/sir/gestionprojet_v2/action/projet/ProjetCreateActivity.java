@@ -105,9 +105,14 @@ public class ProjetCreateActivity extends AppCompatActivity {
         descriptionProjet = findViewById(R.id.description_projet);
         budgetProjet = findViewById(R.id.budget_projet);
 
+        //test bigdecimal if empty
+        BigDecimal montantBigDecimal;
         String montantString = String.valueOf("" + budgetProjet.getText());
-        BigDecimal montantBigDecimal = new BigDecimal(montantString);
-
+        if (montantString.isEmpty()) {
+            montantBigDecimal = BigDecimal.ZERO;
+        } else {
+            montantBigDecimal = new BigDecimal(montantString);
+        }
         projet.setBudget(montantBigDecimal);
 
         projet.setNom(String.valueOf(nomProjet.getText()));

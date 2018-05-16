@@ -76,7 +76,7 @@ public class SocieteListActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.searchfile, menu);
         final MenuItem myActionMenuItem = menu.findItem(R.id.search_id);
         searchView = (SearchView) myActionMenuItem.getActionView();
-        ((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text)).setHintTextColor(getResources().getColor(R.color.pink));
+        ((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text)).setHintTextColor(getResources().getColor(R.color.white));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
