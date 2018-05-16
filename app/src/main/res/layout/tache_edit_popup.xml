@@ -106,11 +106,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/btn_dialog" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="454dp" />
+
 
 </android.support.constraint.ConstraintLayout>

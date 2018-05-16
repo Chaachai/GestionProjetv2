@@ -67,10 +67,8 @@
         <activity
             android:name=".action.tache.TacheListActivity"
             android:label="@string/title_activity_tache_list"
-            android:theme="@style/AppTheme.NoActionBar">
-            android:label="Expenses List"
-            android:parentActivityName=".action.menu.SideMenuActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".action.menu.SideMenuActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sharpinfo.sir.gestionprojet_v2.action.menu.SideMenuActivity" />

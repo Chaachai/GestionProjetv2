@@ -87,7 +87,7 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
                                 Log.d("ta5", "menu1");
 
                                 break;
-                            case R.id.delete_item_option_menu:
+                            case R.id.delete_item_options_menu:
                                 Log.d("ta5", "me " + msocietes.get(viewHolder.getAdapterPosition()).getId());
                                 Log.d("ta5", "me " + msocietes.get(viewHolder.getAdapterPosition()).getRaisonSociale());
                                 societeService.removeSociete(msocietes.get(viewHolder.getAdapterPosition()));
