@@ -1,8 +1,7 @@
-package com.sharpinfo.sir.gestionprojet_v2.action.Societe;
+package com.sharpinfo.sir.gestionprojet_v2.action.societe;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;

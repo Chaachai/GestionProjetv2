@@ -169,6 +169,14 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHold
                                 Log.d("ta5", "menu1");
                                 break;
                             case R.id.delete_item_options_menu:
+
+                                Depense depense = mdepenses.get(viewHolder.getAdapterPosition());
+                                DepenseService dService = new DepenseService(context);
+//                                Log.d("tag", "Depense ========== " + depense);
+                                dService.remove(depense);
+                                notifyDataSetChanged();
+
+
                                 Log.d("ta5", "menu2");
                                 break;
                             default:

@@ -23,14 +23,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sharpinfo.sir.gestionprojet_v2.action.user.SignInActivity" />
         </activity>
-        <activity android:name=".action.Societe.SocieteCreateActivity" />
+        <activity android:name=".action.societe.SocieteCreateActivity" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteListActivity" />
+            android:value="com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity" />
 
         <activity
-            android:name=".action.Societe.SocieteListActivity"
+            android:name=".action.societe.SocieteListActivity"
             android:label="@string/title_activity_societe_list"
             android:parentActivityName=".action.menu.MenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -57,7 +57,16 @@
         <activity
             android:name=".action.tache.TacheListActivity"
             android:label="@string/title_activity_tache_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".action.menu.EditProfileActivity"
+            android:parentActivityName=".action.menu.SideMenuActivity"></activity>
+        <activity
+            android:name=".action.menu.ChangePasswordActivity"
+            android:parentActivityName=".action.menu.SideMenuActivity"></activity>
+        <activity
+            android:name=".action.menu.AboutActivity"
+            android:parentActivityName=".action.menu.SideMenuActivity"></activity>
     </application>
 
 </manifest>

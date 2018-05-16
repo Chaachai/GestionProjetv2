@@ -9,8 +9,8 @@ import android.view.View;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.action.MainActivity;
-import com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteCreateActivity;
-import com.sharpinfo.sir.gestionprojet_v2.action.Societe.SocieteListActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteCreateActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
 
 import helper.Dispacher;
 
