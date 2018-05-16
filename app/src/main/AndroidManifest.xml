@@ -67,6 +67,8 @@
                 android:value="com.sharpinfo.sir.gestionprojet_v2.action.menu.SideMenuActivity" />
         </activity>
         <activity android:name=".action.projet.ProjetCreateActivity"></activity>
+
+
     </application>
 
 </manifest>

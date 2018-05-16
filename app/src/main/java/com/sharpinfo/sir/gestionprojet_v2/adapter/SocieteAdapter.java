@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.sharpinfo.sir.gestionprojet_v2.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -113,7 +114,7 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 //on click the whole line
-                Toast.makeText(context, "test  societe " + String.valueOf(viewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "test  societe " + msocietes.get(viewHolder.getAdapterPosition()).getRaisonSociale(), Toast.LENGTH_SHORT).show();
                 Log.d("tad", "" + msocietes.get(viewHolder.getAdapterPosition()).getRaisonSociale());
             }
         });
@@ -144,6 +145,12 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
         notifyItemRemoved(viewHolder.getAdapterPosition());
         notifyItemRangeChanged(viewHolder.getAdapterPosition(), msocietes.size());
 
+    }
+
+    public void setfilter(List<Societe> filteredSocietes) {
+        msocietes = new ArrayList<>();
+        msocietes.addAll(filteredSocietes);
+        notifyDataSetChanged();
     }
 
     @Override
