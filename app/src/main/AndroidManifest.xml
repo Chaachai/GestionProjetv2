@@ -32,11 +32,11 @@
         <activity
             android:name=".action.societe.SocieteListActivity"
             android:label="@string/title_activity_societe_list"
-            android:parentActivityName=".action.menu.MenuActivity"
+            android:parentActivityName=".action.menu.SideMenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sharpinfo.sir.gestionprojet_v2.action.menu.MenuActivity" />
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.menu.SideMenuActivity" />
         </activity>
         <activity android:name=".action.menu.MenuActivity" />
         <activity
@@ -47,6 +47,16 @@
             android:label="Welcome to SHARPROJECTS"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".action.TestChartActivity" />
+        <activity
+            android:name=".action.projet.ProjetListActivity"
+            android:label="@string/title_activity_projet_list"
+            android:parentActivityName=".action.menu.SideMenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.menu.SideMenuActivity" />
+        </activity>
+        <activity android:name=".action.projet.ProjetCreateActivity" />
         <activity android:name=".action.depense.DepenseCreateActivity" />
         <activity android:name=".action.tache.TacheCreateActivity" />
         <activity
@@ -57,6 +67,14 @@
         <activity
             android:name=".action.tache.TacheListActivity"
             android:label="@string/title_activity_tache_list"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".action.menu.SideMenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.menu.SideMenuActivity" />
+        </activity>
+
+
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".action.menu.EditProfileActivity"

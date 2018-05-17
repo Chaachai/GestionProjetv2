@@ -8,8 +8,8 @@ import android.content.Intent;
  */
 public class Dispacher {
 
-    public static void forward(Context context, Class distination) {
-        Intent intent = new Intent(context,distination);
+    public static void forward(Context context, Class destination) {
+        Intent intent = new Intent(context,destination);
         context.startActivity(intent);
     }
 

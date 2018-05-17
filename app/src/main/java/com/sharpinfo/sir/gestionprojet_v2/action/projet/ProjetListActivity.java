@@ -1,10 +1,12 @@
-package com.sharpinfo.sir.gestionprojet_v2.action.societe;
+package com.sharpinfo.sir.gestionprojet_v2.action.projet;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -15,57 +17,58 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
-import com.sharpinfo.sir.gestionprojet_v2.adapter.SocieteAdapter;
+import com.sharpinfo.sir.gestionprojet_v2.adapter.ProjetAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.Societe;
+import bean.Projet;
 import helper.Dispacher;
-import service.SocieteService;
+import service.ProjetService;
 
-public class SocieteListActivity extends AppCompatActivity {
-
-    SocieteService societeService = new SocieteService(this);
-    RecyclerView societeRecyclerView;
+public class ProjetListActivity extends AppCompatActivity {
+    private Context mContext = this;
+    RecyclerView projetRecyclerView;
     SearchView searchView;
-    SocieteAdapter societeAdapter;
-    List<Societe> societes;
+    ProjetAdapter projetAdapter;
+
+    List<Projet> projets;
+    ProjetService projetService = new ProjetService(mContext);
 
     private void injecterGUI() {
-        societeRecyclerView = (RecyclerView) findViewById(R.id.societeRecyclerView);
+        projetRecyclerView = (RecyclerView) findViewById(R.id.projetRecyclerView);
     }
 
     private void initAdapter() {
-        societes = societeService.findAll();
+        projets = projetService.findAll();
 
-        societeAdapter = new SocieteAdapter(societes);
+        projetAdapter = new ProjetAdapter(projets);
 
-        societeRecyclerView.setAdapter(societeAdapter);
-        societeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        societeRecyclerView.addItemDecoration(itemDecoration);
+        projetRecyclerView.setAdapter(projetAdapter);
+        projetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_societe_list);
-
+        setContentView(R.layout.activity_projet_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        //populate data in the recyclerView
         injecterGUI();
         initAdapter();
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dispacher.forward(SocieteListActivity.this, SocieteCreateActivity.class);
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Dispacher.forward(ProjetListActivity.this, ProjetCreateActivity.class);
                 finish();
             }
         });
@@ -89,23 +92,24 @@ public class SocieteListActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                final List<Societe> filteredSocietes = filter(societes, newText);
-                societeAdapter.setfilter(filteredSocietes);
+                final List<Projet> filteredProjets = filter(projets, newText);
+                projetAdapter.setfilter(filteredProjets);
                 return true;
             }
         });
         return true;
     }
 
-    private List<Societe> filter(List<Societe> societesUnfiltered, String query) {
+    private List<Projet> filter(List<Projet> projetsUnfiltered, String query) {
         query = query.toLowerCase();
-        final List<Societe> filteredSocietes = new ArrayList<>();
-        for (Societe societe : societesUnfiltered) {
-            final String text = societe.getRaisonSociale().toLowerCase();
+        final List<Projet> filteredSocietes = new ArrayList<>();
+        for (Projet projet : projetsUnfiltered) {
+            final String text = projet.getNom().toLowerCase();
             if (text.contains(query)) {
-                filteredSocietes.add(societe);
+                filteredSocietes.add(projet);
             }
         }
         return filteredSocietes;
     }
+
 }

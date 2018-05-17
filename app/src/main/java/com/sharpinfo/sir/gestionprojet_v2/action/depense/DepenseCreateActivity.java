@@ -4,15 +4,12 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.ProjetSpinnerAdapter;
@@ -68,18 +65,20 @@ public class DepenseCreateActivity extends AppCompatActivity {
         societeSpinner = (Spinner) findViewById(R.id.societe_spinner);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
+        societeSpinnerAdapter.add(new Societe(null, " --SELECT A SOCIETE-- "));
         societeSpinner.setAdapter(societeSpinnerAdapter);
         societeSpinnerAdapter.notifyDataSetChanged();
-        societeSpinner.setSelection(0, true);
+        societeSpinner.setSelection(societeSpinnerAdapter.getCount() + 1, true);
     }
 
     private void initProjetSpinner() {
         projetSpinner = (Spinner) findViewById(R.id.projet_spinner);
         List<Projet> projets = projetService.findAll();
         projetSpinnerAdapter = new ProjetSpinnerAdapter(this, android.R.layout.simple_spinner_item, projets);
+        projetSpinnerAdapter.add(new Projet(null, " --SELECT A PROJECT-- "));
         projetSpinner.setAdapter(projetSpinnerAdapter);
         projetSpinnerAdapter.notifyDataSetChanged();
-        projetSpinner.setSelection(0, true);
+        projetSpinner.setSelection(projetSpinnerAdapter.getCount() + 1, true);
     }
 
     private void updateSocieteSpinner() {
@@ -149,7 +148,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
 //        injectParam();
         long currentdate = System.currentTimeMillis();
         String dateString = simpleDateFormat.format(currentdate);
-        editDate = (EditText) findViewById(R.id.textViewDate);
+        editDate = (EditText) findViewById(R.id.date_depense);
 //        editDate.setText(dateString);
         initPopupDate();
         initDate();
@@ -160,6 +159,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
         montantDepense = findViewById(R.id.montant);
         heurDepense = findViewById(R.id.heur_depense);
         commentaireDepense = findViewById(R.id.commentaire_depense);
+
         double montantDouble = Double.valueOf("" + montantDepense.getText());
         BigDecimal montantBigDecimal = BigDecimal.valueOf(montantDouble);
 
@@ -185,6 +185,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
 //        Log.d("he", "========= montant: " + depense.getMontant() + " date " + depense.getDate() + " comment " + depense.getCommentaire() + " projet " + depense.getProjet() + " societe " + depense.getSociete());
         depenseService.create(depense);
         Dispacher.forward(this, DepenseListActivity.class);
+        finish();
     }
 
     private Societe getSocieteFromSpinner() {
@@ -192,12 +193,14 @@ public class DepenseCreateActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
-                    societe = societeSpinnerAdapter.getItem(position);
-                    Log.d("test", "no error");
-                    Log.d(TAG, "2");
-                    Log.d(TAG, societe.getRaisonSociale());
+                societe = societeSpinnerAdapter.getItem(position);
+                if (societe.getId() == null) {
+                    societe = null;
                 }
+
+                Log.d("test", "no error");
+                Log.d(TAG, "2");
+                Log.d(TAG, societe.getRaisonSociale());
             }
 
             @Override
@@ -212,12 +215,14 @@ public class DepenseCreateActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
-                    projet = projetSpinnerAdapter.getItem(position);
-                    Log.d("test", "no error");
-                    Log.d(TAG, "2");
-                    Log.d(TAG, projet.getNom());
+                projet = projetSpinnerAdapter.getItem(position);
+                if (projet.getId() == null) {
+                    projet = null;
                 }
+
+                Log.d("test", "no error");
+                Log.d(TAG, "2");
+                Log.d(TAG, projet.getNom());
             }
 
             @Override

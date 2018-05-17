@@ -54,9 +54,7 @@ public class SocieteSpinnerAdapter extends ArrayAdapter<Societe> {
 
     @Override
     public boolean isEnabled(int position) {
-        if (position == 0) {
-            return false;
-        } else return true;
+         return true;
     }
     
 
@@ -65,13 +63,13 @@ public class SocieteSpinnerAdapter extends ArrayAdapter<Societe> {
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         TextView societe = (TextView) super.getDropDownView(position, convertView, parent);
-        if (position == 0) {
-            societe.setTextColor(Color.GRAY);
-            societe.setText("Select a societe");
-        } else {
+//        if (position == 0) {
+//            societe.setTextColor(Color.GRAY);
+//            societe.setText("Select a societe");
+//        } else {
             societe.setTextColor(Color.BLACK);
             societe.setText(societes.get(position).getRaisonSociale());
-        }
+//        }
         return societe;
     }
 }

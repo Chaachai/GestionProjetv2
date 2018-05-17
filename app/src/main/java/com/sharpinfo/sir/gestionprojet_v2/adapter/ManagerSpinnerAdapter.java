@@ -43,21 +43,19 @@ public class ManagerSpinnerAdapter extends ArrayAdapter<Manager> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // I created a dynamic TextView here, but you can reference your own  custom layout for each spinner item
-        TextView manager = (TextView) super.getView(position, convertView, parent);
-        manager.setTextColor(Color.BLACK);
+        TextView managerView = (TextView) super.getView(position, convertView, parent);
+        managerView.setTextColor(Color.BLACK);
         // Then you can get the current item using the values array (Users array) and the current position
         // You can NOW reference each method you has created in your bean object (User class)
-        manager.setText(managers.get(position).getNom() + " " + managers.get(position).getPrenom());
+        managerView.setText(managers.get(position).getNom() + " " + managers.get(position).getPrenom());
 
         // And finally return your dynamic (or custom) view for each spinner item
-        return manager;
+        return managerView;
     }
 
     @Override
     public boolean isEnabled(int position) {
-        if (position == 0) {
-            return false;
-        } else return true;
+        return true;
     }
 
 
@@ -66,13 +64,21 @@ public class ManagerSpinnerAdapter extends ArrayAdapter<Manager> {
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         TextView manager = (TextView) super.getDropDownView(position, convertView, parent);
-        if (position == 0) {
-            manager.setTextColor(Color.GRAY);
-            manager.setText("Select a manager");
-        } else {
-            manager.setTextColor(Color.BLACK);
+//        if (position == 0) {
+//            manager.setTextColor(Color.GRAY);
+//            manager.setText("Select a manager");
+//        }
+//        else
+//            {
+        manager.setTextColor(Color.BLACK);
+        if (managers.get(position).getNom().equals("")) {
+            manager.setText(managers.get(position).getPrenom());
+        } else if (managers.get(position).getPrenom().equals("")) {
             manager.setText(managers.get(position).getNom());
-        }
+        } else
+            manager.setText(managers.get(position).getNom() + " " + managers.get(position).getPrenom());
+
+//        }
         return manager;
     }
 }

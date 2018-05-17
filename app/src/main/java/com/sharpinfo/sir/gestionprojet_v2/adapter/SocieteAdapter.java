@@ -16,10 +16,13 @@ import android.widget.Toast;
 import com.sharpinfo.sir.gestionprojet_v2.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import bean.Societe;
+import service.ProjetService;
+import service.SocieteService;
 
 public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHolder> {
 
@@ -50,9 +53,12 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, final int viewType) {
         final Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
+
+        final SocieteService societeService = new SocieteService(context);
+        final ProjetService projetService = new ProjetService(context);
 
         //inflate custom layout
         View societeView = inflater.inflate(R.layout.item_societe_list, parent, false);
@@ -79,10 +85,20 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
                         switch (item.getItemId()) {
                             case R.id.edit_item_options_menu:
                                 Log.d("ta5", "menu1");
+
                                 break;
                             case R.id.delete_item_options_menu:
-                                Log.d("ta5", "menu2");
-                                ;
+                                Log.d("ta5", "me " + msocietes.get(viewHolder.getAdapterPosition()).getId());
+                                Log.d("ta5", "me " + msocietes.get(viewHolder.getAdapterPosition()).getRaisonSociale());
+                                societeService.removeSociete(msocietes.get(viewHolder.getAdapterPosition()));
+//                                societeService.deleteSociete(msocietes.get(viewHolder.getAdapterPosition()));
+//                                societeService.removeSociete(msocietes.get(viewHolder.getAdapterPosition()));
+//                                societeService.remove(msocietes.get(viewHolder.getAdapterPosition()).getId());
+//                                societeService.remove(msocietes.get(viewHolder.getAdapterPosition()).getId());
+//                                societeService.removeSociete(msocietes.get(viewHolder.getAdapterPosition()));
+//                                projetService.deleteBySociete(msocietes.get(viewHolder.getAdapterPosition()));
+//                                //remove depense w tache
+//                                removeFromList(viewHolder.getAdapterPosition(), viewHolder);
                                 break;
                             default:
                                 break;
@@ -98,7 +114,7 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 //on click the whole line
-                Toast.makeText(context, "test  societe " + String.valueOf(viewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "test  societe " + msocietes.get(viewHolder.getAdapterPosition()).getRaisonSociale(), Toast.LENGTH_SHORT).show();
                 Log.d("tad", "" + msocietes.get(viewHolder.getAdapterPosition()).getRaisonSociale());
             }
         });
@@ -121,6 +137,20 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
         textView.setText(societe.getRaisonSociale() + ";" + dateString);
 
 
+    }
+
+    public void removeFromList(int position, ViewHolder viewHolder) {
+        Log.d("tag", "societe has been removed");
+        msocietes.remove(position);
+        notifyItemRemoved(viewHolder.getAdapterPosition());
+        notifyItemRangeChanged(viewHolder.getAdapterPosition(), msocietes.size());
+
+    }
+
+    public void setfilter(List<Societe> filteredSocietes) {
+        msocietes = new ArrayList<>();
+        msocietes.addAll(filteredSocietes);
+        notifyDataSetChanged();
     }
 
     @Override

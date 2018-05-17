@@ -26,6 +26,11 @@ public class Projet implements Serializable {
         this.id = id;
     }
 
+    public Projet(Long id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+
     public Projet(Long id, String nom, String description, Date dateDebut, BigDecimal budget) {
         this.id = id;
         this.nom = nom;
@@ -99,6 +104,9 @@ public class Projet implements Serializable {
     }
 
     public Societe getSociete() {
+        if (societe == null) {
+            societe = new Societe();
+        }
         return societe;
     }
 

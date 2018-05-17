@@ -23,6 +23,7 @@ import com.sharpinfo.sir.gestionprojet_v2.action.tache.TacheListActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -130,7 +131,7 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
                                         }
 
                                         tache.setNbrHeures(Double.valueOf(nbrHeur.getText() + ""));
-                                        tache.setHeur(""+heur.getText());
+                                        tache.setHeur("" + heur.getText());
                                         tache.setCommentaire(commentaire.getText() + "");
                                         tacheService.edit(tache);
 
@@ -246,8 +247,14 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
 
         textView3.setText(tache.getHeur());
         textView2.setText(dateString);
-        textView.setText(tache.getNbrHeures()+"");
+        textView.setText(tache.getNbrHeures() + "");
 
+    }
+
+    public void setfilter(List<Tache> filteredTaches) {
+        mtaches = new ArrayList<>();
+        mtaches.addAll(filteredTaches);
+        notifyDataSetChanged();
     }
 
     @Override

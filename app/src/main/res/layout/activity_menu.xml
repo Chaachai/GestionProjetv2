@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#eaeaea"
-    android:layout_height="match_parent">
+    tools:layout_editor_absoluteY="81dp">
 
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="172dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
@@ -72,7 +72,8 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground">
+            android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="manageProjects">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -116,14 +117,11 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="167dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
@@ -145,8 +143,8 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:padding="10dp"
                     android:background="@drawable/cerclebackgroundgreen"
+                    android:padding="10dp"
                     android:src="@drawable/ic_monetization_on_black_24dp" />
 
                 <TextView
@@ -179,8 +177,8 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:clickable="true"
-            android:onClick="manageTasks"
-            android:foreground="?android:attr/selectableItemBackground">
+            android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="manageTasks">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -191,8 +189,8 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:padding="10dp"
                     android:background="@drawable/cerclebackgroundyello"
+                    android:padding="10dp"
                     android:src="@drawable/ic_assignment_black_24dp" />
 
                 <TextView
@@ -222,14 +220,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="156dp"
         android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
@@ -240,21 +235,21 @@
             android:layout_height="150dp"
             android:layout_margin="10dp"
             android:clickable="true"
-            android:onClick="testStatistics"
-            android:foreground="?android:attr/selectableItemBackground">
+            android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="testStatistics">
 
             <LinearLayout
 
                 android:layout_width="match_parent"
-                android:layout_height="147dp"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:padding="10dp"
                     android:background="@drawable/cerclebackgroundpurple"
+                    android:padding="10dp"
                     android:src="@drawable/ic_show_chart_black_24dp" />
 
                 <TextView

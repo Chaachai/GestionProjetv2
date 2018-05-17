@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".action.depense.DepenseListActivity"
-    tools:showIn="@layout/activity_depense_list">
+    tools:context=".action.projet.ProjetListActivity"
+    tools:showIn="@layout/activity_projet_list">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/depenseRecyclerView"
+        android:id="@+id/projetRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
