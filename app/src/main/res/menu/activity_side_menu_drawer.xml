@@ -6,29 +6,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_first_layout"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="First Layout" />
+            android:icon="@drawable/ic_mode_edit_black_24dp"
+            android:title="Edit profile" />
         <item
             android:id="@+id/nav_second_layout"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Second Layout" />
+            android:icon="@drawable/ic_https_black_24dp"
+            android:title="Change password" />
         <item
             android:id="@+id/nav_third_layout"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Third Layout" />
+            android:icon="@drawable/ic_help_black_24dp"
+            android:title="About" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_power_settings_new_black_24dp"
+            android:title="Logout" />
+    </group>
 
 </menu>

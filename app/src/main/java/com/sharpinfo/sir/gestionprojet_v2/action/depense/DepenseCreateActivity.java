@@ -1,7 +1,10 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.depense;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.ProjetSpinnerAdapter;
@@ -42,6 +46,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
     private EditText heurDepense;
     private Spinner societeSpinner;
     private Spinner projetSpinner;
+    private TextView error;
 
     DepenseService depenseService = new DepenseService(this);
     SocieteService societeService = new SocieteService(this);
@@ -160,9 +165,15 @@ public class DepenseCreateActivity extends AppCompatActivity {
         heurDepense = findViewById(R.id.heur_depense);
         commentaireDepense = findViewById(R.id.commentaire_depense);
 
-        double montantDouble = Double.valueOf("" + montantDepense.getText());
-        BigDecimal montantBigDecimal = BigDecimal.valueOf(montantDouble);
 
+
+        BigDecimal montantBigDecimal;
+        String montantString = String.valueOf("" + montantDepense.getText());
+        if (montantString.isEmpty()) {
+            montantBigDecimal = BigDecimal.ZERO;
+        } else {
+            montantBigDecimal = new BigDecimal(montantString);
+        }
         depense.setMontant(montantBigDecimal);
         depense.setHeur(heurDepense.getText() + "");
         depense.setCommentaire("" + commentaireDepense.getText());
@@ -180,12 +191,42 @@ public class DepenseCreateActivity extends AppCompatActivity {
 
     }
 
-    public void createDepense(View view) {
-        Depense depense = setParam();
-//        Log.d("he", "========= montant: " + depense.getMontant() + " date " + depense.getDate() + " comment " + depense.getCommentaire() + " projet " + depense.getProjet() + " societe " + depense.getSociete());
-        depenseService.create(depense);
-        Dispacher.forward(this, DepenseListActivity.class);
-        finish();
+    public void createDepense(final View view) {
+        final Depense depense = setParam();
+//        Log.d("he", "========= montant: " + depense.getMontant() + " date " + depense.getDate() + " Heure " + depense.getHeur() + " comment " + depense.getCommentaire() + " projet " + depense.getProjet().getNom() + " societe " + depense.getSociete().getRaisonSociale());
+        if(depense.getProjet().getId() == null && depense.getSociete().getId() == null){
+            AlertDialog.Builder alert = new AlertDialog.Builder(DepenseCreateActivity.this);
+            alert.setTitle("Info");
+            alert.setMessage("If you don't choose neither a project nor a company, the expense will be affected as personal, do you confirm ?");
+            alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    depenseService.create(depense);
+                    Dispacher.forward(DepenseCreateActivity.this, DepenseListActivity.class);
+                    finish();
+                    dialog.dismiss();
+                }
+            });
+
+            alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            alert.show();
+
+        }else if(depense.getSociete().getId() != null && depense.getProjet().getId() != null){
+            error = findViewById(R.id.error_depense);
+            error.setText(R.string.error_depense);
+        }else{
+            depenseService.create(depense);
+            Dispacher.forward(this, DepenseListActivity.class);
+            finish();
+        }
     }
 
     private Societe getSocieteFromSpinner() {
@@ -198,9 +239,6 @@ public class DepenseCreateActivity extends AppCompatActivity {
                     societe = null;
                 }
 
-                Log.d("test", "no error");
-                Log.d(TAG, "2");
-                Log.d(TAG, societe.getRaisonSociale());
             }
 
             @Override
@@ -219,10 +257,6 @@ public class DepenseCreateActivity extends AppCompatActivity {
                 if (projet.getId() == null) {
                     projet = null;
                 }
-
-                Log.d("test", "no error");
-                Log.d(TAG, "2");
-                Log.d(TAG, projet.getNom());
             }
 
             @Override

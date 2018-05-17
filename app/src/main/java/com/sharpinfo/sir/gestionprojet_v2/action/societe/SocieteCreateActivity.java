@@ -70,7 +70,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
 //            }
 //        }
         managerSpinnerAdapter = new ManagerSpinnerAdapter(this, android.R.layout.simple_spinner_item, managers);
-        managerSpinnerAdapter.add(new Manager(null,"---SELECT NONE---",""));
+        managerSpinnerAdapter.add(new Manager(null,"--SELECT A MANAGER--",""));
         managerSpinner.setAdapter(managerSpinnerAdapter);
         managerSpinnerAdapter.notifyDataSetChanged();
         managerSpinner.setSelection(managerSpinnerAdapter.getCount()+1,true);
@@ -160,7 +160,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
         long currentdate = System.currentTimeMillis();
         String dateString = simpleDateFormat.format(currentdate);
         editDate = (EditText) findViewById(R.id.textViewDate);
-        editDate.setText(dateString);
+//        editDate.setText(dateString);
         initPopupDate();
     }
 
@@ -188,13 +188,11 @@ public class SocieteCreateActivity extends AppCompatActivity {
 
 
     public void create(View view) {
-
         Societe societe = setParam();
         societeService.create(societe);
-        Toast.makeText(getBaseContext(), "Societe cree avec succes! with date " + societe.getDateFondation() + " " + societe.getManager().getNom() + ", !", Toast.LENGTH_LONG).show();
+//        Toast.makeText(getBaseContext(), "Societe cree avec succes! with date " + societe.getDateFondation() + " " + societe.getManager().getNom() + ", !", Toast.LENGTH_LONG).show();
         Dispacher.forward(this, SocieteListActivity.class);
         finish();
-
     }
 
     private Societe setParam() {

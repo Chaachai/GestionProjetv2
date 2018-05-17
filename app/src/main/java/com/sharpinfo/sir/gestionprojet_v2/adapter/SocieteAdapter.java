@@ -2,8 +2,8 @@ package com.sharpinfo.sir.gestionprojet_v2.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -22,8 +23,10 @@ import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.projet.ProjetListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.tache.TacheListActivity;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -52,7 +55,6 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
         public LinearLayout societeitem;
 
 
-
         public ViewHolder(View itemView) {
             super(itemView);
 
@@ -74,7 +76,7 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
         final ProjetService projetService = new ProjetService(context);
 
         //inflate custom layout
-        View societeView = inflater.inflate(R.layout.item_societe_list, parent, false);
+        final View societeView = inflater.inflate(R.layout.item_societe_list, parent, false);
 
         // Return a new holder instance
         //final was added here because of toast
@@ -97,13 +99,64 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.edit_item_options_menu:
-                                Log.d("ta5", "menu1");
 
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                final View mView = inflater.inflate(R.layout.societe_edit_popup, null);
+
+                                ImageButton dismissButton = mView.findViewById(R.id.dismiss_edit_societe);
+
+                                final EditText dateFondation = mView.findViewById(R.id.date_fondation_edit);
+                                final EditText raisonSociale = mView.findViewById(R.id.raison_sociale_edit);
+                                Button button = mView.findViewById(R.id.button_edit_societe);
+
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                                String dateString = dateFormat.format(msocietes.get(viewHolder.getAdapterPosition()).getDateFondation());
+
+                                dateFondation.setText(dateString);
+                                raisonSociale.setText(msocietes.get(viewHolder.getAdapterPosition()).getRaisonSociale());
+
+                                builder.setView(mView);
+                                final AlertDialog alertDialog = builder.create();
+                                final SocieteService societeService = new SocieteService(context);
+
+                                button.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Societe societe = msocietes.get(viewHolder.getAdapterPosition());
+
+                                        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                                        try {
+                                            Date dateEdited = format.parse(dateFondation.getText() + "");
+                                            societe.setDateFondation(dateEdited);
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        societe.setRaisonSociale(raisonSociale.getText() + "");
+                                        societeService.edit(societe);
+
+                                        notifyDataSetChanged();
+                                        alertDialog.dismiss();
+
+                                        Snackbar snackbar = Snackbar.make(societeView, "The company was updated successfully", Snackbar.LENGTH_LONG);
+                                        snackbar.show();
+                                    }
+                                });
+
+                                dismissButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        alertDialog.dismiss();
+                                    }
+                                });
+
+                                alertDialog.show();
+//
                                 break;
                             case R.id.delete_item_options_menu:
                                 Log.d("ta5", "me " + msocietes.get(viewHolder.getAdapterPosition()).getId());
                                 Log.d("ta5", "me " + msocietes.get(viewHolder.getAdapterPosition()).getRaisonSociale());
-                                societeService.removeSociete(msocietes.get(viewHolder.getAdapterPosition()));
+//                                societeService.removeSociete(msocietes.get(viewHolder.getAdapterPosition()));
 //                                societeService.deleteSociete(msocietes.get(viewHolder.getAdapterPosition()));
 //                                societeService.removeSociete(msocietes.get(viewHolder.getAdapterPosition()));
 //                                societeService.remove(msocietes.get(viewHolder.getAdapterPosition()).getId());

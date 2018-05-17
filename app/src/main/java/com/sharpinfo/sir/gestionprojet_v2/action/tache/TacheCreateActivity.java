@@ -1,7 +1,9 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.tache;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
@@ -45,6 +48,7 @@ public class TacheCreateActivity extends AppCompatActivity {
     private EditText heurTache;
     private Spinner societeSpinner;
     private Spinner projetSpinner;
+    private TextView error;
 
     TacheService tacheService = new TacheService(this);
     SocieteService societeService = new SocieteService(this);
@@ -68,18 +72,20 @@ public class TacheCreateActivity extends AppCompatActivity {
         societeSpinner = (Spinner) findViewById(R.id.societe_spinner_tache);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
+        societeSpinnerAdapter.add(new Societe(null, " ------SELECT A COMPANY------ "));
         societeSpinner.setAdapter(societeSpinnerAdapter);
         societeSpinnerAdapter.notifyDataSetChanged();
-        societeSpinner.setSelection(0, true);
+        societeSpinner.setSelection(societeSpinnerAdapter.getCount() + 1, true);
     }
 
     private void initProjetSpinner() {
         projetSpinner = (Spinner) findViewById(R.id.projet_spinner_tache);
         List<Projet> projets = projetService.findAll();
         projetSpinnerAdapter = new ProjetSpinnerAdapter(this, android.R.layout.simple_spinner_item, projets);
+        projetSpinnerAdapter.add(new Projet(null, " ------SELECT A PROJECT------ "));
         projetSpinner.setAdapter(projetSpinnerAdapter);
         projetSpinnerAdapter.notifyDataSetChanged();
-        projetSpinner.setSelection(0, true);
+        projetSpinner.setSelection(projetSpinnerAdapter.getCount() + 1, true);
     }
 
     private void updateSocieteSpinner() {
@@ -181,10 +187,43 @@ public class TacheCreateActivity extends AppCompatActivity {
     }
 
     public void createDepense(View view) {
-        Tache tache = setParam();
-//        Log.d("he", "========= montant: " + depense.getMontant() + " date " + depense.getDate() + " comment " + depense.getCommentaire() + " projet " + depense.getProjet() + " societe " + depense.getSociete());
-        tacheService.create(tache);
-        Dispacher.forward(this, TacheListActivity.class);
+        final Tache tache = setParam();
+        if(tache.getProjet().getId() == null && tache.getSociete().getId() == null){
+            AlertDialog.Builder alert = new AlertDialog.Builder(TacheCreateActivity.this);
+            alert.setTitle("Info");
+            alert.setMessage("If you don't choose neither a project nor a company, the expense will be affected as personal, do you confirm ?");
+            alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    tacheService.create(tache);
+                    Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
+                    finish();
+                    dialog.dismiss();
+                }
+            });
+
+            alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            alert.show();
+
+        }else if(tache.getSociete().getId() != null && tache.getProjet().getId() != null){
+            error = findViewById(R.id.error_tache);
+            error.setText(R.string.error_depense);
+        }else{
+            tacheService.create(tache);
+            Dispacher.forward(this, TacheListActivity.class);
+            finish();
+        }
+
+//        tacheService.create(tache);
+//        Dispacher.forward(this, TacheListActivity.class);
     }
 
     private Societe getSocieteFromSpinner() {

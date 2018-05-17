@@ -31,7 +31,7 @@
 
         <activity
             android:name=".action.societe.SocieteListActivity"
-            android:label="@string/title_activity_societe_list"
+            android:label="Companies list"
             android:parentActivityName=".action.menu.SideMenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -49,7 +49,7 @@
         <activity android:name=".action.TestChartActivity" />
         <activity
             android:name=".action.projet.ProjetListActivity"
-            android:label="@string/title_activity_projet_list"
+            android:label="Projects List"
             android:parentActivityName=".action.menu.SideMenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -66,7 +66,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".action.tache.TacheListActivity"
-            android:label="@string/title_activity_tache_list"
+            android:label="Tasks list"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".action.menu.SideMenuActivity">
             <meta-data
@@ -75,6 +75,16 @@
         </activity>
 
 
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".action.menu.EditProfileActivity"
+            android:parentActivityName=".action.menu.SideMenuActivity"></activity>
+        <activity
+            android:name=".action.menu.ChangePasswordActivity"
+            android:parentActivityName=".action.menu.SideMenuActivity"></activity>
+        <activity
+            android:name=".action.menu.AboutActivity"
+            android:parentActivityName=".action.menu.SideMenuActivity"></activity>
     </application>
 
 </manifest>

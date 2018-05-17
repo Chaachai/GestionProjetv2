@@ -86,7 +86,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
         societeSpinner = (Spinner) findViewById(R.id.societe_spinner);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
-        societeSpinnerAdapter.add(new Societe(null, " --SELECT A SOCIETE-- "));
+        societeSpinnerAdapter.add(new Societe(null, " ------SELECT A COMPANY------ "));
         societeSpinner.setAdapter(societeSpinnerAdapter);
         societeSpinnerAdapter.notifyDataSetChanged();
         societeSpinner.setSelection(societeSpinnerAdapter.getCount() + 1, true);
@@ -178,7 +178,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
         Log.d("insideCreateProjet", projet.toString());
 
         projetService.create(projet);
-        Toast.makeText(getBaseContext(), "Societe cree avec succes! " + projet.getNom() + " " + projet.getBudget() + ", !", Toast.LENGTH_LONG).show();
+//        Toast.makeText(getBaseContext(), "Societe cree avec succes! " + projet.getNom() + " " + projet.getBudget() + ", !", Toast.LENGTH_LONG).show();
 
         Dispacher.forward(ProjetCreateActivity.this, ProjetListActivity.class);
         finish();
@@ -188,7 +188,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
         long currentdate = System.currentTimeMillis();
         String dateString = simpleDateFormat.format(currentdate);
         editDate = (EditText) findViewById(R.id.projet_date);
-        editDate.setText(dateString);
+//        editDate.setText(dateString);
         initPopupDate();
     }
 }
