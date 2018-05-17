@@ -155,12 +155,14 @@ public class ProjetCreateActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
-                    societe = societeSpinnerAdapter.getItem(position);
-                    Log.d("test", "no error");
-                    Log.d("tag", "2");
-                    Log.d("tag", societe.getRaisonSociale());
+                societe = societeSpinnerAdapter.getItem(position);
+                if (societe.getId() == null) {
+                    societe = null;
                 }
+                Log.d("test", "no error");
+                Log.d("tag", "2");
+                Log.d("tag", societe.getRaisonSociale());
+
             }
 
             @Override

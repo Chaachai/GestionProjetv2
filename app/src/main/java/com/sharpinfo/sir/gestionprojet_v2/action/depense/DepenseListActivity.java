@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Depense;
+import bean.Societe;
 import helper.Dispacher;
+import helper.Session;
 import service.DepenseService;
 
 
@@ -49,6 +52,23 @@ public class DepenseListActivity extends AppCompatActivity {
         depenseRecyclerView.addItemDecoration(itemDecoration);
     }
 
+    private void showBySociete(Long idSociete) {
+
+        final List<Depense> depensesBySociete = new ArrayList<>();
+        for (Depense depense : depenses) {
+            if (depense.getSociete() != null) {
+                if (depense.getSociete().getId().equals(idSociete)) {
+                    Log.d("tag", "noErrors");
+                    depensesBySociete.add(depense);
+
+                }
+            }
+        }
+        depenseAdapter.setfilter(depensesBySociete);
+        depenseAdapter.notifyDataSetChanged();
+        Session.delete("societeRecherce");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +80,11 @@ public class DepenseListActivity extends AppCompatActivity {
 
         injecterGUI();
         initAdapter();
+
+        Societe societeRecherce = (Societe) Session.getAttribut("societeRecherce");
+        if (societeRecherce != null) {
+            showBySociete(societeRecherce.getId());
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

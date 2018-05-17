@@ -67,11 +67,11 @@ public class SocieteDao extends AbstractDao<Societe> {
 //        }
 
 
-
         return new Societe(
                 cursor.getLong(cursor.getColumnIndex(DbStructure.Societe.C_ID)),
                 cursor.getString(cursor.getColumnIndex(DbStructure.Societe.C_RAISONSOCIALE)),
-                dateFondation
+                dateFondation,
+                cursor.getLong(cursor.getColumnIndex(DbStructure.Societe.C_ID_MANAGER))
         );
 //        return new Societe(cursor.getString(0), cursor.getString(1));
     }

@@ -12,7 +12,7 @@ public class Societe implements Serializable {
     private Long id;
     private String raisonSociale;
     private Date dateFondation;
-    private Manager manager;
+    private Manager manager = new Manager();
     private List<Depense> depenses;
     private List<Tache> taches;
 
@@ -21,10 +21,11 @@ public class Societe implements Serializable {
         this.raisonSociale = raisonSociale;
     }
 
-    public Societe(Long id, String raisonSociale, Date dateFondation) {
+    public Societe(Long id, String raisonSociale, Date dateFondation, Long idManager) {
         this.id = id;
         this.raisonSociale = raisonSociale;
         this.dateFondation = dateFondation;
+        manager.setId(idManager);
     }
 
     public Societe() {

@@ -81,7 +81,9 @@ public class ProjetDao extends AbstractDao<Projet> {
                 cursor.getString(cursor.getColumnIndex(DbStructure.Projet.C_NOM)),
                 cursor.getString(cursor.getColumnIndex(DbStructure.Projet.C_DESCRIPTION)),
                 dateDebut,
-                budget);
+                budget,
+                cursor.getLong(cursor.getColumnIndex(DbStructure.Projet.C_ID_SOCIETE))
+        );
     }
 
 }

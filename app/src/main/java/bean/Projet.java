@@ -13,7 +13,7 @@ public class Projet implements Serializable {
     private String nom;
     private String description;
     private Date dateDebut;
-    private Societe societe;
+    private Societe societe = new Societe();
     private BigDecimal budget;
     private List<Depense> depenses;
     private List<Tache> taches;
@@ -31,12 +31,13 @@ public class Projet implements Serializable {
         this.nom = nom;
     }
 
-    public Projet(Long id, String nom, String description, Date dateDebut, BigDecimal budget) {
+    public Projet(Long id, String nom, String description, Date dateDebut, BigDecimal budget, Long idSociete) {
         this.id = id;
         this.nom = nom;
         this.description = description;
         this.dateDebut = dateDebut;
         this.budget = budget;
+        societe.setId(idSociete);
     }
 
     public Projet(Long id, String nom, String description, BigDecimal budget) {

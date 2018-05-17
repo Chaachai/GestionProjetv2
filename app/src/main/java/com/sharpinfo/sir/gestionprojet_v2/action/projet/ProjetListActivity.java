@@ -2,6 +2,7 @@ package com.sharpinfo.sir.gestionprojet_v2.action.projet;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Projet;
+import bean.Societe;
 import helper.Dispacher;
+import helper.Session;
 import service.ProjetService;
 
 public class ProjetListActivity extends AppCompatActivity {
@@ -48,6 +52,32 @@ public class ProjetListActivity extends AppCompatActivity {
         projetRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    private void showBySociete(Long idSociete) {
+
+        final List<Projet> projetsBySociete = new ArrayList<>();
+        for (Projet projet : projets) {
+            if (projet.getSociete() != null) {
+                if (projet.getSociete().getId().equals(idSociete)) {
+                    Log.d("tag", "noErrors");
+                    projetsBySociete.add(projet);
+
+                }
+            }
+        }
+//        for (Projet projet : projets) {
+//            if (projet.getSociete() != null) {
+//                Log.d("projet.getSociete",projet.getSociete().toString()+" ");
+//                if (projet.getSociete().getId().equals(societeId)) {
+//                    Log.d("projet.getsociete.getid",projet.getSociete().getId()+"");
+////                    projetsBySociete.add(projet);
+//                }
+//            }
+//        }
+        projetAdapter.setfilter(projetsBySociete);
+        projetAdapter.notifyDataSetChanged();
+        Session.delete("societeRecherce");
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +90,18 @@ public class ProjetListActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         injecterGUI();
         initAdapter();
+
+
+        Societe societeRecherce = (Societe) Session.getAttribut("societeRecherce");
+        if (societeRecherce != null) {
+            showBySociete(societeRecherce.getId());
+        }
+
+
+//        Long idSociete = getIntent().getLongExtra("societeId", 1);
+//        if (idSociete != null) {
+//            showBySociete(idSociete);
+//        }
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

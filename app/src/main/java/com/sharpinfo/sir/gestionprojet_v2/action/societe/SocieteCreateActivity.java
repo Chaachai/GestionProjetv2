@@ -217,7 +217,6 @@ public class SocieteCreateActivity extends AppCompatActivity {
     }
 
     private Manager getManagerFromSpinner() {
-
         managerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override

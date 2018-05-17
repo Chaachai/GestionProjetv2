@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Depense;
+import bean.Societe;
 import bean.Tache;
 import helper.Dispacher;
+import helper.Session;
 import service.DepenseService;
 import service.TacheService;
 
@@ -54,6 +57,23 @@ public class TacheListActivity extends AppCompatActivity {
         tacheRecyclerView.addItemDecoration(itemDecoration);
     }
 
+    private void showBySociete(Long idSociete) {
+
+        final List<Tache> tachesBySociete = new ArrayList<>();
+        for (Tache tache : taches) {
+            if (tache.getSociete() != null) {
+                if (tache.getSociete().getId().equals(idSociete)) {
+                    Log.d("tag", "noErrors");
+                    tachesBySociete.add(tache);
+
+                }
+            }
+        }
+        tacheAdapter.setfilter(tachesBySociete);
+        tacheAdapter.notifyDataSetChanged();
+        Session.delete("societeRecherce");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +84,13 @@ public class TacheListActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
         injecterGUI();
         initAdapter();
+
+        Societe societeRecherce = (Societe) Session.getAttribut("societeRecherce");
+        if (societeRecherce != null) {
+            showBySociete(societeRecherce.getId());
+        }
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
