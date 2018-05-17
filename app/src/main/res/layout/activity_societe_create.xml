@@ -4,76 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".action.societe.SocieteCreateActivity">
+    tools:context=".action.societe.SocieteCreateActivity"
+    tools:layout_editor_absoluteY="81dp">
 
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="34dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="36dp"
+        android:text="Ajout d'une societé"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textViewRaisonSociale"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/textViewRaisonSociale"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginStart="42dp"
         android:ems="10"
-        android:hint="@string/societe"
+        android:hint="Nom de la societé"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/textViewDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.694" />
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <EditText
         android:id="@+id/textViewDate"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="278dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginStart="42dp"
         android:ems="10"
         android:focusable="false"
-        android:hint="date"
+        android:hint="Date de fondation"
         android:inputType="date"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/create_btn"
+        app:layout_constraintBottom_toTopOf="@+id/manager_spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRaisonSociale" />
 
-    <Button
-        android:id="@+id/create_btn"
-        android:layout_width="169dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="400dp"
-        android:onClick="create"
-        android:text="@string/create_company"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.548"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Spinner
         android:id="@+id/manager_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="196dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="210dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="37dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="42dp"
+        app:layout_constraintBottom_toTopOf="@+id/create_btn"
+        app:layout_constraintEnd_toStartOf="@+id/create_manager_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
 
     <Button
         android:id="@+id/create_manager_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/create_manager"
+        android:layout_width="80dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="37dp"
+        android:layout_marginEnd="42dp"
+        android:background="@drawable/rounded_button"
+        android:text="Créer"
+        app:layout_constraintBottom_toTopOf="@+id/create_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/manager_spinner" />
+
+    <Button
+        android:id="@+id/create_btn"
+        android:layout_width="289dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="131dp"
+        android:layout_marginEnd="107dp"
+        android:layout_marginStart="108dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="create"
+        android:text="Ajouter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/manager_spinner" />

@@ -9,12 +9,12 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="49dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="18dp"
+        android:layout_marginEnd="22dp"
         android:layout_marginStart="85dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="17dp"
         android:text="Date :"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -33,16 +33,15 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/projet_popup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintStart_toEndOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="17dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="61dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginTop="59dp"
         android:text="DHs"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -53,37 +52,40 @@
 
     <TextView
         android:id="@+id/montant_popup"
-        android:layout_width="99dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="10dp"
         android:text="85500"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/societe_popup"
         app:layout_constraintEnd_toStartOf="@+id/textView9"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/heur_popup" />
+        app:layout_constraintTop_toBottomOf="@+id/heur_popup"
+        app:layout_constraintVertical_bias="0.526" />
 
     <TextView
         android:id="@+id/heur_popup"
-        android:layout_width="74dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="19dp"
-        android:layout_marginEnd="108dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="138dp"
         android:text="15:35"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/montant_popup"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/date_popup" />
 
     <TextView
         android:id="@+id/date_popup"
-        android:layout_width="104dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="17dp"
-        android:layout_marginEnd="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="58dp"
         android:layout_marginTop="16dp"
         android:text="08-05-2018"
         android:textColor="@color/black"
@@ -95,10 +97,10 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="51dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="22dp"
         android:layout_marginStart="85dp"
         android:text="Heur :"
         android:textColor="@color/black"
@@ -110,10 +112,10 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="74dp"
-        android:layout_height="22dp"
-        android:layout_marginBottom="26dp"
-        android:layout_marginEnd="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="23dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginStart="60dp"
         android:text="Societé :"
         android:textColor="@color/black"
@@ -125,10 +127,10 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="62dp"
-        android:layout_height="23dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="23dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginStart="72dp"
         android:text="Projet :"
         android:textColor="@color/black"
@@ -140,12 +142,12 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="78dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="18dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginStart="56dp"
-        android:text="Montant : "
+        android:layout_marginEnd="22dp"
+        android:layout_marginStart="55dp"
+        android:text="Montant :"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
@@ -162,15 +164,15 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/commentaire_popup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/societe_popup" />
+        app:layout_constraintStart_toEndOf="@+id/textView10" />
 
     <ImageButton
         android:id="@+id/dismiss_depense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="111dp"
+        android:layout_marginBottom="109dp"
         android:layout_marginEnd="1dp"
+        android:layout_marginTop="1dp"
         android:background="@null"
         app:layout_constraintBottom_toTopOf="@+id/societe_popup"
         app:layout_constraintEnd_toEndOf="parent"
@@ -180,11 +182,11 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="120dp"
-        android:layout_height="22dp"
-        android:layout_marginBottom="62dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="12dp"
         android:text="Commentaire :"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -203,6 +205,5 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/projet_popup" />
+        app:layout_constraintStart_toEndOf="@+id/textView3" />
 </android.support.constraint.ConstraintLayout>

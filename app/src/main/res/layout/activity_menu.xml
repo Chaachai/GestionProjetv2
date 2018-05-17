@@ -221,11 +221,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="156dp"
-        android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
@@ -240,8 +240,8 @@
 
             <LinearLayout
 
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="339dp"
+                android:layout_height="139dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
