@@ -6,8 +6,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import bean.Depense;
+import bean.Societe;
+import bean.Tache;
 import dao.DepenseDao;
 import dao.TacheDao;
+import helper.Session;
 
 
 public class TacheService extends TacheDao {
@@ -26,4 +29,17 @@ public class TacheService extends TacheDao {
 //        create(depense);
 //        return 1;
 //    }
+
+    public void ajouterTache(Tache tache) {
+        Context context = (Context) Session.getAttribut("tacheContext");
+        SocieteService societeService = new SocieteService(context);
+        if (tache.getProjet().getId() != null) {
+            Societe societe = societeService.findByProjet(tache.getProjet());
+            tache.setSociete(societe);
+            create(tache);
+        } else {
+            create(tache);
+        }
+
+    }
 }

@@ -4,7 +4,9 @@ import android.content.Context;
 import android.util.Log;
 
 import java.util.Date;
+import java.util.List;
 
+import bean.Projet;
 import bean.Societe;
 import dao.SocieteDao;
 import dao.helper.DbStructure;
@@ -35,5 +37,16 @@ public class SocieteService extends SocieteDao {
         societe.setManager(null);
         create(societe);
         return 1;
+    }
+
+    public Societe findByProjet(Projet projet) {
+        List<Societe> societes = findAll();
+        for (int i = 0; i < societes.size(); i++) {
+            Societe societe = societes.get(i);
+            if (societe.getId() == projet.getSociete().getId()) {
+                return societe;
+            }
+        }
+        return null;
     }
 }

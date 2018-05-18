@@ -196,7 +196,7 @@ public class TacheCreateActivity extends AppCompatActivity {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    tacheService.create(tache);
+                    tacheService.ajouterTache(tache);
                     Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
                     finish();
                     dialog.dismiss();
@@ -217,7 +217,7 @@ public class TacheCreateActivity extends AppCompatActivity {
             error = findViewById(R.id.error_tache);
             error.setText(R.string.error_depense);
         }else{
-            tacheService.create(tache);
+            tacheService.ajouterTache(tache);
             Dispacher.forward(this, TacheListActivity.class);
             finish();
         }
