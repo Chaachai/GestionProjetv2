@@ -19,7 +19,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
+import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.projet.ProjetListActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.tache.TacheListActivity;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -31,12 +33,17 @@ import java.util.Locale;
 
 import bean.Projet;
 import service.DepenseService;
+import bean.Societe;
+import helper.Dispacher;
+import helper.Session;
 import service.ProjetService;
 import service.TacheService;
+import service.SocieteService;
 
 public class ProjetAdapter extends RecyclerView.Adapter<ProjetAdapter.ViewHolder> {
 
     private List<Projet> mProjets;
+    private AlertDialog alertDialog;
     ProjetListActivity projetListActivity = new ProjetListActivity();
 
 
@@ -194,10 +201,65 @@ public class ProjetAdapter extends RecyclerView.Adapter<ProjetAdapter.ViewHolder
             @Override
             public void onClick(View v) {
 
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                View mView = inflater.inflate(R.layout.projet_info_popup, null);
+                ImageButton dismissButton = mView.findViewById(R.id.dismiss_popup_projet);
+
+                TextView titreProjet = mView.findViewById(R.id.titre_popup_projet);
+                TextView dateDebut = mView.findViewById(R.id.date_popup_projet);
+                TextView budget = mView.findViewById(R.id.budget_popup_pojet);
+                TextView societeProjet = mView.findViewById(R.id.societe_popup_projet);
+                TextView description = mView.findViewById(R.id.description_popup_projet);
+                Button consulterDepense = mView.findViewById(R.id.consulter_depense_popup);
+                Button consulterTache = mView.findViewById(R.id.consulter_taches_popup);
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                String dateString = dateFormat.format(mProjets.get(viewHolder.getAdapterPosition()).getDateDebut());
+
+                dateDebut.setText(dateString);
+                titreProjet.setText(mProjets.get(viewHolder.getAdapterPosition()).getNom());
+
+                Societe s = mProjets.get(viewHolder.getAdapterPosition()).getSociete();
+                SocieteService societeService = new SocieteService(context);
+                Societe societe = societeService.find(s.getId());
+                if (societe == null) {
+                    societeProjet.setText("Company not affected");
+                } else {
+                    societeProjet.setText(societe+"");
+                }
+
+                consulterDepense.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Session.setAttribute(mProjets.get(viewHolder.getAdapterPosition()), "projetRecherche");
+                        Dispacher.forward(context, DepenseListActivity.class);
+                        alertDialog.dismiss();
+                    }
+                });
+
+                consulterTache.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Session.setAttribute(mProjets.get(viewHolder.getAdapterPosition()), "projetRecherche");
+                        Dispacher.forward(context, TacheListActivity.class);
+                        alertDialog.dismiss();
+                    }
+                });
+
+                builder.setView(mView);
+                alertDialog = builder.create();
+
+                dismissButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alertDialog.dismiss();
+                    }
+                });
+
+                alertDialog.show();
+
             }
         });
-
-
         return viewHolder;
     }
 
@@ -229,7 +291,6 @@ public class ProjetAdapter extends RecyclerView.Adapter<ProjetAdapter.ViewHolder
         notifyItemRangeChanged(viewHolder.getAdapterPosition(), mProjets.size());
 
     }
-
     public void setfilter(List<Projet> filteredprojets) {
         mProjets = new ArrayList<>();
         mProjets.addAll(filteredprojets);
