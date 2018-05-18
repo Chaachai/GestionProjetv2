@@ -32,6 +32,7 @@ import bean.Depense;
 import bean.Projet;
 import bean.Societe;
 import bean.Tache;
+import helper.Session;
 import service.ProjetService;
 import service.SocieteService;
 import service.TacheService;
@@ -72,6 +73,7 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final Context context = parent.getContext();
+        Session.setAttribute(context, "tacheContext");
         final LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout

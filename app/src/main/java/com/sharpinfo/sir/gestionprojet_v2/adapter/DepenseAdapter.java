@@ -32,6 +32,7 @@ import java.util.Locale;
 import bean.Depense;
 import bean.Projet;
 import bean.Societe;
+import helper.Session;
 import service.DepenseService;
 import service.ProjetService;
 import service.SocieteService;
@@ -72,6 +73,7 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final Context context = parent.getContext();
+        Session.setAttribute(context, "depenseContext");
         final LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout

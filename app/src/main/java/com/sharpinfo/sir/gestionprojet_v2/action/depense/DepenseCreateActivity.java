@@ -166,7 +166,6 @@ public class DepenseCreateActivity extends AppCompatActivity {
         commentaireDepense = findViewById(R.id.commentaire_depense);
 
 
-
         BigDecimal montantBigDecimal;
         String montantString = String.valueOf("" + montantDepense.getText());
         if (montantString.isEmpty()) {
@@ -194,7 +193,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
     public void createDepense(final View view) {
         final Depense depense = setParam();
 //        Log.d("he", "========= montant: " + depense.getMontant() + " date " + depense.getDate() + " Heure " + depense.getHeur() + " comment " + depense.getCommentaire() + " projet " + depense.getProjet().getNom() + " societe " + depense.getSociete().getRaisonSociale());
-        if(depense.getProjet().getId() == null && depense.getSociete().getId() == null){
+        if (depense.getProjet().getId() == null && depense.getSociete().getId() == null) {
             AlertDialog.Builder alert = new AlertDialog.Builder(DepenseCreateActivity.this);
             alert.setTitle("Info");
             alert.setMessage("If you don't choose neither a project nor a company, the expense will be affected as personal, do you confirm ?");
@@ -202,7 +201,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    depenseService.create(depense);
+                    depenseService.ajouterDepense(depense);
                     Dispacher.forward(DepenseCreateActivity.this, DepenseListActivity.class);
                     finish();
                     dialog.dismiss();
@@ -219,12 +218,12 @@ public class DepenseCreateActivity extends AppCompatActivity {
 
             alert.show();
 
-        }else if(depense.getSociete().getId() != null && depense.getProjet().getId() != null){
+        } else if (depense.getSociete().getId() != null && depense.getProjet().getId() != null) {
             error = findViewById(R.id.error_depense);
             error.setText(R.string.error_depense);
-        }else{
-            depenseService.create(depense);
-            Dispacher.forward(this, DepenseListActivity.class);
+        } else {
+            depenseService.ajouterDepense(depense);
+            Dispacher.forward(DepenseCreateActivity.this, DepenseListActivity.class);
             finish();
         }
     }

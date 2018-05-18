@@ -12,6 +12,7 @@ import bean.Projet;
 import bean.Societe;
 import dao.DepenseDao;
 import dao.helper.DbStructure;
+import helper.Session;
 
 
 public class DepenseService extends DepenseDao {
@@ -47,5 +48,18 @@ public class DepenseService extends DepenseDao {
         depense.setCommentaire(commentaire);
         create(depense);
         return 1;
+    }
+
+    public void ajouterDepense(Depense depense) {
+        Context context = (Context) Session.getAttribut("depenseContext");
+        SocieteService societeService = new SocieteService(context);
+        if (depense.getProjet().getId() != null) {
+            Societe societe = societeService.findByProjet(depense.getProjet());
+            depense.setSociete(societe);
+            create(depense);
+        } else {
+            create(depense);
+        }
+
     }
 }

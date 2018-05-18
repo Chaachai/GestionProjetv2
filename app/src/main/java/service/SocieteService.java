@@ -57,4 +57,15 @@ public class SocieteService extends SocieteDao {
         create(societe);
         return 1;
     }
+
+    public Societe findByProjet(Projet projet) {
+        List<Societe> societes = findAll();
+        for (int i = 0; i < societes.size(); i++) {
+            Societe societe = societes.get(i);
+            if (societe.getId() == projet.getSociete().getId()) {
+                return societe;
+            }
+        }
+        return null;
+    }
 }
