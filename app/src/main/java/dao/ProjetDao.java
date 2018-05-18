@@ -7,10 +7,13 @@ import android.database.Cursor;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import bean.Projet;
+import bean.Societe;
 import dao.helper.AbstractDao;
 import dao.helper.DbStructure;
 
@@ -57,6 +60,25 @@ public class ProjetDao extends AbstractDao<Projet> {
         return getDb().update(DbStructure.Projet.T_NAME, contentValues, DbStructure.Projet.C_ID + "=" + projet.getId(), null);
 
     }
+
+    public List<Projet> findBySociete(Societe societe) {
+        List<Projet> projets = findAll();
+        List<Projet> projetBySociete = new ArrayList<>();
+        for (Projet projet : projets) {
+            if (projet.getSociete().getId().equals(societe.getId())) {
+                projetBySociete.add(projet);
+            }
+        }
+        return projetBySociete;
+    }
+
+//    public long removeBySociete(Societe societe) {
+//        List<Projet> projets = findBySociete(societe);
+//        for (Projet projet : projets) {
+//            remove(projet);
+//        }
+//        return 1L;
+//    }
 
     public long remove(Projet projet) {
         open();

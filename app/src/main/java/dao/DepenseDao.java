@@ -38,6 +38,7 @@ public class DepenseDao extends AbstractDao<Depense> {
         return getDb().delete(DbStructure.Depense.T_NAME, DbStructure.Depense.C_ID + "=" + depense.getId(), null);
     }
 
+
     @Override
     public long create(Depense depense) {
         open();

@@ -238,7 +238,6 @@ public class DepenseCreateActivity extends AppCompatActivity {
                 if (societe.getId() == null) {
                     societe = null;
                 }
-
             }
 
             @Override

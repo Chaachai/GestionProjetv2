@@ -21,6 +21,8 @@ public class DepenseService extends DepenseDao {
     }
 
 
+
+
     public void deleteByProjet(Projet projet) {
 //        getDb().execSQL("DELETE FROM "+ DbStructure.Tache.T_NAME+" WHERE ");
         open();
