@@ -2,6 +2,7 @@ package com.sharpinfo.sir.gestionprojet_v2.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
@@ -29,7 +30,9 @@ import java.util.List;
 import java.util.Locale;
 
 import bean.Projet;
+import service.DepenseService;
 import service.ProjetService;
+import service.TacheService;
 
 public class ProjetAdapter extends RecyclerView.Adapter<ProjetAdapter.ViewHolder> {
 
@@ -152,7 +155,30 @@ public class ProjetAdapter extends RecyclerView.Adapter<ProjetAdapter.ViewHolder
 
                                 break;
                             case R.id.delete_item_options_menu:
-                                Log.d("ta5", "menu2");
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+                                builder1.setTitle("Confirm?");
+                                builder1.setMessage("Deleting this project will also delete its expenses and tasks ");
+                                builder1.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Do nothing but close the dialog
+                                        removeFromList(viewHolder.getAdapterPosition(), viewHolder, context);
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                                builder1.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        // Do nothing
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                                AlertDialog alert = builder1.create();
+                                alert.show();
                                 break;
                             default:
                                 break;
@@ -185,6 +211,22 @@ public class ProjetAdapter extends RecyclerView.Adapter<ProjetAdapter.ViewHolder
         nomTextView.setText(projet.getNom());
         descriptiontextView.setText(projet.getDescription());
 
+
+    }
+
+    public void removeFromList(int position, ViewHolder viewHolder, Context context) {
+        Projet projet = mProjets.get(viewHolder.getAdapterPosition());
+        ProjetService projetService = new ProjetService(context);
+        TacheService tacheService = new TacheService(context);
+        DepenseService depenseService = new DepenseService(context);
+
+        tacheService.deleteByProjet(projet);
+        depenseService.deleteByProjet(projet);
+
+        projetService.removeProjet(projet);
+        mProjets.remove(position);
+        notifyItemRemoved(viewHolder.getAdapterPosition());
+        notifyItemRangeChanged(viewHolder.getAdapterPosition(), mProjets.size());
 
     }
 

@@ -33,6 +33,11 @@ public class UserDao extends AbstractDao<User> {
         return db.update(DbStructure.User.T_NAME, contentValues, DbStructure.User.C_ID + " = '" + user.getId() + "'", null);
     }
 
+    public long remove(User user) {
+        open();
+        return db.delete(DbStructure.User.T_NAME, DbStructure.User.C_ID + "=" + user.getId(), null);
+    }
+
     protected User transformeCursorToBean(Cursor cursor) {
         return new User(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
     }

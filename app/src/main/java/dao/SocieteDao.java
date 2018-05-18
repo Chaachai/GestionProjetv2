@@ -49,7 +49,8 @@ public class SocieteDao extends AbstractDao<Societe> {
     }
 
 
-    public long removeSociete(Societe societe) {
+    public long remove(Societe societe) {
+        open();
         return getDb().delete(DbStructure.Societe.T_NAME, DbStructure.Societe.C_ID + "=" + societe.getId(), null);
     }
 

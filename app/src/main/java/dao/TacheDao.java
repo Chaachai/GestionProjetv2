@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import bean.Projet;
 import bean.Tache;
 import dao.helper.AbstractDao;
 import dao.helper.DbStructure;
@@ -31,7 +32,8 @@ public class TacheDao extends AbstractDao<Tache> {
     }
 
     public long remove(Tache tache) {
-        return db.delete(DbStructure.Tache.T_NAME, DbStructure.Projet.C_ID + "=" + tache.getId(), null);
+        open();
+        return db.delete(DbStructure.Tache.T_NAME, DbStructure.Tache.C_ID + "=" + tache.getId(), null);
     }
 
     @Override
