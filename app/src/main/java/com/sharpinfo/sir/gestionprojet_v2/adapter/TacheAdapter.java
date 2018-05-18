@@ -160,6 +160,7 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
                                 alertDialog.show();
                                 break;
                             case R.id.delete_item_options_menu:
+                                removeFromList(viewHolder.getAdapterPosition(), viewHolder, context);
                                 Log.d("ta5", "menu2");
                                 break;
                             default:
@@ -250,6 +251,17 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
         textView3.setText(tache.getHeur());
         textView2.setText(dateString);
         textView.setText(tache.getNbrHeures() + "");
+
+    }
+
+    public void removeFromList(int position, ViewHolder viewHolder, Context context) {
+        Tache tache = mtaches.get(viewHolder.getAdapterPosition());
+        TacheService tacheService = new TacheService(context);
+        tacheService.remove(tache);
+        Log.d("tag", "societe has been removed");
+        mtaches.remove(position);
+        notifyItemRemoved(viewHolder.getAdapterPosition());
+        notifyItemRangeChanged(viewHolder.getAdapterPosition(), mtaches.size());
 
     }
 

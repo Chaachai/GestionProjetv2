@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.Projet;
+
 /**
  * Created by moulaYounes on 19/08/2015.
  */

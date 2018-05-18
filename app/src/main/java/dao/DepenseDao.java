@@ -3,6 +3,7 @@ package dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -34,7 +35,7 @@ public class DepenseDao extends AbstractDao<Depense> {
 
     public long remove(Depense depense) {
         open();
-        return db.delete(DbStructure.Depense.T_NAME, DbStructure.Depense.C_ID + "=" + depense.getId(), null);
+        return getDb().delete(DbStructure.Depense.T_NAME, DbStructure.Depense.C_ID + "=" + depense.getId(), null);
     }
 
     @Override

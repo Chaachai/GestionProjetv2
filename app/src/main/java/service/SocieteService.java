@@ -24,11 +24,11 @@ public class SocieteService extends SocieteDao {
     }
 
 
-    public void deleteSociete(Societe societe) {
-        Log.d("tag", societe.getRaisonSociale() + " " + societe.getId());
-        removeSociete(societe);
-//     return db.delete(DbStructure.Societe.T_NAME, DbStructure.Societe.C_ID + "=?" + societe.getId(), null) > 0;
-    }
+//    public void deleteSociete(Societe societe) {
+//        Log.d("tag", societe.getRaisonSociale() + " " + societe.getId());
+//        remove(societe);
+////     return db.delete(DbStructure.Societe.T_NAME, DbStructure.Societe.C_ID + "=?" + societe.getId(), null) > 0;
+//    }
 
     public int create(String raisonSociale, Date dateFondation) {
         Societe societe = new Societe();

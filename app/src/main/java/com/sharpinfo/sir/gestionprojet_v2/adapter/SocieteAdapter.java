@@ -2,6 +2,7 @@ package com.sharpinfo.sir.gestionprojet_v2.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
@@ -30,14 +31,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import bean.Depense;
 import bean.Manager;
 import bean.Societe;
 import helper.Dispacher;
 import helper.Session;
+import service.DepenseService;
 import service.ManagerService;
 import service.ProjetService;
 import service.SocieteService;
+import service.TacheService;
 
 public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHolder> {
 
@@ -154,17 +156,30 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
 //
                                 break;
                             case R.id.delete_item_options_menu:
-                                Log.d("ta5", "me " + msocietes.get(viewHolder.getAdapterPosition()).getId());
-                                Log.d("ta5", "me " + msocietes.get(viewHolder.getAdapterPosition()).getRaisonSociale());
-//                                societeService.removeSociete(msocietes.get(viewHolder.getAdapterPosition()));
-//                                societeService.deleteSociete(msocietes.get(viewHolder.getAdapterPosition()));
-//                                societeService.removeSociete(msocietes.get(viewHolder.getAdapterPosition()));
-//                                societeService.remove(msocietes.get(viewHolder.getAdapterPosition()).getId());
-//                                societeService.remove(msocietes.get(viewHolder.getAdapterPosition()).getId());
-//                                societeService.removeSociete(msocietes.get(viewHolder.getAdapterPosition()));
-//                                projetService.deleteBySociete(msocietes.get(viewHolder.getAdapterPosition()));
-//                                //remove depense w tache
-//                                removeFromList(viewHolder.getAdapterPosition(), viewHolder);
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+                                builder1.setTitle("Confirm?");
+                                builder1.setMessage("Deleting this project will also delete its expenses and tasks ");
+                                builder1.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Do nothing but close the dialog
+                                        removeFromList(viewHolder.getAdapterPosition(), viewHolder, context);
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                                builder1.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        // Do nothing
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                                AlertDialog alert = builder1.create();
+                                alert.show();
                                 break;
                             default:
                                 break;
@@ -205,7 +220,7 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
                 if (manager == null) {
                     nomManagerSociete.setText("Manager not affected");
                 } else {
-                    nomManagerSociete.setText(manager.getNom()+" "+manager.getPrenom());
+                    nomManagerSociete.setText(manager.getNom() + " " + manager.getPrenom());
 //                    nomManagerSociete.setText(manager.toString());
                 }
 
@@ -283,8 +298,18 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
 
     }
 
-    public void removeFromList(int position, ViewHolder viewHolder) {
-        Log.d("tag", "societe has been removed");
+    public void removeFromList(int position, ViewHolder viewHolder, Context context) {
+        Societe societe = msocietes.get(viewHolder.getAdapterPosition());
+        SocieteService societeService = new SocieteService(context);
+        ProjetService projetService = new ProjetService(context);
+        DepenseService depenseService = new DepenseService(context);
+        TacheService tacheService = new TacheService(context);
+
+        projetService.deleteBySociete(societe);
+        depenseService.deleteBySociete(societe);
+        tacheService.deleteBySociete(societe);
+        societeService.remove(societe);
+
         msocietes.remove(position);
         notifyItemRemoved(viewHolder.getAdapterPosition());
         notifyItemRangeChanged(viewHolder.getAdapterPosition(), msocietes.size());

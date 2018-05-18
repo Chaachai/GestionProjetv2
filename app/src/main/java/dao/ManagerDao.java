@@ -44,7 +44,7 @@ public class ManagerDao extends AbstractDao<Manager> {
 
     public long remove(Manager manager) {
         open();
-        return db.delete(DbStructure.Manager.T_NAME, DbStructure.Manager.C_ID + "=" + manager.getId(), null);
+        return db.delete(DbStructure.Societe.T_NAME, DbStructure.Societe.C_ID + "=" + manager.getId(), null);
     }
 
     protected Manager transformeCursorToBean(Cursor cursor) {

@@ -167,15 +167,7 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHold
                                 Log.d("ta5", "menu1");
                                 break;
                             case R.id.delete_item_options_menu:
-
-                                Depense depense = mdepenses.get(viewHolder.getAdapterPosition());
-                                DepenseService dService = new DepenseService(context);
-//                                Log.d("tag", "Depense ========== " + depense);
-                                dService.remove(depense);
-                                notifyDataSetChanged();
-
-
-                                Log.d("ta5", "menu2");
+                                removeFromList(viewHolder.getAdapterPosition(), viewHolder, context);
                                 break;
                             default:
                                 break;
@@ -265,6 +257,18 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHold
         textView3.setText(depense.getHeur());
         textView2.setText(dateString);
         textView.setText(depense.getMontant() + "  DHs");
+
+    }
+
+
+    public void removeFromList(int position, ViewHolder viewHolder, Context context) {
+        Depense depense = mdepenses.get(viewHolder.getAdapterPosition());
+        DepenseService dService = new DepenseService(context);
+        dService.remove(depense);
+        Log.d("tag", "societe has been removed");
+        mdepenses.remove(position);
+        notifyItemRemoved(viewHolder.getAdapterPosition());
+        notifyItemRangeChanged(viewHolder.getAdapterPosition(), mdepenses.size());
 
     }
 
