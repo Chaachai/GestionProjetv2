@@ -168,8 +168,15 @@ public class TacheCreateActivity extends AppCompatActivity {
         heurTache = findViewById(R.id.heur_tache);
 //        double montantDouble = Double.valueOf("" + montantDepense.getText());
 //        BigDecimal montantBigDecimal = BigDecimal.valueOf(montantDouble);
+        Double nbrHeurDouble;
+        String nbrHeurString = String.valueOf("" + nbrHeurTache.getText());
+        if (nbrHeurString.isEmpty()) {
+            nbrHeurDouble = 0.0;
+        } else {
+            nbrHeurDouble = Double.valueOf(nbrHeurString);
+        }
 
-        tache.setNbrHeures(Double.valueOf(nbrHeurTache.getText() + ""));
+        tache.setNbrHeures(nbrHeurDouble);
         tache.setCommentaire("" + commentaireTache.getText());
         tache.setHeur("" + heurTache.getText());
         tache.setSociete(societe);
@@ -188,7 +195,7 @@ public class TacheCreateActivity extends AppCompatActivity {
 
     public void createDepense(View view) {
         final Tache tache = setParam();
-        if(tache.getProjet().getId() == null && tache.getSociete().getId() == null){
+        if (tache.getProjet().getId() == null && tache.getSociete().getId() == null) {
             AlertDialog.Builder alert = new AlertDialog.Builder(TacheCreateActivity.this);
             alert.setTitle("Info");
             alert.setMessage("If you don't choose neither a project nor a company, the expense will be affected as personal, do you confirm ?");
@@ -213,10 +220,10 @@ public class TacheCreateActivity extends AppCompatActivity {
 
             alert.show();
 
-        }else if(tache.getSociete().getId() != null && tache.getProjet().getId() != null){
+        } else if (tache.getSociete().getId() != null && tache.getProjet().getId() != null) {
             error = findViewById(R.id.error_tache);
             error.setText(R.string.error_depense);
-        }else{
+        } else {
             tacheService.ajouterTache(tache);
             Dispacher.forward(this, TacheListActivity.class);
             finish();
@@ -231,11 +238,9 @@ public class TacheCreateActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
-                    societe = societeSpinnerAdapter.getItem(position);
-                    Log.d("test", "no error");
-                    Log.d(TAG, "2");
-                    Log.d(TAG, societe.getRaisonSociale());
+                societe = societeSpinnerAdapter.getItem(position);
+                if (societe.getId() == null) {
+                    societe = null;
                 }
             }
 

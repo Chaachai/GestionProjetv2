@@ -218,6 +218,8 @@ public class ProjetAdapter extends RecyclerView.Adapter<ProjetAdapter.ViewHolder
 
                 dateDebut.setText(dateString);
                 titreProjet.setText(mProjets.get(viewHolder.getAdapterPosition()).getNom());
+                budget.setText(mProjets.get(viewHolder.getAdapterPosition()).getBudget()+"");
+                description.setText(mProjets.get(viewHolder.getAdapterPosition()).getDescription());
 
                 Societe s = mProjets.get(viewHolder.getAdapterPosition()).getSociete();
                 SocieteService societeService = new SocieteService(context);
