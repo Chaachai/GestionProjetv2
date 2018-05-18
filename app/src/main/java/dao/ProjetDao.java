@@ -59,6 +59,7 @@ public class ProjetDao extends AbstractDao<Projet> {
     }
 
     public long remove(Projet projet) {
+        open();
         return db.delete(DbStructure.Projet.T_NAME, DbStructure.Projet.C_ID + "=" + projet.getId(), null);
     }
 
