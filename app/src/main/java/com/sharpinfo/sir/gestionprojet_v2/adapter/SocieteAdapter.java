@@ -180,8 +180,6 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 //on click the whole line
-                Toast.makeText(context, "test  societe " + msocietes.get(viewHolder.getAdapterPosition()).getRaisonSociale(), Toast.LENGTH_SHORT).show();
-                Log.d("tad", "" + msocietes.get(viewHolder.getAdapterPosition()).getRaisonSociale());
 
                 ///Create AlertDIalog with custom buttonss
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -280,7 +278,7 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
         String dateString = dateFormat.format(societe.getDateFondation());
 
 
-        textView.setText(societe.getRaisonSociale() + ";" + dateString);
+        textView.setText(societe.getRaisonSociale());
 
 
     }

@@ -17,8 +17,8 @@
         android:text="@string/societe"
 
         android:textAlignment="textStart"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/societe_seeMore"

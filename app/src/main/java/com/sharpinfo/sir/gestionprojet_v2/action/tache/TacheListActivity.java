@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Depense;
+import bean.Projet;
 import bean.Societe;
 import bean.Tache;
 import helper.Dispacher;
@@ -74,6 +75,22 @@ public class TacheListActivity extends AppCompatActivity {
         Session.delete("societeRecherce");
     }
 
+    private void showByProjet(Long idProjet) {
+
+        final List<Tache> tachesByProjet = new ArrayList<>();
+        for (Tache tache : taches) {
+            if (tache.getProjet() != null) {
+                if (tache.getProjet().getId().equals(idProjet)) {
+                    Log.d("tag", "noErrors");
+                    tachesByProjet.add(tache);
+                }
+            }
+        }
+        tacheAdapter.setfilter(tachesByProjet);
+        tacheAdapter.notifyDataSetChanged();
+        Session.delete("societeRecherce");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +105,11 @@ public class TacheListActivity extends AppCompatActivity {
         Societe societeRecherce = (Societe) Session.getAttribut("societeRecherce");
         if (societeRecherce != null) {
             showBySociete(societeRecherce.getId());
+        }
+
+        Projet projetRecherche = (Projet) Session.getAttribut("projetRecherche");
+        if (projetRecherche != null) {
+            showByProjet(projetRecherche.getId());
         }
 
 

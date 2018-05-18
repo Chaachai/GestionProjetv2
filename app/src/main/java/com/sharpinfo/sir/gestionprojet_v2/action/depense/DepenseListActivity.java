@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Depense;
+import bean.Projet;
 import bean.Societe;
 import helper.Dispacher;
 import helper.Session;
@@ -69,6 +70,23 @@ public class DepenseListActivity extends AppCompatActivity {
         Session.delete("societeRecherce");
     }
 
+    private void showByProjet(Long idProjet) {
+
+        final List<Depense> depensesByProjet = new ArrayList<>();
+        for (Depense depense : depenses) {
+            if (depense.getProjet() != null) {
+                if (depense.getProjet().getId().equals(idProjet)) {
+                    Log.d("tag", "noErrors");
+                    depensesByProjet.add(depense);
+
+                }
+            }
+        }
+        depenseAdapter.setfilter(depensesByProjet);
+        depenseAdapter.notifyDataSetChanged();
+        Session.delete("projetRecherche");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +102,11 @@ public class DepenseListActivity extends AppCompatActivity {
         Societe societeRecherce = (Societe) Session.getAttribut("societeRecherce");
         if (societeRecherce != null) {
             showBySociete(societeRecherce.getId());
+        }
+
+        Projet projetRecherche = (Projet) Session.getAttribut("projetRecherche");
+        if (projetRecherche != null) {
+            showByProjet(projetRecherche.getId());
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
