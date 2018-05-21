@@ -170,13 +170,10 @@
         android:id="@+id/dismiss_depense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="109dp"
         android:layout_marginEnd="1dp"
         android:layout_marginTop="1dp"
         android:background="@null"
-        app:layout_constraintBottom_toTopOf="@+id/societe_popup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/date_popup"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/btn_dialog" />
 

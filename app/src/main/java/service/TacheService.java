@@ -23,7 +23,6 @@ public class TacheService extends TacheDao {
     }
 
     public void deleteByProjet(Projet projet) {
-//        getDb().execSQL("DELETE FROM "+ DbStructure.Tache.T_NAME+" WHERE ");
         open();
         getDb().delete(DbStructure.Tache.T_NAME, DbStructure.Tache.C_ID_PROJET + "=" + projet.getId(), null);
         close();
@@ -31,7 +30,6 @@ public class TacheService extends TacheDao {
 
 
     public void deleteBySociete(Societe societe) {
-//        getDb().execSQL("DELETE FROM "+ DbStructure.Tache.T_NAME+" WHERE ");
         open();
         getDb().delete(DbStructure.Tache.T_NAME, DbStructure.Tache.C_ID_SOCIETE + "=" + societe.getId(), null);
         close();

@@ -72,6 +72,7 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, final int viewType) {
         final Context context = parent.getContext();
+        Session.setAttribute(context, "ContextSocieteAdapter");
         final LayoutInflater inflater = LayoutInflater.from(context);
 
         final SocieteService societeService = new SocieteService(context);
@@ -301,14 +302,9 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
     public void removeFromList(int position, ViewHolder viewHolder, Context context) {
         Societe societe = msocietes.get(viewHolder.getAdapterPosition());
         SocieteService societeService = new SocieteService(context);
-        ProjetService projetService = new ProjetService(context);
-        DepenseService depenseService = new DepenseService(context);
-        TacheService tacheService = new TacheService(context);
 
-        projetService.deleteBySociete(societe);
-        depenseService.deleteBySociete(societe);
-        tacheService.deleteBySociete(societe);
-        societeService.remove(societe);
+        societeService.removeSocieteAndProjet(societe);
+
 
         msocietes.remove(position);
         notifyItemRemoved(viewHolder.getAdapterPosition());

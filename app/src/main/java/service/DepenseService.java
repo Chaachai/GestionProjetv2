@@ -23,14 +23,12 @@ public class DepenseService extends DepenseDao {
 
 
     public void deleteByProjet(Projet projet) {
-//        getDb().execSQL("DELETE FROM "+ DbStructure.Tache.T_NAME+" WHERE ");
         open();
         getDb().delete(DbStructure.Depense.T_NAME, DbStructure.Depense.C_ID_PROJET + "=" + projet.getId(), null);
         close();
     }
 
     public void deleteBySociete(Societe societe) {
-//        getDb().execSQL("DELETE FROM "+ DbStructure.Tache.T_NAME+" WHERE ");
         open();
         getDb().delete(DbStructure.Depense.T_NAME, DbStructure.Depense.C_ID_SOCIETE + "=" + societe.getId(), null);
         close();
@@ -58,6 +56,6 @@ public class DepenseService extends DepenseDao {
         } else {
             create(depense);
         }
-
+        Session.delete("depenseContext");
     }
 }
