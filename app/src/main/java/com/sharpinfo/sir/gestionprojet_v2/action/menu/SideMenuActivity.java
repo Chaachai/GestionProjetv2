@@ -17,6 +17,7 @@ import com.sharpinfo.sir.gestionprojet_v2.FirstFragment;
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.SecondFragment;
 import com.sharpinfo.sir.gestionprojet_v2.ThirdFragment;
+import com.sharpinfo.sir.gestionprojet_v2.action.HamzaTestChartActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.projet.ProjetListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.TestChartActivity;
@@ -117,7 +118,7 @@ public class SideMenuActivity extends AppCompatActivity
     }
 
     public void testStatistics(View view) {
-        Dispacher.forward(SideMenuActivity.this, TestChartActivity.class);
+        Dispacher.forward(SideMenuActivity.this, HamzaTestChartActivity.class);
     }
 
     public void manageCompany(View view) {

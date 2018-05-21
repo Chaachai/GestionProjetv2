@@ -1,9 +1,11 @@
 package service;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.util.Log;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +23,36 @@ public class DepenseService extends DepenseDao {
         super(context);
     }
 
+    public List<Depense> findBySociete(Societe societe) {
+        List<Depense> depensesBySociete = new ArrayList<>();
+        List<Depense> depenses = findAll();
+        for (Depense depense : depenses) {
+            if (depense.getSociete() != null && depense.getSociete().getId().equals(societe.getId())) {
+                depensesBySociete.add(depense);
+            }
+        }
+        return depensesBySociete;
+    }
+
+    public BigDecimal totalDepense() {
+        open();
+        Cursor mCount = getDb().rawQuery("SELECT SUM(montant) FROM depense where " + DbStructure.Depense.C_ID_SOCIETE + " IS NOT NULL", null);
+        mCount.moveToFirst();
+        String s = mCount.getString(0);
+        BigDecimal montant = new BigDecimal(s);
+        close();
+        return montant;
+    }
+
+    public BigDecimal depenseBySociete(Societe societe) {
+        open();
+        Cursor mCount = getDb().rawQuery("SELECT SUM(montant) FROM depense where " + DbStructure.Depense.C_ID_SOCIETE + "=" + societe.getId(), null);
+        mCount.moveToFirst();
+        String s = mCount.getString(0);
+        BigDecimal montant = new BigDecimal(s);
+        close();
+        return montant;
+    }
 
     public void deleteByProjet(Projet projet) {
         open();

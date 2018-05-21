@@ -85,7 +85,9 @@
         <activity
             android:name=".action.menu.AboutActivity"
             android:parentActivityName=".action.menu.SideMenuActivity" />
-        <activity android:name=".action.statistics.StatisticsMenuActivity"></activity>
+        <activity android:name=".action.statistics.StatisticsMenuActivity" />
+        <activity android:name=".action.HamzaTestChartActivity" />
+        <activity android:name=".action.HamzaTestChart2Activity"></activity>
     </application>
 
 </manifest>
