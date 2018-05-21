@@ -137,12 +137,10 @@
         app:layout_constraintTop_toTopOf="@+id/viewPager"
         app:layout_constraintVertical_bias="0.727" />
 
-
-
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="206dp"
-        android:layout_height="83dp"
+        android:id="@+id/imageView8"
+        android:layout_width="198dp"
+        android:layout_height="61dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -151,7 +149,8 @@
         app:layout_constraintEnd_toEndOf="@+id/viewPager"
         app:layout_constraintStart_toStartOf="@+id/viewPager"
         app:layout_constraintTop_toTopOf="@+id/viewPager"
-        app:layout_constraintVertical_bias="0.991"
-        app:srcCompat="@drawable/logo_sharpinfo_400" />
+        app:layout_constraintVertical_bias="0.981"
+        app:srcCompat="@drawable/logo_expert" />
+
 
 </android.support.constraint.ConstraintLayout>

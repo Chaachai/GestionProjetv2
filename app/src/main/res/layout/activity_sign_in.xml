@@ -19,8 +19,10 @@
         android:background="@drawable/transparent_panel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/username"
@@ -115,21 +117,6 @@
         app:layout_constraintVertical_bias="0.73" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="206dp"
-        android:layout_height="83dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager"
-        app:layout_constraintEnd_toEndOf="@+id/viewPager"
-        app:layout_constraintStart_toStartOf="@+id/viewPager"
-        app:layout_constraintTop_toTopOf="@+id/viewPager"
-        app:layout_constraintVertical_bias="0.985"
-        app:srcCompat="@drawable/logo_sharpinfo_400" />
-
-    <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"
         android:layout_height="66dp"
@@ -175,6 +162,21 @@
         app:layout_constraintTop_toTopOf="@+id/password"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_vpn_key_black_24dp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="198dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager"
+        app:layout_constraintEnd_toEndOf="@+id/viewPager"
+        app:layout_constraintStart_toStartOf="@+id/viewPager"
+        app:layout_constraintTop_toTopOf="@+id/viewPager"
+        app:layout_constraintVertical_bias="0.981"
+        app:srcCompat="@drawable/logo_expert" />
 
 
 </android.support.constraint.ConstraintLayout>

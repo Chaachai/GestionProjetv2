@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SHARPROJECTS</string>
+    <string name="app_name">Expert Projects</string>
     <string name="title_activity_societe_list">SocieteListActivity</string>
     <string name="societe">Companies</string>
     <string name="sign_in">SIGN IN</string>
