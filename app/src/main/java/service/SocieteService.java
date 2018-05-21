@@ -34,6 +34,7 @@ public class SocieteService extends SocieteDao {
         depenseService.deleteBySociete(societe);
         tacheService.deleteBySociete(societe);
         remove(societe);
+        Session.delete("ContextSocieteAdapter");
     }
 
 

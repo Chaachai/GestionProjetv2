@@ -2,6 +2,7 @@ package com.sharpinfo.sir.gestionprojet_v2.action.tache;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
@@ -50,6 +52,12 @@ public class TacheCreateActivity extends AppCompatActivity {
     private Spinner projetSpinner;
     private TextView error;
 
+    //TimePicker
+    TimePickerDialog timePickerDialog;
+    Calendar calendar;
+    int currentHour;
+    int currentMinute;
+    ///
     TacheService tacheService = new TacheService(this);
     SocieteService societeService = new SocieteService(this);
     ProjetService projetService = new ProjetService(this);
@@ -152,6 +160,7 @@ public class TacheCreateActivity extends AppCompatActivity {
         getSocieteFromSpinner();
         initProjetSpinner();
         getProjetFromSpinner();
+        initHeurePicker();
 //        injectParam();
 //        long currentdate = System.currentTimeMillis();
 //        String dateString = simpleDateFormat.format(currentdate);
@@ -161,11 +170,36 @@ public class TacheCreateActivity extends AppCompatActivity {
         initDate();
     }
 
+    private void initHeurePicker() {
+        heurTache = findViewById(R.id.heur_tache);
+        //////
+        heurTache.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendar = Calendar.getInstance();
+                currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+                currentMinute = calendar.get(Calendar.MINUTE);
+
+                timePickerDialog = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        heurTache.setText(String.format("%02d:%02d", hourOfDay, minute));
+                    }
+                }, currentHour, currentMinute, true);
+                timePickerDialog.show();
+            }
+        });
+    }
+
     private Tache setParam() {
         Tache tache = new Tache();
+
+
         nbrHeurTache = findViewById(R.id.duree_tache);
         commentaireTache = findViewById(R.id.commentaire_tache);
-        heurTache = findViewById(R.id.heur_tache);
+
+
+        /////
 //        double montantDouble = Double.valueOf("" + montantDepense.getText());
 //        BigDecimal montantBigDecimal = BigDecimal.valueOf(montantDouble);
         Double nbrHeurDouble;

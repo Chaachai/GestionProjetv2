@@ -2,6 +2,7 @@ package com.sharpinfo.sir.gestionprojet_v2.action.depense;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.ProjetSpinnerAdapter;
@@ -47,6 +49,13 @@ public class DepenseCreateActivity extends AppCompatActivity {
     private Spinner societeSpinner;
     private Spinner projetSpinner;
     private TextView error;
+
+    //TimePicker
+    TimePickerDialog timePickerDialog;
+    Calendar calendar;
+    int currentHour;
+    int currentMinute;
+    ///
 
     DepenseService depenseService = new DepenseService(this);
     SocieteService societeService = new SocieteService(this);
@@ -157,12 +166,33 @@ public class DepenseCreateActivity extends AppCompatActivity {
 //        editDate.setText(dateString);
         initPopupDate();
         initDate();
+        initHeurePicker();
+    }
+
+    private void initHeurePicker() {
+        heurDepense = findViewById(R.id.heur_depense);
+        heurDepense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendar = Calendar.getInstance();
+                currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+                currentMinute = calendar.get(Calendar.MINUTE);
+
+                timePickerDialog = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        heurDepense.setText(String.format("%02d:%02d", hourOfDay, minute));
+                    }
+                }, currentHour, currentMinute, true);
+                timePickerDialog.show();
+            }
+        });
     }
 
     private Depense setParam() {
         Depense depense = new Depense();
         montantDepense = findViewById(R.id.montant);
-        heurDepense = findViewById(R.id.heur_depense);
+
         commentaireDepense = findViewById(R.id.commentaire_depense);
 
 
