@@ -30,4 +30,8 @@
     <string name="title_activity_projet_list">ProjetListActivity</string>
     <string name="search_hint">hint</string>
     <string name="error_depense">You should choose either a company or a project and not both of them !</string>
+    <string-array name="charts_array">
+        <item>Time</item>
+        <item>Expense</item>
+    </string-array>
 </resources>

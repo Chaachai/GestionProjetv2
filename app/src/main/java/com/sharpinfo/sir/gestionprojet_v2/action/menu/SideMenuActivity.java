@@ -1,6 +1,5 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.menu;
 
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -13,15 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.sharpinfo.sir.gestionprojet_v2.FirstFragment;
 import com.sharpinfo.sir.gestionprojet_v2.R;
-import com.sharpinfo.sir.gestionprojet_v2.SecondFragment;
-import com.sharpinfo.sir.gestionprojet_v2.ThirdFragment;
 import com.sharpinfo.sir.gestionprojet_v2.action.projet.ProjetListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
-import com.sharpinfo.sir.gestionprojet_v2.action.TestChartActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
-import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.statistics.StatisticsMenuActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.tache.TacheListActivity;
 
 import helper.Dispacher;
@@ -117,7 +112,7 @@ public class SideMenuActivity extends AppCompatActivity
     }
 
     public void testStatistics(View view) {
-        Dispacher.forward(SideMenuActivity.this, TestChartActivity.class);
+        Dispacher.forward(SideMenuActivity.this, StatisticsMenuActivity.class);
     }
 
     public void manageCompany(View view) {
