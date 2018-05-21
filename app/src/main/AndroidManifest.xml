@@ -48,7 +48,10 @@
             android:name=".action.menu.SideMenuActivity"
             android:label="Welcome to SHARPROJECTS"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".action.TestChartActivity" />
+        <activity
+            android:name=".action.statistics.ProjetStatisticsActivity"
+            android:label="Projects Charts"
+            android:parentActivityName=".action.statistics.StatisticsMenuActivity" />
         <activity
             android:name=".action.projet.ProjetListActivity"
             android:label="Projects List"

@@ -13,4 +13,7 @@
     <color name="yello">#FFE481</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="orange">#f99613</color>
+    <color name="brown">#b24a23</color>
+    <color name="grey">#919191</color>
 </resources>
