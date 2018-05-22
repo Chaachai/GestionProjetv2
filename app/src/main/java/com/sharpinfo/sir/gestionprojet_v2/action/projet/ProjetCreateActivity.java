@@ -1,7 +1,9 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.projet;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
@@ -35,6 +38,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
     private EditText descriptionProjet;
     private EditText budgetProjet;
     private Spinner societeSpinner;
+    private TextView error;
 
     private Societe societe = null;
     private SocieteService societeService = new SocieteService(this);
@@ -173,15 +177,45 @@ public class ProjetCreateActivity extends AppCompatActivity {
     }
 
     public void createProjet(View view) {
+        final Projet projet = setParam();
+        error = findViewById(R.id.error_create_projet);
+        if (projet.getNom().isEmpty()) {
+            error.setText(R.string.nom_du_projet_required);
+        } else if (projet.getSociete().getId() == null) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(ProjetCreateActivity.this);
+            alert.setTitle("Info");
+            alert.setMessage("If you don't choose a company, the project will be affected as personal, do you confirm ?");
+            alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
-        Projet projet = setParam();
-        Log.d("insideCreateProjet", projet.toString());
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (projet.getDescription().isEmpty()) {
+                        projet.setDescription("No description is available !");
+                        projetService.create(projet);
+                        Dispacher.forward(ProjetCreateActivity.this, ProjetListActivity.class);
+                        finish();
+                    } else {
+                        projetService.create(projet);
+                        Dispacher.forward(ProjetCreateActivity.this, ProjetListActivity.class);
+                        finish();
+                    }
+                    dialog.dismiss();
+                }
+            });
+            alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 
-        projetService.create(projet);
-//        Toast.makeText(getBaseContext(), "Societe cree avec succes! " + projet.getNom() + " " + projet.getBudget() + ", !", Toast.LENGTH_LONG).show();
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
 
-        Dispacher.forward(ProjetCreateActivity.this, ProjetListActivity.class);
-        finish();
+            alert.show();
+        } else {
+            projetService.create(projet);
+            Dispacher.forward(ProjetCreateActivity.this, ProjetListActivity.class);
+            finish();
+        }
     }
 
     private void initDate() {

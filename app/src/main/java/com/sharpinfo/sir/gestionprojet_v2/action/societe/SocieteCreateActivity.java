@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
@@ -39,6 +40,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
     private EditText raisonSociale;
     private Spinner managerSpinner;
     private Button managerCreateBtn;
+    private TextView error;
 
 
     private ManagerSpinnerAdapter managerSpinnerAdapter;
@@ -70,10 +72,10 @@ public class SocieteCreateActivity extends AppCompatActivity {
 //            }
 //        }
         managerSpinnerAdapter = new ManagerSpinnerAdapter(this, android.R.layout.simple_spinner_item, managers);
-        managerSpinnerAdapter.add(new Manager(null,"--SELECT A MANAGER--",""));
+        managerSpinnerAdapter.add(new Manager(null, "--SELECT A MANAGER--", ""));
         managerSpinner.setAdapter(managerSpinnerAdapter);
         managerSpinnerAdapter.notifyDataSetChanged();
-        managerSpinner.setSelection(managerSpinnerAdapter.getCount()+1,true);
+        managerSpinner.setSelection(managerSpinnerAdapter.getCount() + 1, true);
     }
 
     private void updateManageSpinner() {
@@ -189,10 +191,14 @@ public class SocieteCreateActivity extends AppCompatActivity {
 
     public void create(View view) {
         Societe societe = setParam();
-        societeService.create(societe);
-//        Toast.makeText(getBaseContext(), "Societe cree avec succes! with date " + societe.getDateFondation() + " " + societe.getManager().getNom() + ", !", Toast.LENGTH_LONG).show();
-        Dispacher.forward(this, SocieteListActivity.class);
-        finish();
+        error = findViewById(R.id.error_create_societe);
+        if (societe.getRaisonSociale().isEmpty()) {
+            error.setText(R.string.raison_sociale_required);
+        } else {
+            societeService.create(societe);
+            Dispacher.forward(this, SocieteListActivity.class);
+            finish();
+        }
     }
 
     private Societe setParam() {
@@ -204,7 +210,6 @@ public class SocieteCreateActivity extends AppCompatActivity {
         Date dateFondation = new Date();
 
         try {
-            //hadi hya la date li khsha tmchi l sqllite
             dateFondation = simpleDateFormat.parse(simpleDateFormat.format(myCalendar.getTime()));
             societe.setDateFondation(dateFondation);
         } catch (ParseException e) {
@@ -220,7 +225,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 manager = managerSpinnerAdapter.getItem(position);
-                if(manager.getId()==null){
+                if (manager.getId() == null) {
                     manager = null;
                 }
                 Log.d("test", "no error");
