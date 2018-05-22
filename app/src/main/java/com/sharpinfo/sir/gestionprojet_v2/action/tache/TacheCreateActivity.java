@@ -237,9 +237,12 @@ public class TacheCreateActivity extends AppCompatActivity {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    tacheService.ajouterTache(tache);
-                    Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
-                    finish();
+                    if (tache.getHeur().isEmpty()) {
+                        tache.setHeur("--:--");
+                        tacheService.ajouterTache(tache);
+                        Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
+                        finish();
+                    }
                     dialog.dismiss();
                 }
             });
@@ -258,9 +261,12 @@ public class TacheCreateActivity extends AppCompatActivity {
             error = findViewById(R.id.error_tache);
             error.setText(R.string.error_depense);
         } else {
-            tacheService.ajouterTache(tache);
-            Dispacher.forward(this, TacheListActivity.class);
-            finish();
+            if (tache.getHeur().isEmpty()) {
+                tache.setHeur("--:--");
+                tacheService.ajouterTache(tache);
+                Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
+                finish();
+            }
         }
 
 //        tacheService.create(tache);
