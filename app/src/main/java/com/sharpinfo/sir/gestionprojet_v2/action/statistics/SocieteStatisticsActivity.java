@@ -2,7 +2,6 @@ package com.sharpinfo.sir.gestionprojet_v2.action.statistics;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +22,6 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.sharpinfo.sir.gestionprojet_v2.R;
 
 import java.math.BigDecimal;
@@ -35,8 +33,8 @@ import bean.Societe;
 import service.DepenseService;
 import service.SocieteService;
 
+public class SocieteStatisticsActivity extends AppCompatActivity {
 
-public class ProjetStatisticsActivity extends AppCompatActivity {
     Context context = this;
     Spinner spinner;
     PieChart pieChart;
@@ -45,8 +43,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
     DepenseService depenseService = new DepenseService(context);
 
     private void initPieChart() {
-        PieChart pieChart = findViewById(R.id.chart);
-        pieChart = findViewById(R.id.chart);
+        pieChart = findViewById(R.id.chartsociete);
 
         SocieteService societeService = new SocieteService(context);
 
@@ -111,7 +108,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
     }
 
     private void initBarChart() {
-        barChart = findViewById(R.id.chart2);
+        barChart = findViewById(R.id.chart2societe);
         barChart.setVisibility(View.GONE);
         List<BarEntry> entries2 = new ArrayList<>();
 
@@ -143,7 +140,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
     }
 
     private void initChartSpinner() {
-        spinner = findViewById(R.id.chart_choice_project);
+        spinner = findViewById(R.id.chart_choice_societe);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.charts_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -170,18 +167,16 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_projet_statistics);
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.activity_societe_statistics);
         initBarChart();
         initPieChart();
 
-        pieChart = findViewById(R.id.chart);
-        barChart = findViewById(R.id.chart2);
+        pieChart = findViewById(R.id.chartsociete);
+        barChart = findViewById(R.id.chart2societe);
 
         initChartSpinner();
         getChoiceFromSpinner();
-        Button go = findViewById(R.id.chart_go_project);
+        Button go = findViewById(R.id.chart_go_societe);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,6 +190,5 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 }

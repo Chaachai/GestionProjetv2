@@ -11,16 +11,26 @@ import helper.Dispacher;
 
 public class StatisticsMenuActivity extends AppCompatActivity {
     private Button projetStatistics;
+    private Button societeStatistics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics_menu);
+
         projetStatistics = (Button) findViewById(R.id.projet_statistics);
         projetStatistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Dispacher.forward(StatisticsMenuActivity.this, ProjetStatisticsActivity.class);
+            }
+        });
+
+        societeStatistics = (Button) findViewById(R.id.societe_statistics);
+        societeStatistics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dispacher.forward(StatisticsMenuActivity.this, SocieteStatisticsActivity.class);
             }
         });
     }
