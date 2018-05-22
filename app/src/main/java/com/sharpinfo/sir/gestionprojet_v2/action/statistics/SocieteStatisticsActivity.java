@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
@@ -33,18 +32,19 @@ import bean.Depense;
 import bean.Societe;
 import service.DepenseService;
 import service.SocieteService;
+import service.TacheService;
 
 public class SocieteStatisticsActivity extends AppCompatActivity {
 
     Context context = this;
     Spinner spinner;
-    PieChart pieChart;
-    BarChart barChart;
+    PieChart pieChartExpense;
+    PieChart pieChartTime;
     private String choice = "";
     DepenseService depenseService = new DepenseService(context);
 
     private void initPieChart() {
-        pieChart = findViewById(R.id.chartsociete);
+        pieChartExpense = findViewById(R.id.chartsociete);
 
         SocieteService societeService = new SocieteService(context);
 
@@ -80,18 +80,18 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
 //        description.setTextSize(20f);
 //        description.setXOffset(10f);
 //        description.setYOffset(10f);
-//        pieChart.setDescription(description);
+//        pieChartExpense.setDescription(description);
 
-        Description description = pieChart.getDescription();
+        Description description = pieChartExpense.getDescription();
         description.setEnabled(false);
-        pieChart.setCenterText("Depense Par Societe");
+        pieChartExpense.setCenterText("Depense Par Societe");
 
         dataSet.setValueTextSize(15f);
         dataSet.setValueFormatter(new PercentFormatter());
         dataSet.setValueTextColor(Color.BLACK);
 
         //legend
-        Legend legend = pieChart.getLegend();
+        Legend legend = pieChartExpense.getLegend();
         legend.setFormSize(15f);
         legend.setForm(Legend.LegendForm.CIRCLE);
         legend.setTextSize(15f);
@@ -102,36 +102,48 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
         //
 
         //position
-        pieChart.setExtraBottomOffset(-20f);
+        pieChartExpense.setExtraBottomOffset(-20f);
         //
 
         dataSet.setSliceSpace(1f);//space between parts
 
-        pieChart.setDrawHoleEnabled(true);//for the hole inside
+        pieChartExpense.setDrawHoleEnabled(true);//for the hole inside
 
         PieData data = new PieData(dataSet);
-        pieChart.setUsePercentValues(true);
-        pieChart.setData(data);
-        pieChart.invalidate(); // refresh
+        pieChartExpense.setUsePercentValues(true);
+        pieChartExpense.setData(data);
+        pieChartExpense.invalidate(); // refresh
 
 
     }
 
     private void initBarChart() {
-        barChart = findViewById(R.id.chart2societe);
-        barChart.setVisibility(View.GONE);
-        List<BarEntry> entries2 = new ArrayList<>();
+        pieChartTime = findViewById(R.id.chart2societe);
 
-        entries2.add(new BarEntry(0f, 30f));
-        entries2.add(new BarEntry(1f, 80f));
-        entries2.add(new BarEntry(2f, 60f));
-        entries2.add(new BarEntry(3f, 50f));
-        entries2.add(new BarEntry(4f, 70f));
-        entries2.add(new BarEntry(5f, 60f));
+        TacheService tacheService = new TacheService(context);
+        SocieteService societeService = new SocieteService(context);
 
-        BarDataSet set2 = new BarDataSet(entries2, "BarDataSet");
+        List<Societe> societes = societeService.findAll();
+        Integer total = tacheService.totalTache();
 
-        set2.setColors(getResources().getColor(R.color.yello),
+        ArrayList<PieEntry> pieEntries = new ArrayList<>();
+
+        for (Societe societe : societes) {
+            Integer heure = tacheService.tacheBySociete(societe);
+
+            BigDecimal totalBig = new BigDecimal(total);
+            BigDecimal heureBig = new BigDecimal(heure);
+            BigDecimal pourcentage = heureBig.divide(totalBig, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
+            Log.d("barcharttest", pourcentage.floatValue() + "");
+
+            pieEntries.add(new PieEntry(pourcentage.floatValue(),societe.getRaisonSociale()));
+
+
+        }
+
+        PieDataSet pieDataSet = new PieDataSet(pieEntries,"");
+
+        pieDataSet.setColors(getResources().getColor(R.color.yello),
                 getResources().getColor(R.color.purple),
                 getResources().getColor(R.color.pink),
                 getResources().getColor(R.color.green),
@@ -139,14 +151,38 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
                 getResources().getColor(R.color.brown),
                 getResources().getColor(R.color.grey));
 
-        Description description = new Description();
-        description.setText("Expenses of the companies");
-        barChart.setDescription(description);
-        BarData data2 = new BarData(set2);
-        data2.setBarWidth(0.9f); // set custom bar width
-        barChart.setData(data2);
-        barChart.setFitBars(true); // make the x-axis fit exactly all bars
-        barChart.invalidate(); // refresh
+
+        Description description = pieChartTime.getDescription();
+        description.setEnabled(false);
+        pieChartTime.setCenterText("Time Par Societe");
+
+        pieDataSet.setValueTextSize(15f);
+        pieDataSet.setValueFormatter(new PercentFormatter());
+        pieDataSet.setValueTextColor(Color.BLACK);
+
+        //legend
+        Legend legend = pieChartTime.getLegend();
+        legend.setFormSize(15f);
+        legend.setForm(Legend.LegendForm.CIRCLE);
+        legend.setTextSize(15f);
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        legend.setOrientation(Legend.LegendOrientation.VERTICAL);
+        legend.setYOffset(0f);
+        //
+
+        //position
+        pieChartTime.setExtraBottomOffset(-20f);
+        //
+
+        pieDataSet.setSliceSpace(1f);//space between parts
+
+        pieChartTime.setDrawHoleEnabled(true);//for the hole inside
+
+        PieData data = new PieData(pieDataSet);
+        pieChartTime.setUsePercentValues(true);
+        pieChartTime.setData(data);
+        pieChartTime.invalidate(); // refresh
     }
 
     private void initChartSpinner() {
@@ -181,8 +217,8 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
         initBarChart();
         initPieChart();
 
-        pieChart = findViewById(R.id.chartsociete);
-        barChart = findViewById(R.id.chart2societe);
+        pieChartExpense = findViewById(R.id.chartsociete);
+        pieChartTime = findViewById(R.id.chart2societe);
 
         initChartSpinner();
         getChoiceFromSpinner();
@@ -192,11 +228,11 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("tag", "===== " + choice);
                 if (choice.equals("Time")) {
-                    pieChart.setVisibility(View.VISIBLE);
-                    barChart.setVisibility(View.GONE);
+                    pieChartExpense.setVisibility(View.VISIBLE);
+                    pieChartTime.setVisibility(View.GONE);
                 } else if (choice.equals("Expense")) {
-                    pieChart.setVisibility(View.GONE);
-                    barChart.setVisibility(View.VISIBLE);
+                    pieChartExpense.setVisibility(View.GONE);
+                    pieChartTime.setVisibility(View.VISIBLE);
                 }
             }
         });
