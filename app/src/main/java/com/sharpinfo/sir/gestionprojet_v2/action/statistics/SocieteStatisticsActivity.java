@@ -53,14 +53,16 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
 
         BigDecimal total = depenseService.totalDepense();
         Log.d("chart", total + "");
-        for (Societe societe : societes) {
-            for (Depense depense : societe.getDepenses()) {
-                Log.d("societeStats", depense.getMontant().toString());
+        if (total.equals(0)) {
+            for (Societe societe : societes) {
+                for (Depense depense : societe.getDepenses()) {
+                    Log.d("societeStats", depense.getMontant().toString());
+                }
+                BigDecimal depenseSociete = depenseService.depenseBySociete(societe);
+                BigDecimal pourcentage = depenseSociete.divide(total, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
+                Log.d("chart", pourcentage + "");
+                entries.add(new PieEntry(pourcentage.floatValue(), societe.getRaisonSociale()));
             }
-            BigDecimal depenseSociete = depenseService.depenseBySociete(societe);
-            BigDecimal pourcentage = depenseSociete.divide(total, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
-            Log.d("chart", pourcentage + "");
-            entries.add(new PieEntry(pourcentage.floatValue(), societe.getRaisonSociale()));
         }
 
 
@@ -141,7 +143,7 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
                 BigDecimal pourcentage = heureBig.divide(totalBig, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
                 Log.d("barcharttest", pourcentage.floatValue() + "");
 
-            pieEntries.add(new PieEntry(pourcentage.floatValue(), societe.getRaisonSociale()));
+                pieEntries.add(new PieEntry(pourcentage.floatValue(), societe.getRaisonSociale()));
 
             }
         }

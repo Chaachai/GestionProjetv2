@@ -40,7 +40,7 @@ public class DepenseService extends DepenseDao {
         mCount.moveToFirst();
         String s = mCount.getString(0);
         BigDecimal montant;
-        if (s.isEmpty()) {
+        if (s == null) {
             montant = BigDecimal.ZERO;
         } else {
             montant = new BigDecimal(s);
@@ -54,7 +54,13 @@ public class DepenseService extends DepenseDao {
         Cursor mCount = getDb().rawQuery("SELECT SUM(montant) FROM depense where " + DbStructure.Depense.C_ID_PROJET + " IS NOT NULL", null);
         mCount.moveToFirst();
         String s = mCount.getString(0);
-        BigDecimal montant = new BigDecimal(s);
+        BigDecimal montant;
+        Log.d("depenseservice", s + "");
+        if (s == null) {
+            montant = BigDecimal.ZERO;
+        } else {
+            montant = new BigDecimal(s);
+        }
         close();
         return montant;
     }

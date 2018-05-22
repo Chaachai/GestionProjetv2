@@ -54,11 +54,13 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 
         BigDecimal total = depenseService.totalDepenseProjet();
         Log.d("chart", total + "");
-        for (Projet projet : projets) {
-            BigDecimal depenseProjet = depenseService.depenseByProjet(projet);
-            BigDecimal pourcentage = depenseProjet.divide(total, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
-            Log.d("chart", pourcentage + "");
-            entries.add(new PieEntry(pourcentage.floatValue(), projet.getNom()));
+        if (total.equals(0)) {
+            for (Projet projet : projets) {
+                BigDecimal depenseProjet = depenseService.depenseByProjet(projet);
+                BigDecimal pourcentage = depenseProjet.divide(total, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
+                Log.d("chart", pourcentage + "");
+                entries.add(new PieEntry(pourcentage.floatValue(), projet.getNom()));
+            }
         }
 
 
