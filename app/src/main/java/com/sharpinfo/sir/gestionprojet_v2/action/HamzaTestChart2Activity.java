@@ -5,20 +5,13 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.sharpinfo.sir.gestionprojet_v2.R;
 
@@ -45,7 +38,7 @@ public class HamzaTestChart2Activity extends AppCompatActivity {
         SocieteService societeService = new SocieteService(context);
 
         List<Societe> societes = societeService.findAll();
-        Integer total = tacheService.totalTache();
+        Integer total = tacheService.totalTacheSociete();
 
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
         ArrayList<String> societeNames = new ArrayList<>();

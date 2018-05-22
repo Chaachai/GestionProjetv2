@@ -12,17 +12,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.sharpinfo.sir.gestionprojet_v2.R;
 
 import java.math.BigDecimal;
@@ -45,7 +42,7 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
     private String choice = "";
     DepenseService depenseService = new DepenseService(context);
 
-    private void initPieChart() {
+    private void initPieChartExpense() {
         pieChartExpense = findViewById(R.id.chartsociete);
 
         SocieteService societeService = new SocieteService(context);
@@ -108,6 +105,10 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
         pieChartExpense.setExtraBottomOffset(-20f);
         //
 
+
+        //animation
+        pieChartExpense.animateY(1000, Easing.EasingOption.EaseInOutCubic);
+        //
         dataSet.setSliceSpace(1f);//space between parts
 
         pieChartExpense.setDrawHoleEnabled(true);//for the hole inside
@@ -121,28 +122,28 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
 
     }
 
-    private void initBarChart() {
+    private void initPieChartTime() {
         pieChartTime = findViewById(R.id.chart2societe);
         pieChartTime.setVisibility(View.GONE);
         TacheService tacheService = new TacheService(context);
         SocieteService societeService = new SocieteService(context);
 
         List<Societe> societes = societeService.findAll();
-        Integer total = tacheService.totalTache();
+        Integer total = tacheService.totalTacheSociete();
 
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
+        if (total != 0) {
+            for (Societe societe : societes) {
+                Integer heure = tacheService.tacheBySociete(societe);
 
-        for (Societe societe : societes) {
-            Integer heure = tacheService.tacheBySociete(societe);
-
-            BigDecimal totalBig = new BigDecimal(total);
-            BigDecimal heureBig = new BigDecimal(heure);
-            BigDecimal pourcentage = heureBig.divide(totalBig, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
-            Log.d("barcharttest", pourcentage.floatValue() + "");
+                BigDecimal totalBig = new BigDecimal(total);
+                BigDecimal heureBig = new BigDecimal(heure);
+                BigDecimal pourcentage = heureBig.divide(totalBig, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
+                Log.d("barcharttest", pourcentage.floatValue() + "");
 
             pieEntries.add(new PieEntry(pourcentage.floatValue(), societe.getRaisonSociale()));
 
-
+            }
         }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "");
@@ -162,6 +163,11 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
         pieChartTime.setCenterText("Time Par Societe");
 
         pieDataSet.setValueTextSize(13f);
+
+        //animation
+        pieChartTime.animateY(1000, Easing.EasingOption.EaseInOutCubic);
+        //
+        pieDataSet.setValueTextSize(15f);
         pieDataSet.setValueFormatter(new PercentFormatter());
         pieDataSet.setValueTextColor(Color.BLACK);
 
@@ -218,8 +224,8 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_societe_statistics);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        initBarChart();
-        initPieChart();
+        initPieChartTime();
+        initPieChartExpense();
 
         pieChartExpense = findViewById(R.id.chartsociete);
         pieChartTime = findViewById(R.id.chart2societe);
@@ -234,9 +240,11 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
                 if (choice.equals("Time")) {
                     pieChartExpense.setVisibility(View.GONE);
                     pieChartTime.setVisibility(View.VISIBLE);
+                    pieChartTime.invalidate();
                 } else if (choice.equals("Expense")) {
                     pieChartExpense.setVisibility(View.VISIBLE);
                     pieChartTime.setVisibility(View.GONE);
+                    pieChartExpense.invalidate();
                 }
             }
         });
