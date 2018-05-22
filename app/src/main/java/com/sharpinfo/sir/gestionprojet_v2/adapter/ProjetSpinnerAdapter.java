@@ -66,13 +66,8 @@ public class ProjetSpinnerAdapter extends ArrayAdapter<Projet> {
         TextView projet = (TextView) super.getDropDownView(position, convertView, parent);
         projet.setTextSize(20f);
         projet.setPadding(15,15,15,15);
-//        if (position == 0) {
-//            projet.setTextColor(Color.GRAY);
-//            projet.setText("Select a projet");
-//        } else {
         projet.setTextColor(Color.BLACK);
         projet.setText(projets.get(position).getNom());
-//        }
         return projet;
     }
 }

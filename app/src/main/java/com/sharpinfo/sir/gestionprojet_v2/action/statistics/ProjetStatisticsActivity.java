@@ -113,24 +113,24 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 
     private void initBarChart() {
         pieChartTime = findViewById(R.id.chart2);
-
+        pieChartTime.setVisibility(View.GONE);
         TacheService tacheService = new TacheService(context);
-        SocieteService societeService = new SocieteService(context);
+        ProjetService projetService = new ProjetService(context);
 
-        List<Societe> societes = societeService.findAll();
+        List<Projet> projets = projetService.findAll();
         Integer total = tacheService.totalTacheProjet();
 
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
         if (total != 0) {
-            for (Societe societe : societes) {
-                Integer heure = tacheService.tacheByProjet(societe);
+            for (Projet projet : projets) {
+                Integer heure = tacheService.tacheByProjet(projet);
 
                 BigDecimal totalBig = new BigDecimal(total);
                 BigDecimal heureBig = new BigDecimal(heure);
                 BigDecimal pourcentage = heureBig.divide(totalBig, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
                 Log.d("barcharttest", pourcentage.floatValue() + "");
 
-                pieEntries.add(new PieEntry(pourcentage.floatValue(), societe.getRaisonSociale()));
+                pieEntries.add(new PieEntry(pourcentage.floatValue(), projet.getNom()));
             }
 
         }

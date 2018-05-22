@@ -231,8 +231,12 @@ public class DepenseCreateActivity extends AppCompatActivity {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    if(depense.getHeur().isEmpty()){
+                    if (depense.getHeur().isEmpty()) {
                         depense.setHeur("--:--");
+                        depenseService.ajouterDepense(depense);
+                        Dispacher.forward(DepenseCreateActivity.this, DepenseListActivity.class);
+                        finish();
+                    } else {
                         depenseService.ajouterDepense(depense);
                         Dispacher.forward(DepenseCreateActivity.this, DepenseListActivity.class);
                         finish();
@@ -255,8 +259,12 @@ public class DepenseCreateActivity extends AppCompatActivity {
             error = findViewById(R.id.error_depense);
             error.setText(R.string.error_depense);
         } else {
-            if(depense.getHeur().isEmpty()){
+            if (depense.getHeur().isEmpty()) {
                 depense.setHeur("--:--");
+                depenseService.ajouterDepense(depense);
+                Dispacher.forward(DepenseCreateActivity.this, DepenseListActivity.class);
+                finish();
+            } else {
                 depenseService.ajouterDepense(depense);
                 Dispacher.forward(DepenseCreateActivity.this, DepenseListActivity.class);
                 finish();
