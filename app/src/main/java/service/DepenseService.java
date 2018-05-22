@@ -44,12 +44,46 @@ public class DepenseService extends DepenseDao {
         return montant;
     }
 
+    public BigDecimal totalDepenseProjet() {
+        open();
+        Cursor mCount = getDb().rawQuery("SELECT SUM(montant) FROM depense where " + DbStructure.Depense.C_ID_PROJET + " IS NOT NULL", null);
+        mCount.moveToFirst();
+        String s = mCount.getString(0);
+        BigDecimal montant = new BigDecimal(s);
+        close();
+        return montant;
+    }
+
     public BigDecimal depenseBySociete(Societe societe) {
         open();
         Cursor mCount = getDb().rawQuery("SELECT SUM(montant) FROM depense where " + DbStructure.Depense.C_ID_SOCIETE + "=" + societe.getId(), null);
         mCount.moveToFirst();
         String s = mCount.getString(0);
-        BigDecimal montant = new BigDecimal(s);
+        BigDecimal montant;
+        Log.d("depenseservice", s + "");
+        if (s == null) {
+            montant = BigDecimal.ZERO;
+        } else {
+            montant = new BigDecimal(s);
+        }
+        Log.d("tag montant", "" + montant);
+        close();
+        return montant;
+    }
+
+    public BigDecimal depenseByProjet(Projet projet) {
+        open();
+        Cursor mCount = getDb().rawQuery("SELECT SUM(montant) FROM depense where " + DbStructure.Depense.C_ID_PROJET + "=" + projet.getId(), null);
+        mCount.moveToFirst();
+        String s = mCount.getString(0);
+        BigDecimal montant;
+        Log.d("depenseservice", s + "");
+        if (s == null) {
+            montant = BigDecimal.ZERO;
+        } else {
+            montant = new BigDecimal(s);
+        }
+        Log.d("tag montant", "" + montant);
         close();
         return montant;
     }

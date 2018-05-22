@@ -31,8 +31,10 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.Projet;
 import bean.Societe;
 import service.DepenseService;
+import service.ProjetService;
 import service.SocieteService;
 
 
@@ -45,26 +47,25 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
     DepenseService depenseService = new DepenseService(context);
 
     private void initPieChart() {
-        PieChart pieChart = findViewById(R.id.chart);
         pieChart = findViewById(R.id.chart);
 
-        SocieteService societeService = new SocieteService(context);
+        ProjetService projetService = new ProjetService(context);
 
-        List<Societe> societes = societeService.findAll();
+        List<Projet> projets = projetService.findAll();
 
         List<PieEntry> entries = new ArrayList<PieEntry>();
 
-        BigDecimal total = depenseService.totalDepense();
+        BigDecimal total = depenseService.totalDepenseProjet();
         Log.d("chart", total + "");
-        for (Societe societe : societes) {
-            BigDecimal depenseSociete = depenseService.depenseBySociete(societe);
-            BigDecimal pourcentage = depenseSociete.divide(total, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
+        for (Projet projet : projets) {
+            BigDecimal depenseProjet = depenseService.depenseByProjet(projet);
+            BigDecimal pourcentage = depenseProjet.divide(total, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
             Log.d("chart", pourcentage + "");
-            entries.add(new PieEntry(pourcentage.floatValue(), societe.getRaisonSociale()));
+            entries.add(new PieEntry(pourcentage.floatValue(), projet.getNom()));
         }
 
 
-        PieDataSet dataSet = new PieDataSet(entries, "Depense Par Societe");
+        PieDataSet dataSet = new PieDataSet(entries, "Depense Par Projet");
 
 
         // add a lot of colors
@@ -186,10 +187,10 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("tag", "===== " + choice);
-                if (choice.equals("Time")) {
+                if (choice.equals("Expense")) {
                     pieChart.setVisibility(View.VISIBLE);
                     barChart.setVisibility(View.GONE);
-                } else if (choice.equals("Expense")) {
+                } else if (choice.equals("Time")) {
                     pieChart.setVisibility(View.GONE);
                     barChart.setVisibility(View.VISIBLE);
                 }

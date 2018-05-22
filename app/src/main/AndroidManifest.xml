@@ -91,7 +91,9 @@
         <activity android:name=".action.statistics.StatisticsMenuActivity" />
         <activity android:name=".action.HamzaTestChartActivity" />
         <activity android:name=".action.HamzaTestChart2Activity" />
-        <activity android:name=".action.statistics.SocieteStatisticsActivity"></activity>
+        <activity android:name=".action.statistics.SocieteStatisticsActivity"
+            android:label="Companies Charts"
+            android:parentActivityName=".action.statistics.StatisticsMenuActivity"></activity>
     </application>
 
 </manifest>
