@@ -31,6 +31,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.Depense;
 import bean.Societe;
 import service.DepenseService;
 import service.SocieteService;
@@ -56,6 +57,9 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
         BigDecimal total = depenseService.totalDepense();
         Log.d("chart", total + "");
         for (Societe societe : societes) {
+            for (Depense depense : societe.getDepenses()) {
+                Log.d("societeStats", depense.getMontant().toString());
+            }
             BigDecimal depenseSociete = depenseService.depenseBySociete(societe);
             BigDecimal pourcentage = depenseSociete.divide(total, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
             Log.d("chart", pourcentage + "");
@@ -63,9 +67,7 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
         }
 
 
-        PieDataSet dataSet = new PieDataSet(entries, "Depense Par Societe");
-
-
+        PieDataSet dataSet = new PieDataSet(entries, "");
         // add a lot of colors
         dataSet.setColors(
                 getResources().getColor(R.color.yello),
@@ -76,12 +78,17 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
                 getResources().getColor(R.color.brown),
                 getResources().getColor(R.color.grey));
 
-        Description description = new Description();
-        description.setText("Depenses Par Societe");
-        description.setTextSize(20f);
-        description.setXOffset(10f);
-        description.setYOffset(10f);
-        pieChart.setDescription(description);
+//        Description description = new Description();
+//        description.setText("Depenses Par Societe");
+//        description.setTextSize(20f);
+//        description.setXOffset(10f);
+//        description.setYOffset(10f);
+//        pieChart.setDescription(description);
+
+        Description description = pieChart.getDescription();
+        description.setEnabled(false);
+        pieChart.setCenterText("Depense Par Societe");
+
         dataSet.setValueTextSize(15f);
         dataSet.setValueFormatter(new PercentFormatter());
         dataSet.setValueTextColor(Color.BLACK);
@@ -94,9 +101,12 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         legend.setOrientation(Legend.LegendOrientation.VERTICAL);
-
+        legend.setYOffset(0f);
         //
 
+        //position
+        pieChart.setExtraBottomOffset(-20f);
+        //
 
         dataSet.setSliceSpace(1f);//space between parts
 
