@@ -30,7 +30,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
     private String choice = "";
 
     private void initPieChart() {
-        PieChart pieChart = (PieChart) findViewById(R.id.chart);
+        PieChart pieChart = findViewById(R.id.chart);
 
         List<PieEntry> entries = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 
         PieDataSet set = new PieDataSet(entries, "");
 
-        set.setColors(new int[]{getResources().getColor(R.color.yello), getResources().getColor(R.color.purple), getResources().getColor(R.color.pink), getResources().getColor(R.color.green), getResources().getColor(R.color.orange), getResources().getColor(R.color.brown), getResources().getColor(R.color.grey)});
+        set.setColors(getResources().getColor(R.color.yello), getResources().getColor(R.color.purple), getResources().getColor(R.color.pink), getResources().getColor(R.color.green), getResources().getColor(R.color.orange), getResources().getColor(R.color.brown), getResources().getColor(R.color.grey));
 
         PieData data = new PieData(set);
         pieChart.setData(data);
@@ -59,7 +59,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
     }
 
     private void initBarChart() {
-        BarChart barChart = (BarChart) findViewById(R.id.chart2);
+        BarChart barChart = findViewById(R.id.chart2);
         barChart.setVisibility(View.GONE);
         List<BarEntry> entries2 = new ArrayList<>();
 
@@ -72,7 +72,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 
         BarDataSet set2 = new BarDataSet(entries2, "BarDataSet");
 
-        set2.setColors(new int[]{getResources().getColor(R.color.yello), getResources().getColor(R.color.purple), getResources().getColor(R.color.pink), getResources().getColor(R.color.green), getResources().getColor(R.color.orange), getResources().getColor(R.color.brown), getResources().getColor(R.color.grey)});
+        set2.setColors(getResources().getColor(R.color.yello), getResources().getColor(R.color.purple), getResources().getColor(R.color.pink), getResources().getColor(R.color.green), getResources().getColor(R.color.orange), getResources().getColor(R.color.brown), getResources().getColor(R.color.grey));
 
         Description description = new Description();
         description.setText("Expenses of the companies");
@@ -86,7 +86,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 
     private void initChartSpinner() {
         spinner = findViewById(R.id.chart_choice_project);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.charts_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.charts_array, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
@@ -118,7 +118,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 //        initBarChart();
 //        initPieChart();
 
-        final PieChart pieChart = (PieChart) findViewById(R.id.chart);
+        final PieChart pieChart = findViewById(R.id.chart);
 
         List<PieEntry> entries = new ArrayList<>();
 
@@ -132,7 +132,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 
         PieDataSet set = new PieDataSet(entries, "");
 
-        set.setColors(new int[]{getResources().getColor(R.color.yello), getResources().getColor(R.color.purple), getResources().getColor(R.color.pink), getResources().getColor(R.color.green), getResources().getColor(R.color.orange), getResources().getColor(R.color.brown), getResources().getColor(R.color.grey)});
+        set.setColors(getResources().getColor(R.color.yello), getResources().getColor(R.color.purple), getResources().getColor(R.color.pink), getResources().getColor(R.color.green), getResources().getColor(R.color.orange), getResources().getColor(R.color.brown), getResources().getColor(R.color.grey));
 
         PieData data = new PieData(set);
         pieChart.setData(data);
@@ -145,7 +145,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
         pieChart.invalidate(); // refresh
 
 
-        final BarChart barChart = (BarChart) findViewById(R.id.chart2);
+        final BarChart barChart = findViewById(R.id.chart2);
         barChart.setVisibility(View.GONE);
         List<BarEntry> entries2 = new ArrayList<>();
 
@@ -158,7 +158,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 
         BarDataSet set2 = new BarDataSet(entries2, "BarDataSet");
 
-        set2.setColors(new int[]{getResources().getColor(R.color.yello), getResources().getColor(R.color.purple), getResources().getColor(R.color.pink), getResources().getColor(R.color.green), getResources().getColor(R.color.orange), getResources().getColor(R.color.brown), getResources().getColor(R.color.grey)});
+        set2.setColors(getResources().getColor(R.color.yello), getResources().getColor(R.color.purple), getResources().getColor(R.color.pink), getResources().getColor(R.color.green), getResources().getColor(R.color.orange), getResources().getColor(R.color.brown), getResources().getColor(R.color.grey));
 
         Description description2 = new Description();
         description.setText("Expenses of the companies");
