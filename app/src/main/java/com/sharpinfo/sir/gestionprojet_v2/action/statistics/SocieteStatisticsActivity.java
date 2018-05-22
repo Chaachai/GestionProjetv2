@@ -69,12 +69,13 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
 
         PieDataSet dataSet = new PieDataSet(entries, "");
         // add a lot of colors
-        dataSet.setColors(getResources().getColor(R.color.yello),
+        dataSet.setColors(
+                getResources().getColor(R.color.orange),
+                getResources().getColor(R.color.brown),
                 getResources().getColor(R.color.purple),
                 getResources().getColor(R.color.pink),
                 getResources().getColor(R.color.green),
-                getResources().getColor(R.color.orange),
-                getResources().getColor(R.color.brown),
+                getResources().getColor(R.color.yello),
                 getResources().getColor(R.color.grey));
 
 //        Description description = new Description();
@@ -88,15 +89,15 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
         description.setEnabled(false);
         pieChartExpense.setCenterText("Depense Par Societe");
 
-        dataSet.setValueTextSize(15f);
+        dataSet.setValueTextSize(13f);
         dataSet.setValueFormatter(new PercentFormatter());
         dataSet.setValueTextColor(Color.BLACK);
 
         //legend
         Legend legend = pieChartExpense.getLegend();
-        legend.setFormSize(15f);
+        legend.setFormSize(13f);
         legend.setForm(Legend.LegendForm.CIRCLE);
-        legend.setTextSize(15f);
+        legend.setTextSize(13f);
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         legend.setOrientation(Legend.LegendOrientation.VERTICAL);
@@ -122,7 +123,7 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
 
     private void initBarChart() {
         pieChartTime = findViewById(R.id.chart2societe);
-
+        pieChartTime.setVisibility(View.GONE);
         TacheService tacheService = new TacheService(context);
         SocieteService societeService = new SocieteService(context);
 
@@ -139,19 +140,20 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
             BigDecimal pourcentage = heureBig.divide(totalBig, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
             Log.d("barcharttest", pourcentage.floatValue() + "");
 
-            pieEntries.add(new PieEntry(pourcentage.floatValue(),societe.getRaisonSociale()));
+            pieEntries.add(new PieEntry(pourcentage.floatValue(), societe.getRaisonSociale()));
 
 
         }
 
-        PieDataSet pieDataSet = new PieDataSet(pieEntries,"");
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, "");
 
-        pieDataSet.setColors(getResources().getColor(R.color.yello),
+        pieDataSet.setColors(
+                getResources().getColor(R.color.orange),
+                getResources().getColor(R.color.brown),
                 getResources().getColor(R.color.purple),
                 getResources().getColor(R.color.pink),
                 getResources().getColor(R.color.green),
-                getResources().getColor(R.color.orange),
-                getResources().getColor(R.color.brown),
+                getResources().getColor(R.color.yello),
                 getResources().getColor(R.color.grey));
 
 
@@ -159,15 +161,15 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
         description.setEnabled(false);
         pieChartTime.setCenterText("Time Par Societe");
 
-        pieDataSet.setValueTextSize(15f);
+        pieDataSet.setValueTextSize(13f);
         pieDataSet.setValueFormatter(new PercentFormatter());
         pieDataSet.setValueTextColor(Color.BLACK);
 
         //legend
         Legend legend = pieChartTime.getLegend();
-        legend.setFormSize(15f);
+        legend.setFormSize(13f);
         legend.setForm(Legend.LegendForm.CIRCLE);
-        legend.setTextSize(15f);
+        legend.setTextSize(13f);
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         legend.setOrientation(Legend.LegendOrientation.VERTICAL);
@@ -184,6 +186,7 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
 
         PieData data = new PieData(pieDataSet);
         pieChartTime.setUsePercentValues(true);
+        pieChartTime.setEntryLabelColor(getResources().getColor(R.color.black));
         pieChartTime.setData(data);
         pieChartTime.invalidate(); // refresh
     }

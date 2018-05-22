@@ -242,6 +242,10 @@ public class TacheCreateActivity extends AppCompatActivity {
                         tacheService.ajouterTache(tache);
                         Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
                         finish();
+                    } else {
+                        tacheService.ajouterTache(tache);
+                        Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
+                        finish();
                     }
                     dialog.dismiss();
                 }
@@ -263,6 +267,10 @@ public class TacheCreateActivity extends AppCompatActivity {
         } else {
             if (tache.getHeur().isEmpty()) {
                 tache.setHeur("--:--");
+                tacheService.ajouterTache(tache);
+                Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
+                finish();
+            } else {
                 tacheService.ajouterTache(tache);
                 Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
                 finish();

@@ -55,9 +55,7 @@ public class ProjetSpinnerAdapter extends ArrayAdapter<Projet> {
 
     @Override
     public boolean isEnabled(int position) {
-        if (position == 0) {
-            return false;
-        } else return true;
+        return true;
     }
 
 
