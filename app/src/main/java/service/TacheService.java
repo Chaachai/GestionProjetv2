@@ -1,8 +1,11 @@
 package service;
 
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 
 import java.math.BigDecimal;
+import java.util.Currency;
 import java.util.Date;
 
 import bean.Depense;
@@ -21,6 +24,26 @@ public class TacheService extends TacheDao {
     public TacheService(Context context) {
         super(context);
     }
+
+    public Integer tacheBySociete(Societe societe) {
+        open();
+        Cursor mCount = getDb().rawQuery("SELECT SUM(nbr_heures) FROM tache WHERE "
+                + DbStructure.Tache.C_ID_SOCIETE + " = " + societe.getId(), null);
+
+        mCount.moveToFirst();
+        Integer sum = mCount.getInt(0);
+        return sum;
+    }
+
+    public Integer totalTache() {
+        open();
+        Cursor mCount = getDb().rawQuery("SELECT SUM(nbr_heures) FROM " + DbStructure.Tache.T_NAME +
+                " where " + DbStructure.Tache.C_ID_SOCIETE + " IS NOT NULL", null);
+        mCount.moveToFirst();
+        Integer sum = mCount.getInt(0);
+        return sum;
+    }
+
 
     public void deleteByProjet(Projet projet) {
         open();

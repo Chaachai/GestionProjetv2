@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".action.HamzaTestChart2Activity">
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/charthamza2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.github.mikephil.charting.charts.PieChart>
 </android.support.constraint.ConstraintLayout>

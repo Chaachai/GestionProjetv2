@@ -66,13 +66,13 @@ public class ProjetSpinnerAdapter extends ArrayAdapter<Projet> {
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         TextView projet = (TextView) super.getDropDownView(position, convertView, parent);
-        if (position == 0) {
-            projet.setTextColor(Color.GRAY);
-            projet.setText("Select a projet");
-        } else {
-            projet.setTextColor(Color.BLACK);
-            projet.setText(projets.get(position).getNom());
-        }
+//        if (position == 0) {
+//            projet.setTextColor(Color.GRAY);
+//            projet.setText("Select a projet");
+//        } else {
+        projet.setTextColor(Color.BLACK);
+        projet.setText(projets.get(position).getNom());
+//        }
         return projet;
     }
 }

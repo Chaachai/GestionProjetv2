@@ -36,10 +36,15 @@ public class DepenseService extends DepenseDao {
 
     public BigDecimal totalDepense() {
         open();
-        Cursor mCount = getDb().rawQuery("SELECT SUM(montant) FROM depense where " + DbStructure.Depense.C_ID_SOCIETE + " IS NOT NULL", null);
+        Cursor mCount = getDb().rawQuery("SELECT SUM(montant) FROM " + DbStructure.Depense.T_NAME + " where " + DbStructure.Depense.C_ID_SOCIETE + " IS NOT NULL", null);
         mCount.moveToFirst();
         String s = mCount.getString(0);
-        BigDecimal montant = new BigDecimal(s);
+        BigDecimal montant;
+        if (s.isEmpty()) {
+            montant = BigDecimal.ZERO;
+        } else {
+            montant = new BigDecimal(s);
+        }
         close();
         return montant;
     }

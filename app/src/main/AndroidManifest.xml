@@ -88,12 +88,21 @@
         <activity
             android:name=".action.menu.AboutActivity"
             android:parentActivityName=".action.menu.SideMenuActivity" />
-        <activity android:name=".action.statistics.StatisticsMenuActivity" />
+        <activity android:name=".action.statistics.StatisticsMenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.menu.SideMenuActivity" />
+        </activity>
         <activity android:name=".action.HamzaTestChartActivity" />
         <activity android:name=".action.HamzaTestChart2Activity" />
-        <activity android:name=".action.statistics.SocieteStatisticsActivity"
+        <activity
+            android:name=".action.statistics.SocieteStatisticsActivity"
             android:label="Companies Charts"
-            android:parentActivityName=".action.statistics.StatisticsMenuActivity"></activity>
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.statistics.StatisticsMenuActivity" />
+        </activity>
     </application>
 
 </manifest>
