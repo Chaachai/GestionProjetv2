@@ -35,10 +35,29 @@ public class TacheService extends TacheDao {
         return sum;
     }
 
-    public Integer totalTache() {
+    public Integer tacheByProjet(Societe societe) {
+        open();
+        Cursor mCount = getDb().rawQuery("SELECT SUM(nbr_heures) FROM tache WHERE "
+                + DbStructure.Tache.C_ID_PROJET + " = " + societe.getId(), null);
+
+        mCount.moveToFirst();
+        Integer sum = mCount.getInt(0);
+        return sum;
+    }
+
+    public Integer totalTacheSociete() {
         open();
         Cursor mCount = getDb().rawQuery("SELECT SUM(nbr_heures) FROM " + DbStructure.Tache.T_NAME +
                 " where " + DbStructure.Tache.C_ID_SOCIETE + " IS NOT NULL", null);
+        mCount.moveToFirst();
+        Integer sum = mCount.getInt(0);
+        return sum;
+    }
+
+    public Integer totalTacheProjet() {
+        open();
+        Cursor mCount = getDb().rawQuery("SELECT SUM(nbr_heures) FROM " + DbStructure.Tache.T_NAME +
+                " where " + DbStructure.Tache.C_ID_PROJET + " IS NOT NULL", null);
         mCount.moveToFirst();
         Integer sum = mCount.getInt(0);
         return sum;
