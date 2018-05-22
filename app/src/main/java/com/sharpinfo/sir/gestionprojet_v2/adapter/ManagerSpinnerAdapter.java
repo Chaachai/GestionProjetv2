@@ -38,18 +38,12 @@ public class ManagerSpinnerAdapter extends ArrayAdapter<Manager> {
         return position;
     }
 
-    // And the "magic" goes here
-    // This is for the "passive" state of the spinner
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // I created a dynamic TextView here, but you can reference your own  custom layout for each spinner item
         TextView managerView = (TextView) super.getView(position, convertView, parent);
         managerView.setTextColor(Color.BLACK);
-        // Then you can get the current item using the values array (Users array) and the current position
-        // You can NOW reference each method you has created in your bean object (User class)
         managerView.setText(managers.get(position).getNom() + " " + managers.get(position).getPrenom());
 
-        // And finally return your dynamic (or custom) view for each spinner item
         return managerView;
     }
 
@@ -59,17 +53,11 @@ public class ManagerSpinnerAdapter extends ArrayAdapter<Manager> {
     }
 
 
-    // And here is when the "chooser" is popped up
-    // Normally is the same view, but you can customize it if you want
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         TextView manager = (TextView) super.getDropDownView(position, convertView, parent);
-//        if (position == 0) {
-//            manager.setTextColor(Color.GRAY);
-//            manager.setText("Select a manager");
-//        }
-//        else
-//            {
+        manager.setTextSize(20f);
+        manager.setPadding(15,15,15,15);
         manager.setTextColor(Color.BLACK);
         if (managers.get(position).getNom().equals("")) {
             manager.setText(managers.get(position).getPrenom());
@@ -77,8 +65,6 @@ public class ManagerSpinnerAdapter extends ArrayAdapter<Manager> {
             manager.setText(managers.get(position).getNom());
         } else
             manager.setText(managers.get(position).getNom() + " " + managers.get(position).getPrenom());
-
-//        }
         return manager;
     }
 }
