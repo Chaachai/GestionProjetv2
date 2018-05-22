@@ -30,8 +30,10 @@
     <string name="title_activity_projet_list">ProjetListActivity</string>
     <string name="search_hint">hint</string>
     <string name="error_depense">You should choose either a company or a project and not both of them !</string>
+    <string name="raison_sociale_required">The field \'Raison Sociele\' is required !</string>
+    <string name="nom_du_projet_required">The field \'Nom du projet\' is required !</string>
     <string-array name="charts_array">
-        <item>Time</item>
         <item>Expense</item>
+        <item>Time</item>
     </string-array>
 </resources>

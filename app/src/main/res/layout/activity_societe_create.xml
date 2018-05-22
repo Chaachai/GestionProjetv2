@@ -34,7 +34,7 @@
         android:layout_marginEnd="42dp"
         android:layout_marginStart="42dp"
         android:ems="10"
-        android:hint="Nom de la societé"
+        android:hint="Raison sociale"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/textViewDate"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,5 +96,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/manager_spinner" />
+
+    <TextView
+        android:id="@+id/error_create_societe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="55dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="55dp"
+        android:textColor="@color/colorError"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_btn" />
 
 </android.support.constraint.ConstraintLayout>

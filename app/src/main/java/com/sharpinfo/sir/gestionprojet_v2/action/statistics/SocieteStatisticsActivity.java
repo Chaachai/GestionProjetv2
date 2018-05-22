@@ -2,6 +2,7 @@ package com.sharpinfo.sir.gestionprojet_v2.action.statistics;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.sharpinfo.sir.gestionprojet_v2.R;
 
 import java.math.BigDecimal;
@@ -34,8 +36,8 @@ import service.DepenseService;
 import service.SocieteService;
 import service.TacheService;
 
-public class SocieteStatisticsActivity extends AppCompatActivity {
 
+public class SocieteStatisticsActivity extends AppCompatActivity {
     Context context = this;
     Spinner spinner;
     PieChart pieChartExpense;
@@ -111,6 +113,7 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
 
         PieData data = new PieData(dataSet);
         pieChartExpense.setUsePercentValues(true);
+        pieChartExpense.setEntryLabelColor(getResources().getColor(R.color.black));
         pieChartExpense.setData(data);
         pieChartExpense.invalidate(); // refresh
 
@@ -193,14 +196,10 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
     }
 
     private String getChoiceFromSpinner() {
-//        final String[] choice = new String[1];
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 choice = parent.getItemAtPosition(position).toString();
-
-                Log.d("test", "no error");
-                Log.d("tag", "***************************" + choice);
             }
 
             @Override
@@ -214,6 +213,8 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_societe_statistics);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
         initBarChart();
         initPieChart();
 
@@ -228,13 +229,14 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("tag", "===== " + choice);
                 if (choice.equals("Time")) {
-                    pieChartExpense.setVisibility(View.VISIBLE);
-                    pieChartTime.setVisibility(View.GONE);
-                } else if (choice.equals("Expense")) {
                     pieChartExpense.setVisibility(View.GONE);
                     pieChartTime.setVisibility(View.VISIBLE);
+                } else if (choice.equals("Expense")) {
+                    pieChartExpense.setVisibility(View.VISIBLE);
+                    pieChartTime.setVisibility(View.GONE);
                 }
             }
         });
+
     }
 }

@@ -78,6 +78,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sharpinfo.sir.gestionprojet_v2.action.menu.SideMenuActivity" />
         </activity>
+        android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".action.menu.EditProfileActivity"
             android:parentActivityName=".action.menu.SideMenuActivity" />
@@ -94,7 +95,10 @@
         </activity>
         <activity android:name=".action.HamzaTestChartActivity" />
         <activity android:name=".action.HamzaTestChart2Activity" />
-        <activity android:name=".action.statistics.SocieteStatisticsActivity">
+        <activity
+            android:name=".action.statistics.SocieteStatisticsActivity"
+            android:label="Companies Charts"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sharpinfo.sir.gestionprojet_v2.action.statistics.StatisticsMenuActivity" />

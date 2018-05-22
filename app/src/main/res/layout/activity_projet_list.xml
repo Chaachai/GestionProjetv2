@@ -22,7 +22,7 @@
 
     <include layout="@layout/content_projet_list" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.sharpinfo.sir.MovableFloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
