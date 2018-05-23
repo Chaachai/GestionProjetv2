@@ -53,7 +53,7 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
 
         BigDecimal total = depenseService.totalDepense();
         Log.d("chart", total + "");
-        if (total.equals(0)) {
+        if (!total.equals(BigDecimal.ZERO)) {
             for (Societe societe : societes) {
                 for (Depense depense : societe.getDepenses()) {
                     Log.d("societeStats", depense.getMontant().toString());

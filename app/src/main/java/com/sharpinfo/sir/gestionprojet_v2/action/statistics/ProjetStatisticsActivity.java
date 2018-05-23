@@ -54,7 +54,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 
         BigDecimal total = depenseService.totalDepenseProjet();
         Log.d("chart", total + "");
-        if (total.equals(0)) {
+        if (!total.equals(0)) {
             for (Projet projet : projets) {
                 BigDecimal depenseProjet = depenseService.depenseByProjet(projet);
                 BigDecimal pourcentage = depenseProjet.divide(total, 2, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
@@ -150,7 +150,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 
         Description description = pieChartTime.getDescription();
         description.setEnabled(false);
-        pieChartTime.setCenterText("Time Par Societe");
+        pieChartTime.setCenterText("Time Par Projet");
 
 
         //animation
