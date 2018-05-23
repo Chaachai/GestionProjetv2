@@ -212,9 +212,16 @@ public class ProjetCreateActivity extends AppCompatActivity {
 
             alert.show();
         } else {
-            projetService.create(projet);
-            Dispacher.forward(ProjetCreateActivity.this, ProjetListActivity.class);
-            finish();
+            if(projet.getDescription().isEmpty()){
+                projet.setDescription("No description is available !");
+                projetService.create(projet);
+                Dispacher.forward(ProjetCreateActivity.this, ProjetListActivity.class);
+                finish();
+            }else {
+                projetService.create(projet);
+                Dispacher.forward(ProjetCreateActivity.this, ProjetListActivity.class);
+                finish();
+            }
         }
     }
 
