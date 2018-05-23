@@ -45,6 +45,7 @@ public class DepenseService extends DepenseDao {
         } else {
             montant = new BigDecimal(s);
         }
+        mCount.close();
         close();
         return montant;
     }
@@ -62,6 +63,7 @@ public class DepenseService extends DepenseDao {
             montant = new BigDecimal(s);
         }
         close();
+        mCount.close();
         return montant;
     }
 
@@ -79,6 +81,7 @@ public class DepenseService extends DepenseDao {
         }
         Log.d("tag montant", "" + montant);
         close();
+        mCount.close();
         return montant;
     }
 
@@ -96,6 +99,7 @@ public class DepenseService extends DepenseDao {
         }
         Log.d("tag montant", "" + montant);
         close();
+        mCount.close();
         return montant;
     }
 

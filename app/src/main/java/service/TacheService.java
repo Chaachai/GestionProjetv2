@@ -32,6 +32,7 @@ public class TacheService extends TacheDao {
 
         mCount.moveToFirst();
         Integer sum = mCount.getInt(0);
+        mCount.close();
         return sum;
     }
 
@@ -42,6 +43,7 @@ public class TacheService extends TacheDao {
 
         mCount.moveToFirst();
         Integer sum = mCount.getInt(0);
+        mCount.close();
         return sum;
     }
 
@@ -51,6 +53,7 @@ public class TacheService extends TacheDao {
                 " where " + DbStructure.Tache.C_ID_SOCIETE + " IS NOT NULL", null);
         mCount.moveToFirst();
         Integer sum = mCount.getInt(0);
+        mCount.close();
         return sum;
     }
 
@@ -60,6 +63,7 @@ public class TacheService extends TacheDao {
                 " where " + DbStructure.Tache.C_ID_PROJET + " IS NOT NULL", null);
         mCount.moveToFirst();
         Integer sum = mCount.getInt(0);
+        mCount.close();
         return sum;
     }
 

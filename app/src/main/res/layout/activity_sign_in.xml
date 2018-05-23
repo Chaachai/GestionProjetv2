@@ -54,7 +54,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/viewPager"
@@ -74,7 +74,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textColor="@color/colorError"
-        android:textSize="30px"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/viewPager"
         app:layout_constraintEnd_toEndOf="@+id/viewPager"
         app:layout_constraintStart_toStartOf="@+id/viewPager"
@@ -145,7 +145,7 @@
         app:layout_constraintStart_toStartOf="@+id/username"
         app:layout_constraintTop_toTopOf="@+id/username"
         app:layout_constraintVertical_bias="0.78"
-        app:srcCompat="@drawable/ic_person_black_24dp" />
+        android:srcCompat="@drawable/ic_person_black_24dp" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -161,7 +161,7 @@
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toTopOf="@+id/password"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_vpn_key_black_24dp" />
+        android:srcCompat="@drawable/ic_vpn_key_black_24dp" />
 
     <ImageView
         android:id="@+id/imageView8"

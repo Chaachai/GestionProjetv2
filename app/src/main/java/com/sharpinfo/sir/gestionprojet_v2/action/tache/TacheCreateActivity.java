@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
@@ -17,26 +16,21 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
-import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.ProjetSpinnerAdapter;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.SocieteSpinnerAdapter;
 
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import bean.Depense;
 import bean.Projet;
 import bean.Societe;
 import bean.Tache;
 import helper.Dispacher;
 import helper.Session;
-import service.DepenseService;
 import service.ProjetService;
 import service.SocieteService;
 import service.TacheService;
@@ -159,7 +153,7 @@ public class TacheCreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tache_create);
 
         Session.setAttribute(context, "tacheContext");
-        
+
         initSocieteSpinner();
         getSocieteFromSpinner();
         initProjetSpinner();

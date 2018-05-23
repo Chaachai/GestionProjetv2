@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -60,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Manage the Companies"
+                    android:text="@string/manage_the_companies"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -92,7 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Projects"
+                    android:text="@string/projects"
                     android:textStyle="bold" />
 
                 <View
@@ -106,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Manage the Projects"
+                    android:text="@string/manage_the_projects"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -151,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Expenses"
+                    android:text="@string/expenses"
                     android:textStyle="bold" />
 
                 <View
@@ -165,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Manage the Expenses"
+                    android:text="@string/manage_the_expenses"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -197,7 +198,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Tasks"
+                    android:text="@string/tasks"
                     android:textStyle="bold" />
 
                 <View
@@ -211,7 +212,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Manage the Tasks"
+                    android:text="@string/manage_the_tasks"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -256,7 +257,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Statistics"
+                    android:text="@string/statistics"
                     android:textStyle="bold" />
 
                 <View
@@ -270,7 +271,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="View the Statistics"
+                    android:text="@string/view_the_statistics"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
