@@ -73,7 +73,7 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final Context context = parent.getContext();
-        Session.setAttribute(context, "depenseContext");
+
         final LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout

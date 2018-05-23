@@ -34,6 +34,7 @@ import bean.Depense;
 import bean.Projet;
 import bean.Societe;
 import helper.Dispacher;
+import helper.Session;
 import service.DepenseService;
 import service.ProjetService;
 import service.SocieteService;
@@ -155,6 +156,9 @@ public class DepenseCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_depense_create);
+
+        Session.setAttribute(context, "depenseContext");
+
         initSocieteSpinner();
         getSocieteFromSpinner();
         initProjetSpinner();
