@@ -19,6 +19,7 @@ import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.statistics.StatisticsMenuActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.tache.TacheListActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.user.SignInActivity;
 
 import helper.Dispacher;
 import service.ProjetService;
@@ -104,7 +105,8 @@ public class SideMenuActivity extends AppCompatActivity
 //            fragmentManager.beginTransaction().replace(R.id.content_frame, new ThirdFragment()).commit();
             Dispacher.forward(SideMenuActivity.this, AboutActivity.class);
         } else if (id == R.id.nav_share) {
-            Toast.makeText(getBaseContext(), "You will be able to logout soon... ", Toast.LENGTH_LONG).show();
+            Dispacher.forward(SideMenuActivity.this, SignInActivity.class);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

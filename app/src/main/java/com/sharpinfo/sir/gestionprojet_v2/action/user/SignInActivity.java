@@ -69,6 +69,7 @@ public class SignInActivity extends AppCompatActivity {
             Session.setAttribute(u,"connectedUser");
             Toast.makeText(getBaseContext(), "WELCOME BACK MR. "+u.getLastName()+" "+u.getFirstName(), Toast.LENGTH_LONG).show();
             Dispacher.forward(SignInActivity.this, SideMenuActivity.class);
+            finish();
         }
 
     }
