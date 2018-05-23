@@ -4,8 +4,8 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,7 +13,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.SocieteSpinnerAdapter;
@@ -59,7 +58,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
 
     private void initPopupDate() {
         // set calendar date and update editDate
-        editDate = (EditText) findViewById(R.id.projet_date);
+        editDate = findViewById(R.id.projet_date);
         date = new DatePickerDialog.OnDateSetListener() {
 
             public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -87,7 +86,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
     }
 
     private void initSocieteSpinner() {
-        societeSpinner = (Spinner) findViewById(R.id.societe_spinner);
+        societeSpinner = findViewById(R.id.societe_spinner);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
         societeSpinnerAdapter.add(new Societe(null, " ------SELECT A COMPANY------ "));
@@ -148,7 +147,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
         getSocieteFromSpinner();
         long currentdate = System.currentTimeMillis();
         String dateString = simpleDateFormat.format(currentdate);
-        editDate = (EditText) findViewById(R.id.projet_date);
+        editDate = findViewById(R.id.projet_date);
 //        editDate.setText(dateString);
         initPopupDate();
         initDate();
@@ -228,7 +227,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
     private void initDate() {
         long currentdate = System.currentTimeMillis();
         String dateString = simpleDateFormat.format(currentdate);
-        editDate = (EditText) findViewById(R.id.projet_date);
+        editDate = findViewById(R.id.projet_date);
 //        editDate.setText(dateString);
         initPopupDate();
     }

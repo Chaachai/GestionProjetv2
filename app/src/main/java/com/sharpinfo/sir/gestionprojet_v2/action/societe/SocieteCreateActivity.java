@@ -3,8 +3,8 @@ package com.sharpinfo.sir.gestionprojet_v2.action.societe;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +20,6 @@ import com.sharpinfo.sir.gestionprojet_v2.adapter.ManagerSpinnerAdapter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -45,8 +44,8 @@ public class SocieteCreateActivity extends AppCompatActivity {
 
     private ManagerSpinnerAdapter managerSpinnerAdapter;
 
-    SocieteService societeService = new SocieteService(this);
-    ManagerService managerService = new ManagerService(this);
+    private SocieteService societeService = new SocieteService(this);
+    private ManagerService managerService = new ManagerService(this);
 
     private Manager manager = null;
     //Date
@@ -59,7 +58,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
 
 
     private void initManagerSpinner() {
-        managerSpinner = (Spinner) findViewById(R.id.manager_spinner);
+        managerSpinner = findViewById(R.id.manager_spinner);
 //        List<String> managerNames = new ArrayList();
         List<Manager> managers = managerService.findAll();
 //
@@ -89,9 +88,9 @@ public class SocieteCreateActivity extends AppCompatActivity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View mView = getLayoutInflater().inflate(R.layout.manager_create_popup, null);
 
-        final EditText managerFirstNameText = (EditText) mView.findViewById(R.id.manager_firstname_textView);
-        final EditText managerLastNameText = (EditText) mView.findViewById(R.id.manager_lastname_textView);
-        Button managerCreatebtn = (Button) mView.findViewById(R.id.managerCreatebtn);
+        final EditText managerFirstNameText = mView.findViewById(R.id.manager_firstname_textView);
+        final EditText managerLastNameText = mView.findViewById(R.id.manager_lastname_textView);
+        Button managerCreatebtn = mView.findViewById(R.id.managerCreatebtn);
 
         builder.setView(mView);
         final AlertDialog alertDialog = builder.create();
@@ -131,7 +130,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
 
     private void initPopupDate() {
         // set calendar date and update editDate
-        editDate = (EditText) findViewById(R.id.textViewDate);
+        editDate = findViewById(R.id.textViewDate);
         date = new DatePickerDialog.OnDateSetListener() {
 
             public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -161,7 +160,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
     private void initDate() {
         long currentdate = System.currentTimeMillis();
         String dateString = simpleDateFormat.format(currentdate);
-        editDate = (EditText) findViewById(R.id.textViewDate);
+        editDate = findViewById(R.id.textViewDate);
 //        editDate.setText(dateString);
         initPopupDate();
     }
@@ -174,7 +173,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
         initManagerSpinner();
 
         getManagerFromSpinner();
-        managerCreateBtn = (Button) findViewById(R.id.create_manager_btn);
+        managerCreateBtn = findViewById(R.id.create_manager_btn);
         managerCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

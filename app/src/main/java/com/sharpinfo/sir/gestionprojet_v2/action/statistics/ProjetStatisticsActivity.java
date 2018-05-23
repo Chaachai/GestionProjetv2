@@ -28,10 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Projet;
-import bean.Societe;
 import service.DepenseService;
 import service.ProjetService;
-import service.SocieteService;
 import service.TacheService;
 
 
@@ -50,7 +48,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 
         List<Projet> projets = projetService.findAll();
 
-        List<PieEntry> entries = new ArrayList<PieEntry>();
+        List<PieEntry> entries = new ArrayList<>();
 
         BigDecimal total = depenseService.totalDepenseProjet();
         Log.d("chart", total + "");

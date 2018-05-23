@@ -1,7 +1,7 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.user;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,8 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
-import com.sharpinfo.sir.gestionprojet_v2.action.MainActivity;
-import com.sharpinfo.sir.gestionprojet_v2.action.menu.MenuActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.menu.SideMenuActivity;
 
 import bean.User;
@@ -31,7 +29,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         injectParam();
-        signUp = (Button) findViewById(R.id.signup);
+        signUp = findViewById(R.id.signup);
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,9 +39,9 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void injectParam() {
-        username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        textMsg = (TextView) findViewById(R.id.errorMsg);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        textMsg = findViewById(R.id.errorMsg);
     }
 
     private User getParam() {

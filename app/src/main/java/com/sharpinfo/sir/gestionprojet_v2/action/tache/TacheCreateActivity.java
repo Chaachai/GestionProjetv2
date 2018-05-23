@@ -72,7 +72,7 @@ public class TacheCreateActivity extends AppCompatActivity {
 
 
     private void initSocieteSpinner() {
-        societeSpinner = (Spinner) findViewById(R.id.societe_spinner_tache);
+        societeSpinner = findViewById(R.id.societe_spinner_tache);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
         societeSpinnerAdapter.add(new Societe(null, " ------SELECT A COMPANY------ "));
@@ -82,7 +82,7 @@ public class TacheCreateActivity extends AppCompatActivity {
     }
 
     private void initProjetSpinner() {
-        projetSpinner = (Spinner) findViewById(R.id.projet_spinner_tache);
+        projetSpinner = findViewById(R.id.projet_spinner_tache);
         List<Projet> projets = projetService.findAll();
         projetSpinnerAdapter = new ProjetSpinnerAdapter(this, android.R.layout.simple_spinner_item, projets);
         projetSpinnerAdapter.add(new Projet(null, " ------SELECT A PROJECT------ "));
@@ -111,7 +111,7 @@ public class TacheCreateActivity extends AppCompatActivity {
 
     private void initPopupDate() {
         // set calendar date and update editDate
-        editDate = (EditText) findViewById(R.id.date_tache);
+        editDate = findViewById(R.id.date_tache);
         date = new DatePickerDialog.OnDateSetListener() {
 
             public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -141,7 +141,7 @@ public class TacheCreateActivity extends AppCompatActivity {
     private void initDate() {
         long currentdate = System.currentTimeMillis();
         String dateString = simpleDateFormat.format(currentdate);
-        editDate = (EditText) findViewById(R.id.date_tache);
+        editDate = findViewById(R.id.date_tache);
         editDate.setText(dateString);
         initPopupDate();
     }

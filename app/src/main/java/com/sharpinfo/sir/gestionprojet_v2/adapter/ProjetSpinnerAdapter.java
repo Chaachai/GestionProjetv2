@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import bean.Projet;
-import bean.Societe;
 
 public class ProjetSpinnerAdapter extends ArrayAdapter<Projet> {
 

@@ -1,7 +1,6 @@
 package service;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.util.Date;
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.List;
 import bean.Projet;
 import bean.Societe;
 import dao.SocieteDao;
-import dao.helper.DbStructure;
 import helper.Session;
 
 public class SocieteService extends SocieteDao {

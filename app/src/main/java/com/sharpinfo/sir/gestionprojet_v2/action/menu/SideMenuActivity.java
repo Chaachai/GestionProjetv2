@@ -1,7 +1,6 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.menu;
 
 import android.os.Bundle;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,13 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
-import com.sharpinfo.sir.gestionprojet_v2.action.HamzaTestChart2Activity;
+import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.projet.ProjetListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
-import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.statistics.StatisticsMenuActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.tache.TacheListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.user.SignInActivity;
@@ -33,7 +31,7 @@ public class SideMenuActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_side_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -44,20 +42,20 @@ public class SideMenuActivity extends AppCompatActivity
 //            }
 //
 //        });
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -94,22 +92,27 @@ public class SideMenuActivity extends AppCompatActivity
         int id = item.getItemId();
 //        FragmentManager fragmentManager = getFragmentManager();
 
-        if (id == R.id.nav_first_layout) {
+        switch (id) {
+            case R.id.nav_first_layout:
 //            fragmentManager.beginTransaction().replace(R.id.content_frame, new FirstFragment()).commit();
-            Dispacher.forward(SideMenuActivity.this, EditProfileActivity.class);
-            // Handle the camera action
-        } else if (id == R.id.nav_second_layout) {
+                Dispacher.forward(SideMenuActivity.this, EditProfileActivity.class);
+                // Handle the camera action
+                break;
+            case R.id.nav_second_layout:
 //            fragmentManager.beginTransaction().replace(R.id.content_frame, new SecondFragment()).commit();
-            Dispacher.forward(SideMenuActivity.this, ChangePasswordActivity.class);
-        } else if (id == R.id.nav_third_layout) {
+                Dispacher.forward(SideMenuActivity.this, ChangePasswordActivity.class);
+                break;
+            case R.id.nav_third_layout:
 //            fragmentManager.beginTransaction().replace(R.id.content_frame, new ThirdFragment()).commit();
-            Dispacher.forward(SideMenuActivity.this, AboutActivity.class);
-        } else if (id == R.id.nav_share) {
-            Dispacher.forward(SideMenuActivity.this, SignInActivity.class);
-            finish();
+                Dispacher.forward(SideMenuActivity.this, AboutActivity.class);
+                break;
+            case R.id.nav_share:
+                Dispacher.forward(SideMenuActivity.this, SignInActivity.class);
+                finish();
+                break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

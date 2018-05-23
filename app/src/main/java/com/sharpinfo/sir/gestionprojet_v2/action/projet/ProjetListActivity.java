@@ -1,11 +1,8 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.projet;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -41,7 +38,7 @@ public class ProjetListActivity extends AppCompatActivity {
     ProjetService projetService = new ProjetService(mContext);
 
     private void injecterGUI() {
-        projetRecyclerView = (RecyclerView) findViewById(R.id.projetRecyclerView);
+        projetRecyclerView = findViewById(R.id.projetRecyclerView);
     }
 
     private void initAdapter() {
@@ -87,7 +84,7 @@ public class ProjetListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_projet_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ActionBar ab = getSupportActionBar();
@@ -108,7 +105,7 @@ public class ProjetListActivity extends AppCompatActivity {
 //        }
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

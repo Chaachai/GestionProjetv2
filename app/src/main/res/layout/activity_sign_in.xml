@@ -145,7 +145,7 @@
         app:layout_constraintStart_toStartOf="@+id/username"
         app:layout_constraintTop_toTopOf="@+id/username"
         app:layout_constraintVertical_bias="0.78"
-        android:srcCompat="@drawable/ic_person_black_24dp" />
+        app:srcCompat="@drawable/ic_person_black_24dp" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -161,7 +161,7 @@
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toTopOf="@+id/password"
         app:layout_constraintVertical_bias="1.0"
-        android:srcCompat="@drawable/ic_vpn_key_black_24dp" />
+        app:srcCompat="@drawable/ic_vpn_key_black_24dp" />
 
     <ImageView
         android:id="@+id/imageView8"

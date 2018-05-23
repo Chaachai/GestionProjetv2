@@ -32,7 +32,6 @@ import java.util.Locale;
 import bean.Depense;
 import bean.Projet;
 import bean.Societe;
-import helper.Session;
 import service.DepenseService;
 import service.ProjetService;
 import service.SocieteService;
@@ -59,11 +58,11 @@ public class DepenseAdapter extends RecyclerView.Adapter<DepenseAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
 
-            depenseitem = (ConstraintLayout) itemView.findViewById(R.id.depense_item);
-            seeMore = (TextView) itemView.findViewById(R.id.depense_seeMore);
-            montant = (TextView) itemView.findViewById(R.id.depense_montant);
-            heur = (TextView) itemView.findViewById(R.id.depense_heur);
-            date = (TextView) itemView.findViewById(R.id.depense_date);
+            depenseitem = itemView.findViewById(R.id.depense_item);
+            seeMore = itemView.findViewById(R.id.depense_seeMore);
+            montant = itemView.findViewById(R.id.depense_montant);
+            heur = itemView.findViewById(R.id.depense_heur);
+            date = itemView.findViewById(R.id.depense_date);
 
         }
     }

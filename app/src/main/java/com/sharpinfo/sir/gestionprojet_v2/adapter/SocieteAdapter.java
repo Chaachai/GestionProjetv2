@@ -17,7 +17,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
@@ -35,11 +34,9 @@ import bean.Manager;
 import bean.Societe;
 import helper.Dispacher;
 import helper.Session;
-import service.DepenseService;
 import service.ManagerService;
 import service.ProjetService;
 import service.SocieteService;
-import service.TacheService;
 
 public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHolder> {
 
@@ -60,9 +57,9 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
 
-            societeitem = (LinearLayout) itemView.findViewById(R.id.societe_item);
-            seeMore = (TextView) itemView.findViewById(R.id.societe_seeMore);
-            nameTextView = (TextView) itemView.findViewById(R.id.societe_raisonSociale);
+            societeitem = itemView.findViewById(R.id.societe_item);
+            seeMore = itemView.findViewById(R.id.societe_seeMore);
+            nameTextView = itemView.findViewById(R.id.societe_raisonSociale);
 
         }
     }

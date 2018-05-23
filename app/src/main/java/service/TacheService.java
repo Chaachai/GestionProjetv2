@@ -1,19 +1,11 @@
 package service;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 
-import java.math.BigDecimal;
-import java.util.Currency;
-import java.util.Date;
-
-import bean.Depense;
-import bean.Societe;
 import bean.Tache;
 import bean.Projet;
 import bean.Societe;
-import dao.DepenseDao;
 import dao.TacheDao;
 import helper.Session;
 import dao.helper.DbStructure;

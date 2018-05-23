@@ -1,7 +1,6 @@
 package service;
 
 import android.content.Context;
-import android.util.Log;
 
 import bean.User;
 import dao.UserDao;

@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import bean.Manager;
-import dao.helper.DbStructure;
 
 public class ManagerSpinnerAdapter extends ArrayAdapter<Manager> {
 
