@@ -35,6 +35,7 @@ import bean.Projet;
 import bean.Societe;
 import bean.Tache;
 import helper.Dispacher;
+import helper.Session;
 import service.DepenseService;
 import service.ProjetService;
 import service.SocieteService;
@@ -156,6 +157,9 @@ public class TacheCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tache_create);
+
+        Session.setAttribute(context, "tacheContext");
+        
         initSocieteSpinner();
         getSocieteFromSpinner();
         initProjetSpinner();

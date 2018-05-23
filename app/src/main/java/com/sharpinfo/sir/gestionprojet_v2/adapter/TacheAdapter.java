@@ -73,7 +73,7 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final Context context = parent.getContext();
-        Session.setAttribute(context, "tacheContext");
+
         final LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
