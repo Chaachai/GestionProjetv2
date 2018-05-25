@@ -49,7 +49,7 @@ public class SocieteStatisticsActivity extends AppCompatActivity {
 
         List<Societe> societes = societeService.findAll();
 
-        List<PieEntry> entries = new ArrayList<PieEntry>();
+        List<PieEntry> entries = new ArrayList<>();
 
         BigDecimal total = depenseService.totalDepense();
         Log.d("chart", total + "");

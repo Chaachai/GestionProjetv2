@@ -33,7 +33,7 @@ public class SocieteListActivity extends AppCompatActivity {
     List<Societe> societes;
 
     private void injecterGUI() {
-        societeRecyclerView = (RecyclerView) findViewById(R.id.societeRecyclerView);
+        societeRecyclerView = findViewById(R.id.societeRecyclerView);
     }
 
     private void initAdapter() {
@@ -53,7 +53,7 @@ public class SocieteListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_societe_list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
@@ -61,7 +61,7 @@ public class SocieteListActivity extends AppCompatActivity {
         injecterGUI();
         initAdapter();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

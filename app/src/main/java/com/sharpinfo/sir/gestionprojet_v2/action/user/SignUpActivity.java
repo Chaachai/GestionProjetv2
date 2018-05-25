@@ -3,10 +3,8 @@ package com.sharpinfo.sir.gestionprojet_v2.action.user;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
@@ -32,6 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
+        assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);
 
         injectParam();
@@ -45,8 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private User getParam() {
-        User user = new User(String.valueOf(username.getText()), String.valueOf(password.getText()), String.valueOf(lastName.getText()), String.valueOf(firstName.getText()));
-        return user;
+        return new User(String.valueOf(username.getText()), String.valueOf(password.getText()), String.valueOf(lastName.getText()), String.valueOf(firstName.getText()));
     }
 
     public void signUp(View view) {

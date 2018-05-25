@@ -28,11 +28,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import bean.Depense;
 import bean.Projet;
 import bean.Societe;
 import bean.Tache;
-import helper.Session;
 import service.ProjetService;
 import service.SocieteService;
 import service.TacheService;
@@ -59,11 +57,11 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            tacheitem = (ConstraintLayout) itemView.findViewById(R.id.tache_item);
-            seeMore = (TextView) itemView.findViewById(R.id.tache_seeMore);
-            nbrHeur = (TextView) itemView.findViewById(R.id.tache_nbrheur);
-            date = (TextView) itemView.findViewById(R.id.tache_date);
-            heur = (TextView) itemView.findViewById(R.id.tache_heur);
+            tacheitem = itemView.findViewById(R.id.tache_item);
+            seeMore = itemView.findViewById(R.id.tache_seeMore);
+            nbrHeur = itemView.findViewById(R.id.tache_nbrheur);
+            date = itemView.findViewById(R.id.tache_date);
+            heur = itemView.findViewById(R.id.tache_heur);
 
         }
     }

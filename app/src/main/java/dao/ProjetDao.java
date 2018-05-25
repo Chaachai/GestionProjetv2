@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

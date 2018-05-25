@@ -1,17 +1,14 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.menu;
 
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.action.MainActivity;
-import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteCreateActivity;
-import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
-import com.sharpinfo.sir.gestionprojet_v2.action.projet.ProjetListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteCreateActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
 
@@ -29,12 +26,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        projetCard = (CardView) findViewById(R.id.projetCardView);
-        societeCard = (CardView) findViewById(R.id.societeCardView);
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+        projetCard = findViewById(R.id.projetCardView);
+        societeCard = findViewById(R.id.societeCardView);
         projetCard.setOnClickListener(this);
         societeCard.setOnClickListener(this);
     }
@@ -49,14 +48,15 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.projetCardView:
                 Dispacher.forward(MenuActivity.this, MainActivity.class);
                 break;
-                default:break;
+            default:
+                break;
         }
 
 
     }
 
     public void goToProjets(View view) {
-        projetCard = (CardView) findViewById(R.id.projetCardView);
+        projetCard = findViewById(R.id.projetCardView);
         Dispacher.forward(MenuActivity.this, SocieteCreateActivity.class);
     }
 

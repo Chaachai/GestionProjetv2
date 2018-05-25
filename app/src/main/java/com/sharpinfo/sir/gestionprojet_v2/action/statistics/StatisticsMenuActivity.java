@@ -18,7 +18,7 @@ public class StatisticsMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics_menu);
 
-        projetStatistics = (Button) findViewById(R.id.projet_statistics);
+        projetStatistics = findViewById(R.id.projet_statistics);
         projetStatistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -26,7 +26,7 @@ public class StatisticsMenuActivity extends AppCompatActivity {
             }
         });
 
-        societeStatistics = (Button) findViewById(R.id.societe_statistics);
+        societeStatistics = findViewById(R.id.societe_statistics);
         societeStatistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

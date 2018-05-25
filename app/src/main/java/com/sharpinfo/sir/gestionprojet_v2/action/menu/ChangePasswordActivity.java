@@ -3,7 +3,6 @@ package com.sharpinfo.sir.gestionprojet_v2.action.menu;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 

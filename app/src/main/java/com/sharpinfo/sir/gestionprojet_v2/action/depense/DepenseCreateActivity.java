@@ -5,10 +5,8 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
@@ -24,7 +22,6 @@ import com.sharpinfo.sir.gestionprojet_v2.adapter.SocieteSpinnerAdapter;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -77,7 +74,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
 
 
     private void initSocieteSpinner() {
-        societeSpinner = (Spinner) findViewById(R.id.societe_spinner);
+        societeSpinner = findViewById(R.id.societe_spinner);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
         societeSpinnerAdapter.add(new Societe(null, " --SELECT A SOCIETE-- "));
@@ -87,7 +84,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
     }
 
     private void initProjetSpinner() {
-        projetSpinner = (Spinner) findViewById(R.id.projet_spinner);
+        projetSpinner = findViewById(R.id.projet_spinner);
         List<Projet> projets = projetService.findAll();
         projetSpinnerAdapter = new ProjetSpinnerAdapter(this, android.R.layout.simple_spinner_item, projets);
         projetSpinnerAdapter.add(new Projet(null, " --SELECT A PROJECT-- "));
@@ -116,7 +113,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
 
     private void initPopupDate() {
         // set calendar date and update editDate
-        editDate = (EditText) findViewById(R.id.date_depense);
+        editDate = findViewById(R.id.date_depense);
         date = new DatePickerDialog.OnDateSetListener() {
 
             public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -146,7 +143,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
     private void initDate() {
         long currentdate = System.currentTimeMillis();
         String dateString = simpleDateFormat.format(currentdate);
-        editDate = (EditText) findViewById(R.id.date_depense);
+        editDate = findViewById(R.id.date_depense);
         editDate.setText(dateString);
         initPopupDate();
     }
@@ -166,7 +163,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
 //        injectParam();
         long currentdate = System.currentTimeMillis();
         String dateString = simpleDateFormat.format(currentdate);
-        editDate = (EditText) findViewById(R.id.date_depense);
+        editDate = findViewById(R.id.date_depense);
 //        editDate.setText(dateString);
         initPopupDate();
         initDate();

@@ -2,7 +2,6 @@ package com.sharpinfo.sir.gestionprojet_v2.action.tache;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,21 +16,16 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
-import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseCreateActivity;
-import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
-import com.sharpinfo.sir.gestionprojet_v2.adapter.DepenseAdapter;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.TacheAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.Depense;
 import bean.Projet;
 import bean.Societe;
 import bean.Tache;
 import helper.Dispacher;
 import helper.Session;
-import service.DepenseService;
 import service.TacheService;
 
 public class TacheListActivity extends AppCompatActivity {
@@ -43,7 +37,7 @@ public class TacheListActivity extends AppCompatActivity {
     SearchView searchView;
 
     private void injecterGUI() {
-        tacheRecyclerView = (RecyclerView) findViewById(R.id.tacheRecyclerView);
+        tacheRecyclerView = findViewById(R.id.tacheRecyclerView);
     }
 
     private void initAdapter() {
@@ -95,7 +89,7 @@ public class TacheListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tache_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
@@ -113,7 +107,7 @@ public class TacheListActivity extends AppCompatActivity {
         }
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

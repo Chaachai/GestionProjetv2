@@ -62,10 +62,10 @@ public class ProjetAdapter extends RecyclerView.Adapter<ProjetAdapter.ViewHolder
         public ViewHolder(View itemView) {
             super(itemView);
 
-            projetitem = (ConstraintLayout) itemView.findViewById(R.id.projet_item);
-            seeMore = (TextView) itemView.findViewById(R.id.projet_seeMore);
-            description = (TextView) itemView.findViewById(R.id.projet_item_description);
-            nom = (TextView) itemView.findViewById(R.id.projet_item_nom);
+            projetitem = itemView.findViewById(R.id.projet_item);
+            seeMore = itemView.findViewById(R.id.projet_seeMore);
+            description = itemView.findViewById(R.id.projet_item_description);
+            nom = itemView.findViewById(R.id.projet_item_nom);
 
         }
     }

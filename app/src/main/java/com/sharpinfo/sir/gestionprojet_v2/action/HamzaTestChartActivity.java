@@ -2,16 +2,13 @@ package com.sharpinfo.sir.gestionprojet_v2.action;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -24,9 +21,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.Depense;
 import bean.Societe;
-import helper.Session;
 import service.DepenseService;
 import service.SocieteService;
 
@@ -47,7 +42,7 @@ public class HamzaTestChartActivity extends AppCompatActivity {
         List<Societe> societes = societeService.findAll();
 
         pieChart = findViewById(R.id.charthamza);
-        List<PieEntry> entries = new ArrayList<PieEntry>();
+        List<PieEntry> entries = new ArrayList<>();
 
         BigDecimal total = depenseService.totalDepense();
         Log.d("chart", total + "");
@@ -64,7 +59,7 @@ public class HamzaTestChartActivity extends AppCompatActivity {
 
         // add a lot of colors
 
-        ArrayList<Integer> colors = new ArrayList<Integer>();
+        ArrayList<Integer> colors = new ArrayList<>();
 
 //        for (int c : ColorTemplate.VORDIPLOM_COLORS)
 //            colors.add(c);
