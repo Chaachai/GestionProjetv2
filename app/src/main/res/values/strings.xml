@@ -84,6 +84,8 @@
     <string name="heures">Heures</string>
     <string name="nombre_heurs">Nombre heurs</string>
     <string name="update">Update</string>
+    <string name="ajouter_un_type_de_depense">Ajouter un type de depense</string>
+    <string name="type_de_depense">type de depense</string>
     <string-array name="charts_array">
         <item>Expense</item>
         <item>Time</item>

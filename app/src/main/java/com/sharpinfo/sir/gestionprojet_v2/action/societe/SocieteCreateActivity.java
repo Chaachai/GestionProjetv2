@@ -173,6 +173,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
         initManagerSpinner();
 
         getManagerFromSpinner();
+
         managerCreateBtn = findViewById(R.id.create_manager_btn);
         managerCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override

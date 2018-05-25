@@ -116,13 +116,12 @@ public class DepenseService extends DepenseDao {
     }
 
 
-    public int create(Date date, BigDecimal montant, String commentaire) {
+    public int create(Date date, BigDecimal montant) {
         Depense depense = new Depense();
         depense.setProjet(null);
         depense.setSociete(null);
         depense.setDate(date);
         depense.setMontant(montant);
-        depense.setCommentaire(commentaire);
         create(depense);
         return 1;
     }

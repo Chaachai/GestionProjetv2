@@ -162,9 +162,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
                 if (societe.getId() == null) {
                     societe = null;
                 }
-                Log.d("test", "no error");
-                Log.d("tag", "2");
-                Log.d("tag", societe.getRaisonSociale());
+
 
             }
 

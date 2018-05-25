@@ -11,29 +11,37 @@ public class Depense implements Serializable {
     private Long id;
     private BigDecimal montant;
     private Date date;
-    private String commentaire;
     private String heur;
     private Projet projet = new Projet();
     private Societe societe = new Societe();
+    private DepenseType depenseType = new DepenseType();
 
     public Depense() {
     }
 
-    public Depense(Long id, BigDecimal montant, Date date, String commentaire, String heur, Long idProjet, Long idSociete) {
+    public Depense(Long id, BigDecimal montant, Date date, String heur, Long idProjet, Long idSociete, Long idDepenseType) {
         this.id = id;
         this.montant = montant;
         this.date = date;
-        this.commentaire = commentaire;
+        this.heur = heur;
+        projet.setId(idProjet);
+        societe.setId(idSociete);
+        depenseType.setId(idDepenseType);
+    }
+
+    public Depense(Long id, BigDecimal montant, Date date, String heur, Long idProjet, Long idSociete) {
+        this.id = id;
+        this.montant = montant;
+        this.date = date;
         this.heur = heur;
         projet.setId(idProjet);
         societe.setId(idSociete);
     }
 
-    public Depense(Long id, BigDecimal montant, Date date, String commentaire) {
+    public Depense(Long id, BigDecimal montant, Date date) {
         this.id = id;
         this.montant = montant;
         this.date = date;
-        this.commentaire = commentaire;
     }
 
 
@@ -61,13 +69,6 @@ public class Depense implements Serializable {
         this.date = date;
     }
 
-    public String getCommentaire() {
-        return commentaire;
-    }
-
-    public void setCommentaire(String commentaire) {
-        this.commentaire = commentaire;
-    }
 
     public String getHeur() {
         return heur;
@@ -82,6 +83,17 @@ public class Depense implements Serializable {
             projet = new Projet();
         }
         return projet;
+    }
+
+    public DepenseType getDepenseType() {
+        if (depenseType == null) {
+            depenseType = new DepenseType();
+        }
+        return depenseType;
+    }
+
+    public void setDepenseType(DepenseType depenseType) {
+        this.depenseType = depenseType;
     }
 
     public void setProjet(Projet projet) {
@@ -119,7 +131,6 @@ public class Depense implements Serializable {
                 "id=" + id +
                 ", montant=" + montant +
                 ", date=" + date +
-                ", commentaire='" + commentaire + '\'' +
                 ", heur='" + heur + '\'' +
                 '}';
     }

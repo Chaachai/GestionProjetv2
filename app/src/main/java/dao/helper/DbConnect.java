@@ -20,6 +20,7 @@ public class DbConnect extends SQLiteOpenHelper {
         db.execSQL(DbStructure.Depense.SQL_CREATE);
         db.execSQL(DbStructure.Tache.SQL_CREATE);
         db.execSQL(DbStructure.Projet.SQL_CREATE);
+        db.execSQL(DbStructure.DepenseType.SQL_CREATE);
     }
 
     @Override
@@ -30,6 +31,7 @@ public class DbConnect extends SQLiteOpenHelper {
         db.execSQL(DbStructure.Depense.SQL_DROP);
         db.execSQL(DbStructure.Tache.SQL_DROP);
         db.execSQL(DbStructure.Projet.SQL_DROP);
+        db.execSQL(DbStructure.DepenseType.SQL_DROP);
         onCreate(db);
     }
 
