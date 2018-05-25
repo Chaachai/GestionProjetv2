@@ -64,7 +64,7 @@ public class ProjetSpinnerAdapter extends ArrayAdapter<Projet> {
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         TextView projet = (TextView) super.getDropDownView(position, convertView, parent);
-        projet.setTextSize(20f);
+        projet.setTextSize(15f);
         projet.setPadding(15,15,15,15);
         projet.setTextColor(Color.BLACK);
         projet.setText(projets.get(position).getNom());

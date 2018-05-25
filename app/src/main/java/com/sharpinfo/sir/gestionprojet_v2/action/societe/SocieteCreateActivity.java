@@ -228,9 +228,6 @@ public class SocieteCreateActivity extends AppCompatActivity {
                 if (manager.getId() == null) {
                     manager = null;
                 }
-                Log.d("test", "no error");
-                Log.d(TAG, "2");
-                Log.d(TAG, manager.getNom() + " 2" + manager.getPrenom());
             }
 
             @Override

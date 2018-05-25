@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.action.HamzaTestChart2Activity;
+import com.sharpinfo.sir.gestionprojet_v2.action.dashboard.DashboardActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.projet.ProjetListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
@@ -132,6 +133,10 @@ public class SideMenuActivity extends AppCompatActivity
 
     public void manageTasks(View view) {
         Dispacher.forward(SideMenuActivity.this, TacheListActivity.class);
+    }
+
+    public void seeDashboard(View view) {
+        Dispacher.forward(SideMenuActivity.this, DashboardActivity.class);
     }
 
 }

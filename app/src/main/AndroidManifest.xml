@@ -96,11 +96,43 @@
         <activity android:name=".action.HamzaTestChart2Activity" />
         <activity
             android:name=".action.statistics.SocieteStatisticsActivity"
-            android:label="Companies Charts"
-            >
+            android:label="Companies Charts">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sharpinfo.sir.gestionprojet_v2.action.statistics.StatisticsMenuActivity" />
+        </activity>
+        <activity
+            android:name=".action.dashboard.DashboardActivity"
+            android:label="@string/dashbord"
+            android:parentActivityName=".action.menu.SideMenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.menu.SideMenuActivity" />
+        </activity>
+        <activity
+            android:name=".action.dashboard.DepenseDashboardActivity"
+            android:label="@string/dashbord"
+            android:parentActivityName=".action.dashboard.DashboardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.dashboard.DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".action.dashboard.TempsDashboardActivity"
+            android:label="@string/dashbord"
+            android:parentActivityName=".action.dashboard.DashboardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.dashboard.DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".action.dashboard.DepenseListDashboardActivity"
+            android:label="@string/dashbord"
+            android:parentActivityName=".action.dashboard.DepenseDashboardActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.dashboard.DepenseDashboardActivity" />
         </activity>
     </application>
 

@@ -2,6 +2,7 @@ package com.sharpinfo.sir.gestionprojet_v2.action.user;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,17 +28,24 @@ public class SignInActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Button signUp;
+//        Button signUp;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        int rec = userService.countUser();
+        Log.d("tag", "The number of records in user table is : " + rec);
+        if (rec == 0) {
+            userService.createDefaultUser();
+        } else {
+            Log.d("tag", "Welcome back !");
+        }
         injectParam();
-        signUp = (Button) findViewById(R.id.signup);
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dispacher.forward(SignInActivity.this, SignUpActivity.class);
-            }
-        });
+//        signUp = (Button) findViewById(R.id.signup);
+//        signUp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Dispacher.forward(SignInActivity.this, SignUpActivity.class);
+//            }
+//        });
     }
 
     private void injectParam() {
@@ -66,8 +74,8 @@ public class SignInActivity extends AppCompatActivity {
             clear();
         } else {
             User u = userService.find(user.getId());
-            Session.setAttribute(u,"connectedUser");
-            Toast.makeText(getBaseContext(), "WELCOME BACK MR. "+u.getLastName()+" "+u.getFirstName(), Toast.LENGTH_LONG).show();
+            Session.setAttribute(u, "connectedUser");
+            Toast.makeText(getBaseContext(), "WELCOME BACK " + u.getLastName() + " " + u.getFirstName(), Toast.LENGTH_LONG).show();
             Dispacher.forward(SignInActivity.this, SideMenuActivity.class);
             finish();
         }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Expert Projects</string>
     <string name="title_activity_societe_list">SocieteListActivity</string>
-    <string name="societe">Companies</string>
+    <string name="societe">Sociétés</string>
     <string name="sign_in">SIGN IN</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
@@ -39,13 +39,13 @@
     <string name="add">Ajouter</string>
     <string name="show_popup_window">Show Popup Window</string>
     <string name="manage_the_companies">Manage the Companies</string>
-    <string name="projects">Projects</string>
+    <string name="projects">Projets</string>
     <string name="manage_the_projects">Manage the Projects</string>
-    <string name="expenses">Expenses</string>
+    <string name="expenses">Dépenses</string>
     <string name="manage_the_expenses">Manage the Expenses</string>
-    <string name="tasks">Tasks</string>
+    <string name="tasks">Temps</string>
     <string name="manage_the_tasks">Manage the Tasks</string>
-    <string name="statistics">Statistics</string>
+    <string name="statistics">Statistiques</string>
     <string name="view_the_statistics">View the Statistics</string>
     <string name="nom_du_projet">Nom du projet</string>
     <string name="budget_estim_dh">Budget Estimé (DH)</string>
@@ -84,8 +84,11 @@
     <string name="heures">Heures</string>
     <string name="nombre_heurs">Nombre heurs</string>
     <string name="update">Update</string>
+    <string name="dashbord">Tableau de Bord</string>
+    <string name="see_the_dashboard">See the dashboard</string>
     <string-array name="charts_array">
         <item>Expense</item>
         <item>Time</item>
     </string-array>
+    <string name="title_activity_depense_list_dashboard">DepenseListDashboardActivity</string>
 </resources>

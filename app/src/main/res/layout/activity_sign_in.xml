@@ -13,108 +13,15 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginStart="47dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/transparent_panel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="@string/username"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager"
-        app:layout_constraintEnd_toEndOf="@+id/viewPager"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="@+id/viewPager"
-        app:layout_constraintTop_toTopOf="@+id/viewPager"
-        app:layout_constraintVertical_bias="0.22" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager"
-        app:layout_constraintEnd_toEndOf="@+id/viewPager"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="@+id/viewPager"
-        app:layout_constraintTop_toTopOf="@+id/viewPager"
-        app:layout_constraintVertical_bias="0.339" />
-
-
-    <TextView
-        android:id="@+id/errorMsg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/colorError"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager"
-        app:layout_constraintEnd_toEndOf="@+id/viewPager"
-        app:layout_constraintStart_toStartOf="@+id/viewPager"
-        app:layout_constraintTop_toTopOf="@+id/viewPager"
-        app:layout_constraintVertical_bias="0.456" />
-
-    <Button
-        android:id="@+id/signin"
-        android:layout_width="210dp"
-        android:layout_height="42dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_button"
-        android:onClick="signIn"
-        android:text="@string/sign_in"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager"
-        app:layout_constraintEnd_toEndOf="@+id/viewPager"
-        app:layout_constraintStart_toStartOf="@+id/viewPager"
-        app:layout_constraintTop_toTopOf="@+id/viewPager"
-        app:layout_constraintVertical_bias="0.593" />
-
-    <Button
-        android:id="@+id/signup"
-        android:layout_width="210dp"
-        android:layout_height="42dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_button"
-        android:text="@string/sign_up"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/viewPager"
-        app:layout_constraintEnd_toEndOf="@+id/viewPager"
-        app:layout_constraintStart_toStartOf="@+id/viewPager"
-        app:layout_constraintTop_toTopOf="@+id/viewPager"
-        app:layout_constraintVertical_bias="0.73" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -128,13 +35,46 @@
         app:layout_constraintEnd_toEndOf="@+id/viewPager"
         app:layout_constraintStart_toStartOf="@+id/viewPager"
         app:layout_constraintTop_toTopOf="@+id/viewPager"
-        app:layout_constraintVertical_bias="0.01"
+        app:layout_constraintVertical_bias="0.032"
         app:srcCompat="@drawable/sign_in" />
+
+    <TextView
+        android:id="@+id/errorMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="11dp"
+        android:textColor="@color/colorError"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintEnd_toEndOf="@+id/viewPager"
+        app:layout_constraintStart_toStartOf="@+id/viewPager"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="@+id/viewPager"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="@+id/viewPager"
+        app:layout_constraintTop_toBottomOf="@+id/errorMsg" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="23dp"
-        android:layout_height="25dp"
+        android:layout_height="22dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -144,8 +84,24 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/username"
         app:layout_constraintTop_toTopOf="@+id/username"
-        app:layout_constraintVertical_bias="0.78"
-        android:srcCompat="@drawable/ic_person_black_24dp" />
+        app:srcCompat="@drawable/ic_person_black_24dp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/signin"
+        app:layout_constraintEnd_toEndOf="@+id/viewPager"
+        app:layout_constraintStart_toStartOf="@+id/viewPager"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -160,22 +116,34 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toTopOf="@+id/password"
-        app:layout_constraintVertical_bias="1.0"
-        android:srcCompat="@drawable/ic_vpn_key_black_24dp" />
+        app:srcCompat="@drawable/ic_vpn_key_black_24dp" />
+
+    <Button
+        android:id="@+id/signin"
+        android:layout_width="210dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/rounded_button"
+        android:onClick="signIn"
+        android:text="@string/sign_in"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/viewPager"
+        app:layout_constraintStart_toStartOf="@+id/viewPager"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="198dp"
         android:layout_height="61dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/viewPager"
         app:layout_constraintEnd_toEndOf="@+id/viewPager"
         app:layout_constraintStart_toStartOf="@+id/viewPager"
-        app:layout_constraintTop_toTopOf="@+id/viewPager"
-        app:layout_constraintVertical_bias="0.981"
         app:srcCompat="@drawable/logo_expert" />
 
 
