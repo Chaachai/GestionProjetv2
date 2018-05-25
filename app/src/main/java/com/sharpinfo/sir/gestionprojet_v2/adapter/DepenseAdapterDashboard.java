@@ -31,9 +31,12 @@ import java.util.List;
 import java.util.Locale;
 
 import bean.Depense;
+import bean.DepenseType;
 import bean.Projet;
 import bean.Societe;
+import helper.Session;
 import service.DepenseService;
+import service.DepenseTypeService;
 import service.ProjetService;
 import service.SocieteService;
 
@@ -53,6 +56,7 @@ public class DepenseAdapterDashboard extends RecyclerView.Adapter<DepenseAdapter
         public TextView heur;
         public TextView date;
         public TextView seeMore;
+        public TextView typeDepense;
         public ConstraintLayout depenseitem;
 
 
@@ -64,6 +68,7 @@ public class DepenseAdapterDashboard extends RecyclerView.Adapter<DepenseAdapter
             montant = (TextView) itemView.findViewById(R.id.depense_montant_dashboard);
             heur = (TextView) itemView.findViewById(R.id.depense_heur_dashboard);
             date = (TextView) itemView.findViewById(R.id.depense_date_dashboard);
+            typeDepense = itemView.findViewById(R.id.depense_type_dashboard);
 
         }
     }
@@ -73,7 +78,7 @@ public class DepenseAdapterDashboard extends RecyclerView.Adapter<DepenseAdapter
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final Context context = parent.getContext();
-
+        Session.setAttribute(context, "contextForDepenseType");
         final LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
@@ -108,7 +113,6 @@ public class DepenseAdapterDashboard extends RecyclerView.Adapter<DepenseAdapter
                                 final EditText date = mView.findViewById(R.id.date_edit);
                                 final EditText heur = mView.findViewById(R.id.heur_edit);
                                 final EditText montant = mView.findViewById(R.id.montant_edit);
-                                final EditText commentaire = mView.findViewById(R.id.commentaire_edit);
                                 Button button = mView.findViewById(R.id.button_edit);
 
                                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
@@ -117,7 +121,6 @@ public class DepenseAdapterDashboard extends RecyclerView.Adapter<DepenseAdapter
                                 date.setText(dateString);
                                 heur.setText(mdepenses.get(viewHolder.getAdapterPosition()).getHeur());
                                 montant.setText(mdepenses.get(viewHolder.getAdapterPosition()).getMontant() + "");
-                                commentaire.setText(mdepenses.get(viewHolder.getAdapterPosition()).getCommentaire());
 
                                 builder.setView(mView);
                                 final AlertDialog alertDialog = builder.create();
@@ -138,14 +141,12 @@ public class DepenseAdapterDashboard extends RecyclerView.Adapter<DepenseAdapter
 
                                         depense.setMontant(BigDecimal.valueOf(Double.valueOf(montant.getText() + "")));
                                         depense.setHeur(heur.getText() + "");
-                                        depense.setCommentaire(commentaire.getText() + "");
                                         depenseService.edit(depense);
 
 
                                         Log.d("tag", "************** " + date.getText());
                                         Log.d("tag", "************** " + heur.getText());
                                         Log.d("tag", "************** " + montant.getText());
-                                        Log.d("tag", "************** " + commentaire.getText());
 
                                         notifyDataSetChanged();
                                         alertDialog.dismiss();
@@ -191,9 +192,10 @@ public class DepenseAdapterDashboard extends RecyclerView.Adapter<DepenseAdapter
                 TextView date = mView.findViewById(R.id.date_popup);
                 TextView heur = mView.findViewById(R.id.heur_popup);
                 TextView montant = mView.findViewById(R.id.montant_popup);
-                TextView commentaire = mView.findViewById(R.id.commentaire_popup);
                 TextView projet = mView.findViewById(R.id.projet_popup);
                 TextView societe = mView.findViewById(R.id.societe_popup);
+                TextView typeDepense = mView.findViewById(R.id.type_depense_popup);
+
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
                 String dateString = dateFormat.format(mdepenses.get(viewHolder.getAdapterPosition()).getDate());
@@ -201,18 +203,27 @@ public class DepenseAdapterDashboard extends RecyclerView.Adapter<DepenseAdapter
                 date.setText(dateString);
                 heur.setText(mdepenses.get(viewHolder.getAdapterPosition()).getHeur());
                 montant.setText(mdepenses.get(viewHolder.getAdapterPosition()).getMontant() + "");
-                commentaire.setText(mdepenses.get(viewHolder.getAdapterPosition()).getCommentaire() + "");
 
 
                 Projet p = mdepenses.get(viewHolder.getAdapterPosition()).getProjet();
                 Societe s = mdepenses.get(viewHolder.getAdapterPosition()).getSociete();
+                DepenseType dt = mdepenses.get(viewHolder.getAdapterPosition()).getDepenseType();
 
 
                 ProjetService projetService = new ProjetService(context);
                 SocieteService societeService = new SocieteService(context);
+                DepenseTypeService depenseTypeService = new DepenseTypeService(context);
+
 
                 Projet pro = projetService.find(p.getId());
                 Societe soc = societeService.find(s.getId());
+                DepenseType depType = depenseTypeService.find(dt.getId());
+
+                if (depType == null) {
+                    typeDepense.setText("------");
+                } else {
+                    typeDepense.setText(depType.getNom());
+                }
                 if (pro == null) {
                     projet.setText("------");
                 } else {
@@ -249,6 +260,7 @@ public class DepenseAdapterDashboard extends RecyclerView.Adapter<DepenseAdapter
         TextView textView = viewHolder.montant;
         TextView textView2 = viewHolder.date;
         TextView textView3 = viewHolder.heur;
+        TextView textView4 = viewHolder.typeDepense;
 
         //date
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
@@ -257,6 +269,18 @@ public class DepenseAdapterDashboard extends RecyclerView.Adapter<DepenseAdapter
         textView3.setText(depense.getHeur());
         textView2.setText(dateString);
         textView.setText(depense.getMontant() + "  DHs");
+
+        Context context = (Context) Session.getAttribut("contextForDepenseType");
+        DepenseTypeService depenseTypeService = new DepenseTypeService(context);
+        DepenseType dt = depense.getDepenseType();
+        DepenseType depType = depenseTypeService.find(dt.getId());
+
+        if (depType == null) {
+            textView4.setText("");
+        } else {
+            textView4.setText(depType.getNom());
+        }
+        Session.delete("contextForDepenseType");
 
     }
 

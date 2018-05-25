@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import bean.Depense;
+import bean.DepenseType;
 import bean.Projet;
 import bean.Societe;
 import dao.DepenseDao;
@@ -152,7 +153,7 @@ public class DepenseService extends DepenseDao {
         return depenses;
     }
 
-    public List<Depense> findByCriteria(Societe societe, Projet projet, Date dateMin, Date dateMax) {
+    public List<Depense> findByCriteria(Societe societe, Projet projet, Date dateMin, Date dateMax, DepenseType depenseType) {
         open();
         String selection = " 1 = 1 ";
         if (societe != null) {
@@ -167,6 +168,10 @@ public class DepenseService extends DepenseDao {
         if (dateMax != null) {
             selection += " AND " + DbStructure.Depense.C_DATE + " <= " + dateMax.getTime();
         }
+        if (depenseType != null) {
+            selection += " AND " + DbStructure.Depense.C_ID_DEPENSE_TYPE + " = " + depenseType.getId();
+        }
+
         Cursor cursor = db.query(DbStructure.Depense.T_NAME, columns, selection, null, null, null, null);
         List<Depense> depenses = new ArrayList<>();
         cursor.moveToFirst();

@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
+import com.sharpinfo.sir.gestionprojet_v2.adapter.DepenseTypeSpinnerAdapter;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.ProjetSpinnerAdapter;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.SocieteSpinnerAdapter;
 
@@ -25,17 +26,21 @@ import java.util.List;
 import java.util.Locale;
 
 import bean.Depense;
+import bean.DepenseType;
 import bean.Projet;
 import bean.Societe;
 import helper.Dispacher;
 import helper.Session;
 import service.DepenseService;
+import service.DepenseTypeService;
 import service.ProjetService;
 import service.SocieteService;
 
 public class DepenseDashboardActivity extends AppCompatActivity {
     private Spinner societeSpinner;
     private Spinner projetSpinner;
+    private Spinner depenseTypeSpinner;
+
     private EditText editDateMin;
     private EditText editDateMax;
     private ImageButton cleatDateMin;
@@ -45,13 +50,18 @@ public class DepenseDashboardActivity extends AppCompatActivity {
 
     private Societe societe = null;
     private Projet projet = null;
+    private DepenseType depenseType = null;
 
     private SocieteService societeService = new SocieteService(this);
     private ProjetService projetService = new ProjetService(this);
     private DepenseService depenseService = new DepenseService(this);
+    DepenseTypeService depenseTypeService = new DepenseTypeService(this);
+
 
     private SocieteSpinnerAdapter societeSpinnerAdapter;
     private ProjetSpinnerAdapter projetSpinnerAdapter;
+    private DepenseTypeSpinnerAdapter depenseTypeSpinnerAdapter;
+
 
     Context context = this;
     String dateFormat = "dd-MM-yyyy";
@@ -207,6 +217,35 @@ public class DepenseDashboardActivity extends AppCompatActivity {
         });
         return projet;
     }
+// ************************************************ DEPENSETYPE SPINNER **********************************************************
+
+
+    private void initDepenseTypeSpinner() {
+        depenseTypeSpinner = findViewById(R.id.dashboard_depense_type_depense_spinner);
+        List<DepenseType> depenseTypes = depenseTypeService.findAll();
+        depenseTypeSpinnerAdapter = new DepenseTypeSpinnerAdapter(this, android.R.layout.simple_spinner_item, depenseTypes);
+        depenseTypeSpinnerAdapter.add(new DepenseType(null, " --CHOIX DU TYPE-- "));
+        depenseTypeSpinner.setAdapter(depenseTypeSpinnerAdapter);
+        depenseTypeSpinnerAdapter.notifyDataSetChanged();
+        depenseTypeSpinner.setSelection(depenseTypeSpinnerAdapter.getCount() + 1, true);
+    }
+
+    private void getDepenseTypeFromSpinner() {
+        depenseTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                depenseType = depenseTypeSpinnerAdapter.getItem(position);
+                if (depenseType != null && depenseType.getId() == null) {
+                    depenseType = null;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
 
 
     @Override
@@ -221,6 +260,9 @@ public class DepenseDashboardActivity extends AppCompatActivity {
 
         initProjetSpinner();
         getProjetFromSpinner();
+
+        initDepenseTypeSpinner();
+        getDepenseTypeFromSpinner();
 
         editDateMin = (EditText) findViewById(R.id.dashboard_depense_date_min);
         initPopupDateMin();
@@ -281,6 +323,7 @@ public class DepenseDashboardActivity extends AppCompatActivity {
         Session.setAttribute(projet, "projetCriteria");
         Session.setAttribute(dateMin, "dateMinCriteria");
         Session.setAttribute(dateMax, "dateMaxCriteria");
+        Session.setAttribute(depenseType,"depenseTypeCriteria");
 
 
         Dispacher.forward(DepenseDashboardActivity.this, DepenseListDashboardActivity.class);

@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 import bean.Depense;
+import bean.DepenseType;
 import bean.Projet;
 import bean.Societe;
 import helper.Session;
@@ -46,6 +47,7 @@ public class DepenseListDashboardActivity extends AppCompatActivity {
         Projet projet = (Projet) Session.getAttribut("projetCriteria");
         Date dateMin = (Date) Session.getAttribut("dateMinCriteria");
         Date dateMax = (Date) Session.getAttribut("dateMaxCriteria");
+        DepenseType depenseType = (DepenseType) Session.getAttribut("depenseTypeCriteria");
 
         titre = findViewById(R.id.titre_depense_dashboard);
         totaleDepense = findViewById(R.id.totale_depense_dashboard);
@@ -65,7 +67,7 @@ public class DepenseListDashboardActivity extends AppCompatActivity {
         Log.d("tag", "Date Min. ======== " + dateMin);
         Log.d("tag", "Date Max. ======== " + dateMax);
 
-        depenses = depenseService.findByCriteria(societe, projet, dateMin, dateMax);
+        depenses = depenseService.findByCriteria(societe, projet, dateMin, dateMax, depenseType);
 
         BigDecimal totale = depenseService.totalDepenseCriteria(depenses);
         totaleDepense.setText(totale + "");
@@ -85,6 +87,7 @@ public class DepenseListDashboardActivity extends AppCompatActivity {
         Session.delete("projetCriteria");
         Session.delete("dateMinCriteria");
         Session.delete("dateMaxCriteria");
+        Session.delete("depenseTypeCriteria");
     }
 
     private void showBySociete(Long idSociete) {

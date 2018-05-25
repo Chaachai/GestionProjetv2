@@ -32,12 +32,13 @@
         android:layout_width="196dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:text="@string/_85500"
         android:textAlignment="textStart"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/depense_type_dashboard"
         app:layout_constraintTop_toBottomOf="@+id/depense_date_dashboard" />
 
     <TextView
@@ -77,6 +78,17 @@
         android:textSize="24sp"
         app:layout_constraintStart_toEndOf="@+id/depense_date_dashboard"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/depense_type_dashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/type_de_depense"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/depense_date_dashboard" />
 </android.support.constraint.ConstraintLayout>
 
 
