@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".action.dashboard.DepenseDashboardActivity">
+
+    <Spinner
+        android:id="@+id/dashboard_depense_societe_spinner"
+        android:layout_width="224dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="68dp"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard_depense_projet_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/error_depense_dashboard" />
+
+    <Spinner
+        android:id="@+id/dashboard_depense_projet_spinner"
+        android:layout_width="224dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="22dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="68dp"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard_depense_type_depense_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_depense_societe_spinner" />
+
+    <Spinner
+        android:id="@+id/dashboard_depense_type_depense_spinner"
+        android:layout_width="224dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="22dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="68dp"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard_depense_date_min"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_depense_projet_spinner" />
+
+
+    <EditText
+        android:id="@+id/dashboard_depense_date_max"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="41dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="68dp"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="Date Max."
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard_depense_recherche_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_depense_date_min" />
+
+    <EditText
+        android:id="@+id/dashboard_depense_date_min"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="68dp"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="Date Min."
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard_depense_date_max"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_depense_type_depense_spinner" />
+
+    <Button
+        android:id="@+id/dashboard_depense_recherche_btn"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="68dp"
+        android:background="@drawable/rounded_button"
+        android:text="Recherche"
+        android:onClick="recherche"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_depense_date_max" />
+
+    <TextView
+        android:id="@+id/error_depense_dashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorError"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard_depense_societe_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/clear_date_min"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/dashboard_depense_date_min"
+        app:layout_constraintStart_toEndOf="@+id/dashboard_depense_date_min"
+        app:layout_constraintTop_toTopOf="@+id/dashboard_depense_date_min"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/btn_dialog" />
+
+    <ImageButton
+        android:id="@+id/clear_date_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/dashboard_depense_date_max"
+        app:layout_constraintStart_toEndOf="@+id/dashboard_depense_date_max"
+        app:layout_constraintTop_toTopOf="@+id/dashboard_depense_date_max"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/btn_dialog" />
+
+</android.support.constraint.ConstraintLayout>

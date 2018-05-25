@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".action.dashboard.DashboardActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="47dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="51dp"
+        android:text="Quel tableau de bord voulez-vous consulter ?"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/depenseDashboard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/tempsDashboard"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginStart="130dp"
+        android:clickable="true"
+        android:onClick="dashboardTemps"
+        android:background="@drawable/cerclebackgroundbrown"
+        app:layout_constraintBottom_toTopOf="@+id/textView20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19"
+        app:srcCompat="@drawable/ic_schedule_black_24dp" />
+
+    <ImageView
+        android:id="@+id/depenseDashboard"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginStart="130dp"
+        android:clickable="true"
+        android:onClick="dashboardDepense"
+        android:background="@drawable/cerclebackgroundgreen"
+        app:layout_constraintBottom_toTopOf="@+id/textView19"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:srcCompat="@drawable/ic_monetization_on_black_24dp" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="53dp"
+        android:layout_marginEnd="135dp"
+        android:layout_marginStart="136dp"
+        android:text="Dépenses"
+        android:clickable="true"
+        android:onClick="dashboardDepense"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tempsDashboard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/depenseDashboard" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="85dp"
+        android:layout_marginEnd="149dp"
+        android:layout_marginStart="149dp"
+        android:text="Temps"
+        android:clickable="true"
+        android:onClick="dashboardTemps"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tempsDashboard" />
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".action.dashboard.TempsDashboardActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <Spinner
+        android:id="@+id/dashboard_temps_societe_spinner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="68dp"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard_temps_projet_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/error_temps_dashboard" />
+
+    <Spinner
+        android:id="@+id/dashboard_temps_projet_spinner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="22dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="68dp"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard_temps_date_max"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_temps_societe_spinner" />
+
+
+    <EditText
+        android:id="@+id/dashboard_temps_date_min"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="57dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="68dp"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="Date Max."
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard_temps_recherche_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_temps_date_max" />
+
+    <EditText
+        android:id="@+id/dashboard_temps_date_max"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="68dp"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="Date Min."
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard_temps_date_min"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_temps_projet_spinner" />
+
+    <Button
+        android:id="@+id/dashboard_temps_recherche_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="72dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginStart="68dp"
+        android:background="@drawable/rounded_button"
+        android:text="Recherche"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dashboard_temps_date_min" />
+
+    <TextView
+        android:id="@+id/error_temps_dashboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="53dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginStart="89dp"
+        android:layout_marginTop="26dp"
+        android:textColor="@color/colorError"
+        app:layout_constraintBottom_toTopOf="@+id/dashboard_temps_societe_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

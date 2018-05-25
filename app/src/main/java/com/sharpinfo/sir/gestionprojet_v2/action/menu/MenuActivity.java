@@ -60,6 +60,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         Dispacher.forward(MenuActivity.this, SocieteCreateActivity.class);
     }
 
+//    public void seeDashboard(View view) {
+//    }
+
 //    public void manageTasks(View view) {
 //    }
 
@@ -71,7 +74,5 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
 
 //    public void manageCompany(View view) {
-//        Toast.makeText(getBaseContext(), "HHHHHHHHHHHHHHHHHHHHHHHHHHH", Toast.LENGTH_LONG).show();
-//
 //    }
 }

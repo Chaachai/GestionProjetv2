@@ -138,4 +138,53 @@ public class DepenseService extends DepenseDao {
         }
         Session.delete("depenseContext");
     }
+
+    public List<Depense> findDepenseBySociete(Societe societe) {
+        open();
+        Cursor cursor = db.query(DbStructure.Depense.T_NAME, columns, DbStructure.Depense.C_ID_SOCIETE + "=" + societe.getId(), null, null, null, null);
+        List<Depense> depenses = new ArrayList<>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Depense depense = transformeCursorToBean(cursor);
+            depenses.add(depense);
+            cursor.moveToNext();
+        }
+        return depenses;
+    }
+
+    public List<Depense> findByCriteria(Societe societe, Projet projet, Date dateMin, Date dateMax) {
+        open();
+        String selection = " 1 = 1 ";
+        if (societe != null) {
+            selection += " AND " + DbStructure.Depense.C_ID_SOCIETE + " = " + societe.getId();
+        }
+        if (projet != null) {
+            selection += " AND " + DbStructure.Depense.C_ID_PROJET + " = " + projet.getId();
+        }
+        if (dateMin != null) {
+            selection += " AND " + DbStructure.Depense.C_DATE + " >= " + dateMin.getTime();
+        }
+        if (dateMax != null) {
+            selection += " AND " + DbStructure.Depense.C_DATE + " <= " + dateMax.getTime();
+        }
+        Cursor cursor = db.query(DbStructure.Depense.T_NAME, columns, selection, null, null, null, null);
+        List<Depense> depenses = new ArrayList<>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Depense depense = transformeCursorToBean(cursor);
+            depenses.add(depense);
+            cursor.moveToNext();
+        }
+        return depenses;
+    }
+
+    public BigDecimal totalDepenseCriteria(List<Depense> depenses) {
+        BigDecimal totale = BigDecimal.ZERO;
+        BigDecimal montant;
+        for (Depense depense : depenses) {
+            Log.d("tag", "Totale = " + depense.getMontant());
+            totale = totale.add(depense.getMontant());
+        }
+        return totale;
+    }
 }

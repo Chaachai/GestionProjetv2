@@ -54,7 +54,7 @@ public class SocieteSpinnerAdapter extends ArrayAdapter<Societe> {
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         TextView societe = (TextView) super.getDropDownView(position, convertView, parent);
-        societe.setTextSize(20f);
+        societe.setTextSize(15f);
         societe.setPadding(15, 15, 15, 15);
         societe.setTextColor(Color.BLACK);
         societe.setText(societes.get(position).getRaisonSociale());
