@@ -62,7 +62,7 @@ public class DepenseListDashboardActivity extends AppCompatActivity {
             titre.setText("Sociétés + Projets");
         }
 
-        depenses = depenseService.findByCriteria(societe, projet, dateMin, dateMax);
+        depenses = depenseService.findByCriteria(societe, projet, dateMin, dateMax, depenseType);
 
         BigDecimal totale = depenseService.totalDepenseCriteria(depenses);
         totaleDepense.setText(totale + "");

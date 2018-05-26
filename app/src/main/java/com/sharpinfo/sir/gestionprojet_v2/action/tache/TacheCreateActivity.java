@@ -236,8 +236,10 @@ public class TacheCreateActivity extends AppCompatActivity {
         if (nbrMinute > 0) {
             return nbrMinute;
         }
-
-        return -1;
+        if (nbrMinute < 0) {
+            return -1;
+        }
+        return 0;
     }
 
     private Tache setParam() {
@@ -277,9 +279,13 @@ public class TacheCreateActivity extends AppCompatActivity {
         error = findViewById(R.id.error_tache);
         if (tache.getNbrHeures() == -1) {
             error.setText("L'heure debut est superieur a l'heure fin");
-        }else if(tache.getNbrHeures()==-2){
+            heureFinTache.setText("");
+            heureDebutTache.setText("");
+
+
+        } else if (tache.getNbrHeures() == -2) {
             error.setText("Veuillez choisir une heure debut et une heure fin");
-        } else{
+        } else {
             if (tache.getProjet().getId() == null && tache.getSociete().getId() == null) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(TacheCreateActivity.this);
                 alert.setTitle("Info");
