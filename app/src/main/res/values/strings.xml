@@ -93,4 +93,6 @@
         <item>Time</item>
     </string-array>
     <string name="title_activity_depense_list_dashboard">DepenseListDashboardActivity</string>
+    <string name="heure_debut">Heure Debut</string>
+    <string name="heure_fin">Heure Fin</string>
 </resources>

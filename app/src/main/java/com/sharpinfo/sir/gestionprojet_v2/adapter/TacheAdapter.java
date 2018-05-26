@@ -2,6 +2,7 @@ package com.sharpinfo.sir.gestionprojet_v2.adapter;
 
 
 import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -17,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.action.tache.TacheListActivity;
@@ -24,6 +27,7 @@ import com.sharpinfo.sir.gestionprojet_v2.action.tache.TacheListActivity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -39,7 +43,11 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
 
     private List<Tache> mtaches;
     TacheListActivity tacheListActivity = new TacheListActivity();
-
+    TimePickerDialog timePickerDialog;
+    Calendar calendar;
+    int currentHeure;
+    int currentMinute;
+    int heureDebut, minuteDebut, heureFin, minuteFin;
 
     public TacheAdapter(List<Tache> taches) {
         mtaches = taches;
@@ -64,6 +72,25 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
             heur = itemView.findViewById(R.id.tache_heur);
 
         }
+    }
+
+    private Integer calculateNbrOfMinutes() {
+        heureFin = heureFin * 60;
+        Integer totalHeureFin = heureFin + minuteFin;
+        Log.d("tacheCreate", totalHeureFin.toString());
+        heureDebut = heureDebut * 60;
+        Integer totalHeureDebut = heureDebut + minuteDebut;
+        Log.d("tacheCreate", totalHeureDebut.toString());
+
+        Integer nbrMinute = totalHeureFin - totalHeureDebut;
+        if (nbrMinute == 0) {
+            return -2;
+        }
+        if (nbrMinute > 0) {
+            return nbrMinute;
+        }
+
+        return -1;
     }
 
 
@@ -94,23 +121,82 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
                         switch (item.getItemId()) {
                             case R.id.edit_item_options_menu:
 
+
                                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
                                 final View mView = inflater.inflate(R.layout.tache_edit_popup, null);
 
                                 ImageButton dismissButton = mView.findViewById(R.id.dismiss_edit_tache);
 
                                 final EditText date = mView.findViewById(R.id.date_edit_tache);
-                                final EditText heur = mView.findViewById(R.id.heur_edit_tache);
-                                final EditText nbrHeur = mView.findViewById(R.id.nbrheur_edit_tache);
+                                final EditText heureDebutEditText = mView.findViewById(R.id.heur_debut_edit_tache);
+                                final EditText heureFinEditText = mView.findViewById(R.id.heur_fin_edit_tache);
                                 final EditText commentaire = mView.findViewById(R.id.commentaire_edit_tache);
                                 Button button = mView.findViewById(R.id.button_edit_tache);
 
+                                //popup timePickerDialog for heurDebutEditText
+                                heureDebutEditText.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        calendar = Calendar.getInstance();
+                                        currentHeure = calendar.get(Calendar.HOUR_OF_DAY);
+                                        currentMinute = calendar.get(Calendar.MINUTE);
+
+                                        timePickerDialog = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+                                            @Override
+                                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                                heureDebutEditText.setText(String.format("%02d:%02d", hourOfDay, minute));
+                                                heureDebut = hourOfDay;
+                                                minuteDebut = minute;
+                                                Log.d("TacheAdapterdebut", heureDebut + " :" + minuteDebut);
+                                            }
+                                        }, currentHeure, currentMinute, true);
+
+                                        timePickerDialog.show();
+                                    }
+                                });
+                                //////////////
+                                //popup timePickerDialog for heurFinEditText
+                                heureFinEditText.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        calendar = Calendar.getInstance();
+                                        currentHeure = calendar.get(Calendar.HOUR_OF_DAY);
+                                        currentMinute = calendar.get(Calendar.MINUTE);
+
+                                        timePickerDialog = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+                                            @Override
+                                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                                heureFinEditText.setText(String.format("%02d:%02d", hourOfDay, minute));
+                                                heureFin = hourOfDay;
+                                                minuteFin = minute;
+                                                Log.d("TacheAdapterfin", heureFin + " :" + minuteFin);
+                                            }
+                                        }, currentHeure, currentMinute, true);
+
+                                        timePickerDialog.show();
+                                    }
+                                });
+                                ///////////
+
+                                //date
                                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
                                 String dateString = dateFormat.format(mtaches.get(viewHolder.getAdapterPosition()).getDate());
 
                                 date.setText(dateString);
-                                heur.setText(mtaches.get(viewHolder.getAdapterPosition()).getHeur());
-                                nbrHeur.setText(mtaches.get(viewHolder.getAdapterPosition()).getNbrHeures() + "");
+
+///
+
+                                //formatting nbr of minutes to display in hour:minutes
+//                                int nbrOfMinutes = mtaches.get(viewHolder.getAdapterPosition()).getNbrHeures();
+//                                int heure = nbrOfMinutes / 60;
+//                                int minute = nbrOfMinutes % 60;
+                                //
+
+
+                                heureFinEditText.setText(mtaches.get(viewHolder.getAdapterPosition()).getHeureDebut());
+                                heureDebutEditText.setText(mtaches.get(viewHolder.getAdapterPosition()).getHeureDebut());
                                 commentaire.setText(mtaches.get(viewHolder.getAdapterPosition()).getCommentaire());
 
                                 builder.setView(mView);
@@ -120,31 +206,40 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
                                 button.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Tache tache = mtaches.get(viewHolder.getAdapterPosition());
+                                        int totalminutes = calculateNbrOfMinutes();
+                                        if (totalminutes == -2) {
+                                            Toast.makeText(context, "Veuillez choisir une heure debut et une heure fin",
+                                                    Toast.LENGTH_LONG).show();
+                                        } else if (totalminutes == -1) {
+                                            Toast.makeText(context, "L'heure debut est superieur a l'heure fin",
+                                                    Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Tache tache = mtaches.get(viewHolder.getAdapterPosition());
 
-                                        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-                                        try {
-                                            Date dateEdited = format.parse(date.getText() + "");
-                                            tache.setDate(dateEdited);
-                                        } catch (ParseException e) {
-                                            e.printStackTrace();
+                                            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                                            try {
+                                                Date dateEdited = format.parse(date.getText() + "");
+                                                tache.setDate(dateEdited);
+                                            } catch (ParseException e) {
+                                                e.printStackTrace();
+                                            }
+                                            tache.setNbrHeures(totalminutes);
+                                            tache.setHeureDebut(String.valueOf(heureDebutEditText.getText()));
+                                            tache.setHeureFin(String.valueOf(heureFinEditText.getText()));
+                                            tache.setCommentaire(commentaire.getText() + "");
+                                            tacheService.edit(tache);
+
+                                            Log.d("tag", "************** " + date.getText());
+                                            Log.d("tag", "************** " + heureDebutEditText.getText());
+                                            Log.d("tag", "************** " + heureFinEditText.getText());
+                                            Log.d("tag", "************** " + commentaire.getText());
+
+                                            notifyDataSetChanged();
+                                            alertDialog.dismiss();
+
+                                            Snackbar snackbar = Snackbar.make(tacheView, "The task was updated successfully", Snackbar.LENGTH_LONG);
+                                            snackbar.show();
                                         }
-
-                                        tache.setNbrHeures(Double.valueOf(nbrHeur.getText() + ""));
-                                        tache.setHeur("" + heur.getText());
-                                        tache.setCommentaire(commentaire.getText() + "");
-                                        tacheService.edit(tache);
-
-                                        Log.d("tag", "************** " + date.getText());
-                                        Log.d("tag", "************** " + heur.getText());
-                                        Log.d("tag", "************** " + nbrHeur.getText());
-                                        Log.d("tag", "************** " + commentaire.getText());
-
-                                        notifyDataSetChanged();
-                                        alertDialog.dismiss();
-
-                                        Snackbar snackbar = Snackbar.make(tacheView, "The task was updated successfully", Snackbar.LENGTH_LONG);
-                                        snackbar.show();
                                     }
                                 });
 
@@ -191,8 +286,13 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
                 String dateString = dateFormat.format(mtaches.get(viewHolder.getAdapterPosition()).getDate());
 
                 date.setText(dateString);
-                heur.setText(mtaches.get(viewHolder.getAdapterPosition()).getHeur());
-                nbrHeur.setText(mtaches.get(viewHolder.getAdapterPosition()).getNbrHeures() + "");
+                heur.setText(mtaches.get(viewHolder.getAdapterPosition()).getHeureDebut());
+
+                int nbrOfMinutes = mtaches.get(viewHolder.getAdapterPosition()).getNbrHeures();
+                int heure = nbrOfMinutes / 60;
+                int minute = nbrOfMinutes % 60;
+                nbrHeur.setText(String.format("%d:%d", heure, minute));
+
                 commentaire.setText(mtaches.get(viewHolder.getAdapterPosition()).getCommentaire() + "");
 
 
@@ -246,13 +346,16 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
         String dateString = dateFormat.format(tache.getDate());
 
-        textView3.setText(tache.getHeur());
+        textView3.setText(tache.getHeureDebut());
         textView2.setText(dateString);
-        textView.setText(tache.getNbrHeures() + "");
+        int nbrOfMinutes = tache.getNbrHeures();
+        int heure = nbrOfMinutes / 60;
+        int minute = nbrOfMinutes % 60;
+        textView.setText(String.format("%d:%d", heure, minute));
 
     }
 
-    public void removeFromList(int position, ViewHolder viewHolder, Context context) {
+    private void removeFromList(int position, ViewHolder viewHolder, Context context) {
         Tache tache = mtaches.get(viewHolder.getAdapterPosition());
         TacheService tacheService = new TacheService(context);
         tacheService.remove(tache);

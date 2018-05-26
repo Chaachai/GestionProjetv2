@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
@@ -42,17 +43,32 @@ public class TacheCreateActivity extends AppCompatActivity {
 
     private EditText nbrHeurTache;
     private EditText commentaireTache;
-    private EditText heurTache;
+    private EditText heureDebutTache;
+    private EditText heureFinTache;
     private Spinner societeSpinner;
     private Spinner projetSpinner;
     private TextView error;
 
-    //TimePicker
-    TimePickerDialog timePickerDialog;
-    Calendar calendar;
-    int currentHour;
-    int currentMinute;
+    //TimePicker HeureDebut
+    TimePickerDialog timePickerDialogDebut;
+    Calendar calendarDebut;
+    int heureDebut;
+    int minuteDebut;
+
+    int hourDebutTache;
+    int minuteDebutTache;
     ///
+
+    //TimePicker HeureFin
+    TimePickerDialog timePickerDialogFin;
+    Calendar calendarFin;
+    int heureFin;
+    int minuteFin;
+
+    int hourFinTache;
+    int minuteFinTache;
+    ///
+
     TacheService tacheService = new TacheService(this);
     SocieteService societeService = new SocieteService(this);
     ProjetService projetService = new ProjetService(this);
@@ -91,19 +107,6 @@ public class TacheCreateActivity extends AppCompatActivity {
         projetSpinner.setSelection(projetSpinnerAdapter.getCount() + 1, true);
     }
 
-    private void updateSocieteSpinner() {
-        List<Societe> societes = societeService.findAll();
-        societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
-        societeSpinner.setAdapter(societeSpinnerAdapter);
-        societeSpinnerAdapter.notifyDataSetChanged();
-    }
-
-    private void updateProjetSpinner() {
-        List<Projet> projets = projetService.findAll();
-        projetSpinnerAdapter = new ProjetSpinnerAdapter(this, android.R.layout.simple_spinner_item, projets);
-        projetSpinner.setAdapter(projetSpinnerAdapter);
-        projetSpinnerAdapter.notifyDataSetChanged();
-    }
 
     private void updateDate() {
         editDate.setText(simpleDateFormat.format(myCalendar.getTime()));
@@ -158,7 +161,8 @@ public class TacheCreateActivity extends AppCompatActivity {
         getSocieteFromSpinner();
         initProjetSpinner();
         getProjetFromSpinner();
-        initHeurePicker();
+        initHeureDebutPicker();
+        initHeureFinPicker();
 //        injectParam();
 //        long currentdate = System.currentTimeMillis();
 //        String dateString = simpleDateFormat.format(currentdate);
@@ -168,49 +172,92 @@ public class TacheCreateActivity extends AppCompatActivity {
         initDate();
     }
 
-    private void initHeurePicker() {
-        heurTache = findViewById(R.id.heur_tache);
+    private void initHeureDebutPicker() {
+        heureDebutTache = findViewById(R.id.heure_debut_tache);
         //////
-        heurTache.setOnClickListener(new View.OnClickListener() {
+        heureDebutTache.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calendar = Calendar.getInstance();
-                currentHour = calendar.get(Calendar.HOUR_OF_DAY);
-                currentMinute = calendar.get(Calendar.MINUTE);
+                calendarDebut = Calendar.getInstance();
+                heureDebut = calendarDebut.get(Calendar.HOUR_OF_DAY);
+                minuteDebut = calendarDebut.get(Calendar.MINUTE);
 
-                timePickerDialog = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+                timePickerDialogDebut = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        heurTache.setText(String.format("%02d:%02d", hourOfDay, minute));
+                        heureDebutTache.setText(String.format("%02d:%02d", hourOfDay, minute));
+                        hourDebutTache = hourOfDay;
+                        minuteDebutTache = minute;
+                        Log.d("insideTacheCreate", hourDebutTache + " :" + minuteDebutTache);
                     }
-                }, currentHour, currentMinute, true);
-                timePickerDialog.show();
+                }, heureDebut, minuteDebut, true);
+
+                timePickerDialogDebut.show();
             }
         });
+    }
+
+    private void initHeureFinPicker() {
+        heureFinTache = findViewById(R.id.heure_fin_tache);
+        //////
+        heureFinTache.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendarFin = Calendar.getInstance();
+                heureFin = calendarFin.get(Calendar.HOUR_OF_DAY);
+                minuteFin = calendarFin.get(Calendar.MINUTE);
+
+                timePickerDialogFin = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        heureFinTache.setText(String.format("%02d:%02d", hourOfDay, minute));
+                        hourFinTache = hourOfDay;
+                        minuteFinTache = minute;
+                        Log.d("insideTacheFin", hourFinTache + ":" + minuteFinTache);
+                    }
+                }, heureFin, minuteFin, true);
+                timePickerDialogFin.show();
+            }
+        });
+    }
+
+    private Integer calculateNbrOfMinutes() {
+        hourFinTache = hourFinTache * 60;
+        Integer totalHeureFin = hourFinTache + minuteFinTache;
+        Log.d("tacheCreate", totalHeureFin.toString());
+        hourDebutTache = hourDebutTache * 60;
+        Integer totalHeureDebut = hourDebutTache + minuteDebutTache;
+        Log.d("tacheCreate", totalHeureDebut.toString());
+
+        Integer nbrMinute = totalHeureFin - totalHeureDebut;
+        if (nbrMinute == 0) {
+            return -2;
+        }
+        if (nbrMinute > 0) {
+            return nbrMinute;
+        }
+
+        return -1;
     }
 
     private Tache setParam() {
         Tache tache = new Tache();
 
 
-        nbrHeurTache = findViewById(R.id.duree_tache);
+        nbrHeurTache = findViewById(R.id.heure_fin_tache);
         commentaireTache = findViewById(R.id.commentaire_tache);
 
 
         /////
 //        double montantDouble = Double.valueOf("" + montantDepense.getText());
 //        BigDecimal montantBigDecimal = BigDecimal.valueOf(montantDouble);
-        Double nbrHeurDouble;
-        String nbrHeurString = String.valueOf("" + nbrHeurTache.getText());
-        if (nbrHeurString.isEmpty()) {
-            nbrHeurDouble = 0.0;
-        } else {
-            nbrHeurDouble = Double.valueOf(nbrHeurString);
-        }
+        Integer totalMinutes = calculateNbrOfMinutes();
 
-        tache.setNbrHeures(nbrHeurDouble);
+
+        tache.setNbrHeures(totalMinutes);
         tache.setCommentaire("" + commentaireTache.getText());
-        tache.setHeur("" + heurTache.getText());
+        tache.setHeureDebut("" + heureDebutTache.getText());
+        tache.setHeureFin("" + heureFinTache.getText());
         tache.setSociete(societe);
         tache.setProjet(projet);
 
@@ -225,49 +272,42 @@ public class TacheCreateActivity extends AppCompatActivity {
 
     }
 
-    public void createDepense(View view) {
+    public void createTache(View view) {
         final Tache tache = setParam();
-        if (tache.getProjet().getId() == null && tache.getSociete().getId() == null) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(TacheCreateActivity.this);
-            alert.setTitle("Info");
-            alert.setMessage("If you don't choose neither a project nor a company, the expense will be affected as personal, do you confirm ?");
-            alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        error = findViewById(R.id.error_tache);
+        if (tache.getNbrHeures() == -1) {
+            error.setText("L'heure debut est superieur a l'heure fin");
+        }else if(tache.getNbrHeures()==-2){
+            error.setText("Veuillez choisir une heure debut et une heure fin");
+        } else{
+            if (tache.getProjet().getId() == null && tache.getSociete().getId() == null) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(TacheCreateActivity.this);
+                alert.setTitle("Info");
+                alert.setMessage("If you don't choose neither a project nor a company, the expense will be affected as personal, do you confirm ?");
+                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if (tache.getHeur().isEmpty()) {
-                        tache.setHeur("--:--");
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
                         tacheService.ajouterTache(tache);
                         Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
                         finish();
-                    } else {
-                        tacheService.ajouterTache(tache);
-                        Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
-                        finish();
+                        dialog.dismiss();
                     }
-                    dialog.dismiss();
-                }
-            });
+                });
 
-            alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
 
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
 
-            alert.show();
+                alert.show();
 
-        } else if (tache.getSociete().getId() != null && tache.getProjet().getId() != null) {
-            error = findViewById(R.id.error_tache);
-            error.setText(R.string.error_depense);
-        } else {
-            if (tache.getHeur().isEmpty()) {
-                tache.setHeur("--:--");
-                tacheService.ajouterTache(tache);
-                Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
-                finish();
+            } else if (tache.getSociete().getId() != null && tache.getProjet().getId() != null) {
+
+                error.setText(R.string.error_depense);
             } else {
                 tacheService.ajouterTache(tache);
                 Dispacher.forward(TacheCreateActivity.this, TacheListActivity.class);
@@ -277,6 +317,7 @@ public class TacheCreateActivity extends AppCompatActivity {
 
 //        tacheService.create(tache);
 //        Dispacher.forward(this, TacheListActivity.class);
+
     }
 
     private Societe getSocieteFromSpinner() {

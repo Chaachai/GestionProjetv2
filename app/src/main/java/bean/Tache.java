@@ -8,8 +8,9 @@ public class Tache implements Serializable {
     private static final Long serialVersionUID = 1L;
     private Long id;
     private Date date;
-    private String heur;
-    private double NbrHeures;
+    private String heureDebut;
+    private String heureFin;
+    private Integer NbrHeures;
     private String commentaire;
     private Projet projet = new Projet();
     private Societe societe = new Societe();
@@ -17,29 +18,38 @@ public class Tache implements Serializable {
     public Tache() {
     }
 
-    public Tache(Long id, Date date, String heur, double nbrHeures, String commentaire, Long idProjet, Long idSociete) {
+    public Tache(Long id, Date date, String heureDebut, String heureFin, Integer nbrHeures, String commentaire, Long idProjet, Long idSociete) {
         this.id = id;
         this.date = date;
-        this.heur = heur;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
         this.NbrHeures = nbrHeures;
         this.commentaire = commentaire;
         projet.setId(idProjet);
         societe.setId(idSociete);
     }
 
-    public Tache(Long id, Date date, double nbrHeures, String commentaire) {
+    public Tache(Long id, Date date, Integer nbrHeures, String commentaire) {
         this.id = id;
         this.date = date;
         this.NbrHeures = nbrHeures;
         this.commentaire = commentaire;
     }
 
-    public String getHeur() {
-        return heur;
+    public String getHeureDebut() {
+        return heureDebut;
     }
 
-    public void setHeur(String heur) {
-        this.heur = heur;
+    public void setHeureDebut(String heureDebut) {
+        this.heureDebut = heureDebut;
+    }
+
+    public String getHeureFin() {
+        return heureFin;
+    }
+
+    public void setHeureFin(String heureFin) {
+        this.heureFin = heureFin;
     }
 
     public Projet getProjet() {
@@ -72,7 +82,7 @@ public class Tache implements Serializable {
     }
 
     public Date getDate() {
-        if(date == null)
+        if (date == null)
             date = new Date();
         return date;
     }
@@ -89,11 +99,11 @@ public class Tache implements Serializable {
         this.commentaire = commentaire;
     }
 
-    public double getNbrHeures() {
+    public Integer getNbrHeures() {
         return NbrHeures;
     }
 
-    public void setNbrHeures(double nbrHeures) {
+    public void setNbrHeures(Integer nbrHeures) {
         NbrHeures = nbrHeures;
     }
 
