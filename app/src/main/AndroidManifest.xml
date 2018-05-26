@@ -134,6 +134,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sharpinfo.sir.gestionprojet_v2.action.dashboard.DepenseDashboardActivity" />
         </activity>
+        <activity
+            android:name=".action.dashboard.TempsListDashboardActivity"
+            android:label="@string/dashbord"
+            android:parentActivityName=".action.dashboard.TempsDashboardActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

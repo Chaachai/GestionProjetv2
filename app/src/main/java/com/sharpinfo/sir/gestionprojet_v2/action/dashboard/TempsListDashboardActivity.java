@@ -2,7 +2,6 @@ package com.sharpinfo.sir.gestionprojet_v2.action.dashboard;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -10,36 +9,33 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
-import com.sharpinfo.sir.gestionprojet_v2.adapter.DepenseAdapter;
-import com.sharpinfo.sir.gestionprojet_v2.adapter.DepenseAdapterDashboard;
+import com.sharpinfo.sir.gestionprojet_v2.adapter.TempsAdapterDashboard;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import bean.Depense;
-import bean.DepenseType;
 import bean.Projet;
 import bean.Societe;
+import bean.Tache;
 import helper.Session;
-import service.DepenseService;
+import service.TacheService;
 
-public class DepenseListDashboardActivity extends AppCompatActivity {
-
-    DepenseService depenseService = new DepenseService(this);
-    private RecyclerView depenseRecyclerView;
+public class TempsListDashboardActivity extends AppCompatActivity {
+    TacheService tacheService = new TacheService(this);
+    private RecyclerView tempsRecyclerView;
     private TextView titre;
-    private TextView totaleDepense;
-    List<Depense> depenses;
-    DepenseAdapterDashboard depenseAdapterDashboard;
+    private TextView totaleTemps;
+    List<Tache> taches;
+    TempsAdapterDashboard tempsAdapterDashboard;
 
     private void injecterGUI() {
-        depenseRecyclerView = (RecyclerView) findViewById(R.id.depenseDashboardRecyclerView);
+        tempsRecyclerView = findViewById(R.id.tempsDashboardRecyclerView);
     }
 
     private void initAdapter() {
@@ -47,10 +43,9 @@ public class DepenseListDashboardActivity extends AppCompatActivity {
         Projet projet = (Projet) Session.getAttribut("projetCriteria");
         Date dateMin = (Date) Session.getAttribut("dateMinCriteria");
         Date dateMax = (Date) Session.getAttribut("dateMaxCriteria");
-        DepenseType depenseType = (DepenseType) Session.getAttribut("depenseTypeCriteria");
 
-        titre = findViewById(R.id.titre_depense_dashboard);
-        totaleDepense = findViewById(R.id.totale_depense_dashboard);
+        titre = findViewById(R.id.titre_temps_dashboard);
+        totaleTemps = findViewById(R.id.totale_temps_dashboard);
 
         if (societe != null) {
             titre.setText(societe.getRaisonSociale());
@@ -62,65 +57,60 @@ public class DepenseListDashboardActivity extends AppCompatActivity {
             titre.setText("Sociétés + Projets");
         }
 
-        depenses = depenseService.findByCriteria(societe, projet, dateMin, dateMax);
+        taches = tacheService.findByCriteria(societe, projet, dateMin, dateMax);
 
-        BigDecimal totale = depenseService.totalDepenseCriteria(depenses);
-        totaleDepense.setText(totale + "");
+        double totale = tacheService.totalTempsCriteria(taches);
+        totaleTemps.setText(totale + "");
 
-        depenseAdapterDashboard = new DepenseAdapterDashboard(depenses);
+        tempsAdapterDashboard = new TempsAdapterDashboard(taches);
 
-        depenseRecyclerView.setAdapter(depenseAdapterDashboard);
-        depenseRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        tempsRecyclerView.setAdapter(tempsAdapterDashboard);
+        tempsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        depenseRecyclerView.addItemDecoration(itemDecoration);
+        tempsRecyclerView.addItemDecoration(itemDecoration);
 
         Session.delete("societeCriteria");
         Session.delete("projetCriteria");
         Session.delete("dateMinCriteria");
         Session.delete("dateMaxCriteria");
-        Session.delete("depenseTypeCriteria");
     }
 
     private void showBySociete(Long idSociete) {
 
-        final List<Depense> depensesBySociete = new ArrayList<>();
-        for (Depense depense : depenses) {
-            if (depense.getSociete() != null) {
-                if (depense.getSociete().getId().equals(idSociete)) {
-                    Log.d("tag", "noErrors");
-                    depensesBySociete.add(depense);
-
+        final List<Tache> tachesBySociete = new ArrayList<>();
+        for (Tache tache : taches) {
+            if (tache.getSociete() != null) {
+                if (tache.getSociete().getId().equals(idSociete)) {
+                    tachesBySociete.add(tache);
                 }
             }
         }
-        depenseAdapterDashboard.setfilter(depensesBySociete);
-        depenseAdapterDashboard.notifyDataSetChanged();
+        tempsAdapterDashboard.setfilter(tachesBySociete);
+        tempsAdapterDashboard.notifyDataSetChanged();
         Session.delete("societeRecherce");
     }
 
     private void showByProjet(Long idProjet) {
 
-        final List<Depense> depensesByProjet = new ArrayList<>();
-        for (Depense depense : depenses) {
-            if (depense.getProjet() != null) {
-                if (depense.getProjet().getId().equals(idProjet)) {
-                    Log.d("tag", "noErrors");
-                    depensesByProjet.add(depense);
-
+        final List<Tache> tachesByProjet = new ArrayList<>();
+        for (Tache tache : taches) {
+            if (tache.getProjet() != null) {
+                if (tache.getProjet().getId().equals(idProjet)) {
+                    tachesByProjet.add(tache);
                 }
             }
         }
-        depenseAdapterDashboard.setfilter(depensesByProjet);
-        depenseAdapterDashboard.notifyDataSetChanged();
-        Session.delete("projetRecherche");
+        tempsAdapterDashboard.setfilter(tachesByProjet);
+        tempsAdapterDashboard.notifyDataSetChanged();
+        Session.delete("societeRecherce");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_depense_list_dashboard);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_temps_list_dashboard);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);

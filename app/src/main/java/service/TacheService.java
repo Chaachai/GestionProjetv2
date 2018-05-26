@@ -2,6 +2,11 @@ package service;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import bean.Tache;
 import bean.Projet;
@@ -95,5 +100,40 @@ public class TacheService extends TacheDao {
             create(tache);
         }
 
+    }
+
+    public List<Tache> findByCriteria(Societe societe, Projet projet, Date dateMin, Date dateMax) {
+        open();
+        String selection = " 1 = 1 ";
+        if (societe != null) {
+            selection += " AND " + DbStructure.Tache.C_ID_SOCIETE + " = " + societe.getId();
+        }
+        if (projet != null) {
+            selection += " AND " + DbStructure.Tache.C_ID_PROJET + " = " + projet.getId();
+        }
+        if (dateMin != null) {
+            selection += " AND " + DbStructure.Tache.C_DATE + " >= " + dateMin.getTime();
+        }
+        if (dateMax != null) {
+            selection += " AND " + DbStructure.Tache.C_DATE + " <= " + dateMax.getTime();
+        }
+        Cursor cursor = db.query(DbStructure.Tache.T_NAME, columns, selection, null, null, null, null);
+        List<Tache> taches = new ArrayList<>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Tache tache = transformeCursorToBean(cursor);
+            taches.add(tache);
+            cursor.moveToNext();
+        }
+        return taches;
+    }
+
+    public double totalTempsCriteria(List<Tache> taches) {
+        double totale = 0.0;
+        for (Tache tache : taches) {
+            Log.d("tag", "Totale = " + tache.getNbrHeures());
+            totale += tache.getNbrHeures();
+        }
+        return totale;
     }
 }

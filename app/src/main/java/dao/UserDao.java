@@ -19,6 +19,7 @@ public class UserDao extends AbstractDao<User> {
         contentValues.put(DbStructure.User.C_PASSWORD, user.getPassword());
         contentValues.put(DbStructure.User.C_LASTNAME, user.getLastName());
         contentValues.put(DbStructure.User.C_FIRSTNAME, user.getFirstName());
+        contentValues.put(DbStructure.User.C_NBRCONNECTION, user.getNbrConnection());
         return getDb().insert(DbStructure.User.T_NAME, null, contentValues);
     }
 
@@ -30,6 +31,7 @@ public class UserDao extends AbstractDao<User> {
         contentValues.put(DbStructure.User.C_PASSWORD, user.getPassword());
         contentValues.put(DbStructure.User.C_LASTNAME, user.getLastName());
         contentValues.put(DbStructure.User.C_FIRSTNAME, user.getFirstName());
+        contentValues.put(DbStructure.User.C_NBRCONNECTION, user.getNbrConnection());
         return db.update(DbStructure.User.T_NAME, contentValues, DbStructure.User.C_ID + " = '" + user.getId() + "'", null);
     }
 
@@ -39,7 +41,7 @@ public class UserDao extends AbstractDao<User> {
     }
 
     protected User transformeCursorToBean(Cursor cursor) {
-        return new User(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+        return new User(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(4));
     }
 
     public UserDao(Context context) {
@@ -49,6 +51,7 @@ public class UserDao extends AbstractDao<User> {
                 DbStructure.User.C_PASSWORD,
                 DbStructure.User.C_LASTNAME,
                 DbStructure.User.C_FIRSTNAME,
+                DbStructure.User.C_NBRCONNECTION,
         };
         tableName = DbStructure.User.T_NAME;
         idName = DbStructure.User.C_ID;

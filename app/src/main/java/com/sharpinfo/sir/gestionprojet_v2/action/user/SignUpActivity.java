@@ -43,14 +43,14 @@ public class SignUpActivity extends AppCompatActivity {
         firstName = findViewById(R.id.firstname);
     }
 
-    private User getParam() {
-        return new User(String.valueOf(username.getText()), String.valueOf(password.getText()), String.valueOf(lastName.getText()), String.valueOf(firstName.getText()));
-    }
+//    private User getParam() {
+//        return new User(String.valueOf(username.getText()), String.valueOf(password.getText()), String.valueOf(lastName.getText()), String.valueOf(firstName.getText()));
+//    }
 
-    public void signUp(View view) {
-        User user = getParam();
-        userService.createUser(user);
-        Toast.makeText(getBaseContext(), R.string.user_created, Toast.LENGTH_LONG).show();
-        Dispacher.forward(SignUpActivity.this, SignInActivity.class);
-    }
+//    public void signUp(View view) {
+////        User user = getParam();
+////        userService.createUser(user);
+////        Toast.makeText(getBaseContext(), R.string.user_created, Toast.LENGTH_LONG).show();
+////        Dispacher.forward(SignUpActivity.this, SignInActivity.class);
+////    }
 }
