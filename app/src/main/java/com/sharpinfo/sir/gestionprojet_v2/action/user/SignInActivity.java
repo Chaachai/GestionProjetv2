@@ -1,5 +1,7 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.user;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.action.MainActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.menu.ChangePasswordActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.menu.MenuActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.menu.SideMenuActivity;
 
@@ -49,9 +52,9 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void injectParam() {
-        username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        textMsg = (TextView) findViewById(R.id.errorMsg);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        textMsg = findViewById(R.id.errorMsg);
     }
 
     private User getParam() {
@@ -75,6 +78,8 @@ public class SignInActivity extends AppCompatActivity {
         } else {
             User u = userService.find(user.getId());
             Session.setAttribute(u, "connectedUser");
+            u.setNbrConnection(u.getNbrConnection() + 1);
+            userService.edit(u);
             Toast.makeText(getBaseContext(), "WELCOME BACK " + u.getLastName() + " " + u.getFirstName(), Toast.LENGTH_LONG).show();
             Dispacher.forward(SignInActivity.this, SideMenuActivity.class);
             finish();

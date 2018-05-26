@@ -1,6 +1,9 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.menu;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,13 +25,17 @@ import com.sharpinfo.sir.gestionprojet_v2.action.statistics.StatisticsMenuActivi
 import com.sharpinfo.sir.gestionprojet_v2.action.tache.TacheListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.user.SignInActivity;
 
+import bean.User;
 import helper.Dispacher;
+import helper.Session;
 import service.ProjetService;
+import service.UserService;
 
 public class SideMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ProjetService projetService = new ProjetService(this);
+    UserService userService = new UserService(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +60,33 @@ public class SideMenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        User user = (User) Session.getAttribut("connectedUser");
+        Log.d("tag", "Nbr Connection ========= " + user.getNbrConnection());
+        if (user.getNbrConnection() == 1) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(SideMenuActivity.this);
+            alert.setTitle("Change Password");
+            alert.setMessage("Welcome to Expert Projects, it seems that this is your first time here, therefore, we recommend that you change your password.");
+            alert.setPositiveButton("Later", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            alert.setNegativeButton("Change Password Now", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Dispacher.forward(SideMenuActivity.this, ChangePasswordActivity.class);
+                    dialog.dismiss();
+                }
+            });
+            user.setNbrConnection(2);
+            userService.edit(user);
+            alert.show();
+        }
     }
 
 

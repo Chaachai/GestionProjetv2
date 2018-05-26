@@ -4,78 +4,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_stars"
     tools:context=".action.statistics.StatisticsMenuActivity"
     tools:layout_editor_absoluteY="81dp">
 
-    <Button
-        android:id="@+id/societe_statistics"
-        android:layout_width="288dp"
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="11dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginStart="48dp"
-        android:background="@drawable/rounded_button"
-        android:text="Statstiques des Societes"
-        app:layout_constraintBottom_toTopOf="@+id/projet_statistics"
+        android:layout_marginBottom="41dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="38dp"
+        android:text="Quelles statistiques voulez-vous consulter ?"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/societe_statistics"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/projet_statistics"
-        android:layout_width="288dp"
+    <ImageView
+        android:id="@+id/societe_statistics"
+        android:layout_width="122dp"
+        android:layout_height="122dp"
+        android:layout_marginEnd="131dp"
+        android:layout_marginStart="131dp"
+        android:background="@drawable/cerclebackgroundpurple"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/societe_statistics_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26"
+        app:srcCompat="@drawable/ic_people_black_24dp" />
+
+    <TextView
+        android:id="@+id/societe_statistics_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginStart="48dp"
-        android:background="@drawable/rounded_button"
-        android:text="Statistiques des Projets"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        android:layout_marginBottom="54dp"
+        android:layout_marginEnd="153dp"
+        android:layout_marginStart="153dp"
+        android:clickable="true"
+        android:text="Sociétés"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/projet_statistics"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/societe_statistics" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="288dp"
+
+    <ImageView
+        android:id="@+id/projet_statistics"
+        android:layout_width="122dp"
+        android:layout_height="122dp"
+        android:layout_marginEnd="131dp"
+        android:layout_marginStart="131dp"
+        android:background="@drawable/cerclebackgroundpink"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/projet_statistics_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/societe_statistics_text"
+        app:srcCompat="@drawable/ic_widgets_black_24dp" />
+
+
+    <TextView
+        android:id="@+id/projet_statistics_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginStart="48dp"
-        android:background="@drawable/rounded_button"
-        android:text="Statistiques des Depenses"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        android:layout_marginBottom="58dp"
+        android:layout_marginEnd="159dp"
+        android:layout_marginStart="160dp"
+        android:clickable="true"
+        android:text="Projets"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/projet_statistics" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="288dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginStart="48dp"
-        android:background="@drawable/rounded_button"
-        android:text="Statistiques des Taches"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="240dp"
-        android:layout_height="72dp"
-        android:layout_marginBottom="114dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="71dp"
-        app:layout_constraintBottom_toTopOf="@+id/societe_statistics"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_expert" />
 
 </android.support.constraint.ConstraintLayout>

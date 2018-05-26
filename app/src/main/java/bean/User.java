@@ -13,12 +13,14 @@ public class User implements Serializable {
     private String password;
     private String lastName;
     private String firstName;
+    private int nbrConnection;
 
-    public User(String id, String password, String lastName, String firstName) {
+    public User(String id, String password, String lastName, String firstName, int nbrConnection) {
         this.id = id;
         this.password = password;
         this.lastName = lastName;
         this.firstName = firstName;
+        this.nbrConnection = nbrConnection;
     }
 
     public User(String id) {
@@ -36,6 +38,13 @@ public class User implements Serializable {
         this.id = id;
     }
 
+    public int getNbrConnection() {
+        return nbrConnection;
+    }
+
+    public void setNbrConnection(int nbrConnection) {
+        this.nbrConnection = nbrConnection;
+    }
 
     public String getPassword() {
         return password;

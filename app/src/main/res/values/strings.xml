@@ -91,4 +91,6 @@
         <item>Time</item>
     </string-array>
     <string name="title_activity_depense_list_dashboard">DepenseListDashboardActivity</string>
+    <string name="error_depense_criteria">You can\'t choose a company and a project at the same time !</string>
+    <string name="title_activity_temps_list_dashboard">TempsListDashboardActivity</string>
 </resources>

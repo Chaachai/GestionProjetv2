@@ -137,14 +137,14 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "");
 
-        pieDataSet.setColors(getResources().getColor(R.color.yello),
+        pieDataSet.setColors(
+                getResources().getColor(R.color.orange),
+                getResources().getColor(R.color.brown),
                 getResources().getColor(R.color.purple),
                 getResources().getColor(R.color.pink),
                 getResources().getColor(R.color.green),
-                getResources().getColor(R.color.orange),
-                getResources().getColor(R.color.brown),
+                getResources().getColor(R.color.yello),
                 getResources().getColor(R.color.grey));
-
 
         Description description = pieChartTime.getDescription();
         description.setEnabled(false);
@@ -179,6 +179,7 @@ public class ProjetStatisticsActivity extends AppCompatActivity {
 
         PieData data = new PieData(pieDataSet);
         pieChartTime.setUsePercentValues(true);
+        pieChartTime.setEntryLabelColor(getResources().getColor(R.color.black));
         pieChartTime.setData(data);
         pieChartTime.invalidate(); // refresh
     }

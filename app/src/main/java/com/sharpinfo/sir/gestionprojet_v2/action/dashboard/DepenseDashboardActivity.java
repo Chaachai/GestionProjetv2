@@ -12,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.ProjetSpinnerAdapter;
@@ -40,6 +41,7 @@ public class DepenseDashboardActivity extends AppCompatActivity {
     private EditText editDateMax;
     private ImageButton cleatDateMin;
     private ImageButton cleatDateMax;
+    private TextView error;
     private Calendar myCalendarMin = Calendar.getInstance();
     private Calendar myCalendarMax = Calendar.getInstance();
 
@@ -250,39 +252,46 @@ public class DepenseDashboardActivity extends AppCompatActivity {
 
     public void recherche(View view) {
 
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        error = findViewById(R.id.error_depense_dashboard);
 
-        editDateMin = findViewById(R.id.dashboard_depense_date_min);
-        editDateMax = findViewById(R.id.dashboard_depense_date_max);
+        if (societe != null && projet != null) {
+            error.setText(R.string.error_depense_criteria);
+        } else {
 
-        String dateMinString = editDateMin.getText() + "";
-        String dateMaxString = editDateMax.getText() + "";
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 
-        Date dateMin = null;
-        Date dateMax = null;
+            editDateMin = findViewById(R.id.dashboard_depense_date_min);
+            editDateMax = findViewById(R.id.dashboard_depense_date_max);
 
-        if (!dateMinString.isEmpty()) {
-            try {
-                dateMin = format.parse(editDateMin.getText() + "");
-            } catch (ParseException e) {
-                e.printStackTrace();
+            String dateMinString = editDateMin.getText() + "";
+            String dateMaxString = editDateMax.getText() + "";
+
+            Date dateMin = null;
+            Date dateMax = null;
+
+            if (!dateMinString.isEmpty()) {
+                try {
+                    dateMin = format.parse(editDateMin.getText() + "");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
-        }
 
-        if (!dateMaxString.isEmpty()) {
-            try {
-                dateMax = format.parse(editDateMax.getText() + "");
-            } catch (ParseException e) {
-                e.printStackTrace();
+            if (!dateMaxString.isEmpty()) {
+                try {
+                    dateMax = format.parse(editDateMax.getText() + "");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
+
+            Session.setAttribute(societe, "societeCriteria");
+            Session.setAttribute(projet, "projetCriteria");
+            Session.setAttribute(dateMin, "dateMinCriteria");
+            Session.setAttribute(dateMax, "dateMaxCriteria");
+
+
+            Dispacher.forward(DepenseDashboardActivity.this, DepenseListDashboardActivity.class);
         }
-
-        Session.setAttribute(societe, "societeCriteria");
-        Session.setAttribute(projet, "projetCriteria");
-        Session.setAttribute(dateMin, "dateMinCriteria");
-        Session.setAttribute(dateMax, "dateMaxCriteria");
-
-
-        Dispacher.forward(DepenseDashboardActivity.this, DepenseListDashboardActivity.class);
     }
 }
