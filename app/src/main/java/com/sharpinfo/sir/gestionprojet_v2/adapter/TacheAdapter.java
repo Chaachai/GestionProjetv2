@@ -46,7 +46,7 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
     private TimePickerDialog timePickerDialog;
     private Calendar calendar;
     private int currentHeure;
-    private  int currentMinute;
+    private int currentMinute;
     private int heureDebut, minuteDebut, heureFin, minuteFin;
 
     public TacheAdapter(List<Tache> taches) {
@@ -103,7 +103,7 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
 
         //inflate custom layout
 //        final View tacheView = inflater.inflate(R.layout.item_tache_list, parent, false);
-        final View tacheView = inflater.inflate(R.layout.item_tache_list, null);
+        final View tacheView = inflater.inflate(R.layout.item_tache_list, parent, false);
 
         // Return a new holder instance
         //final was added here because of toast

@@ -171,6 +171,7 @@ public class SideMenuActivity extends AppCompatActivity
 
         if (hour < 8) {
             Log.d("notification", "hour<8");
+            cancelNotification();
             calendar.set(Calendar.HOUR_OF_DAY, 8);
             Intent intent = new Intent(getApplicationContext(), NotificationReceiverDayStart.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 4242, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -186,21 +187,19 @@ public class SideMenuActivity extends AppCompatActivity
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
             assert alarmManager != null;
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-//                calendar.getTimeInMillis(),
-                    System.currentTimeMillis(),
+                    System.currentTimeMillis()  + AlarmManager.INTERVAL_HOUR,
                     AlarmManager.INTERVAL_HOUR,
-//                    60 * 1000,
                     pendingIntent);
 //            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-//                    SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_HOUR,
-////                    AlarmManager.INTERVAL_HALF_HOUR,
+//                    System.currentTimeMillis() + AlarmManager.INTERVAL_HOUR,
+////                    AlarmManager.INTERVAL_HOUR,
 //                    60 * 1000,
 //                    pendingIntent);
 
             Log.d("notification", "hour<21");
         } else {
             Log.d("notification", "hour>21");
-
+            cancelNotification();
             calendar.set(Calendar.HOUR_OF_DAY, 8);
             Intent intent = new Intent(getApplicationContext(), NotificationReceiverDayStart.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 4242, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -212,6 +211,13 @@ public class SideMenuActivity extends AppCompatActivity
         }
 
 
+    }
+
+    private void cancelNotification() {
+        Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 2424, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.cancel(pendingIntent);
     }
 
     public void testStatistics(View view) {

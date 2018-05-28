@@ -147,6 +147,9 @@
         </activity>
 
         <receiver android:name=".action.notification.NotificationReceiver" />
+        <receiver android:name=".action.notification.NotificationReceiverDepense" />
+        <receiver android:name=".action.notification.NotificationReceiverTache" />
+        <receiver android:name=".action.notification.NotificationReceiverDayStart" />
     </application>
 
 </manifest>
