@@ -1,8 +1,12 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.menu;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -13,17 +17,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
-import com.sharpinfo.sir.gestionprojet_v2.action.HamzaTestChart2Activity;
 import com.sharpinfo.sir.gestionprojet_v2.action.dashboard.DashboardActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.notification.NotificationReceiver;
+import com.sharpinfo.sir.gestionprojet_v2.action.notification.NotificationReceiverDayStart;
 import com.sharpinfo.sir.gestionprojet_v2.action.projet.ProjetListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.statistics.StatisticsMenuActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.tache.TacheListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.user.SignInActivity;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import bean.User;
 import helper.Dispacher;
@@ -52,6 +59,7 @@ public class SideMenuActivity extends AppCompatActivity
 //            }
 //
 //        });
+        notifyUser();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -147,6 +155,63 @@ public class SideMenuActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public void notifyUser() {
+        Log.d("notification", "start");
+        Calendar calendar = Calendar.getInstance();
+//        calendar.set(Calendar.HOUR_OF_DAY, 8);
+//        calendar.set(Calendar.MINUTE, 0);
+
+        Log.d("notification", "" + calendar.get(Calendar.HOUR_OF_DAY));
+
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+
+        if (hour < 8) {
+            Log.d("notification", "hour<8");
+            calendar.set(Calendar.HOUR_OF_DAY, 8);
+            Intent intent = new Intent(getApplicationContext(), NotificationReceiverDayStart.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 4242, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            assert alarmManager != null;
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP,
+                    calendar.getTimeInMillis(),
+                    pendingIntent);
+
+        } else if (hour < 20) {
+            Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 2424, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            assert alarmManager != null;
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+//                calendar.getTimeInMillis(),
+                    System.currentTimeMillis(),
+                    AlarmManager.INTERVAL_HOUR,
+//                    60 * 1000,
+                    pendingIntent);
+//            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//                    SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_HOUR,
+////                    AlarmManager.INTERVAL_HALF_HOUR,
+//                    60 * 1000,
+//                    pendingIntent);
+
+            Log.d("notification", "hour<21");
+        } else {
+            Log.d("notification", "hour>21");
+
+            calendar.set(Calendar.HOUR_OF_DAY, 8);
+            Intent intent = new Intent(getApplicationContext(), NotificationReceiverDayStart.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 4242, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+            assert alarmManager != null;
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP,
+                    calendar.getTimeInMillis(),
+                    pendingIntent);
+        }
+
+
     }
 
     public void testStatistics(View view) {

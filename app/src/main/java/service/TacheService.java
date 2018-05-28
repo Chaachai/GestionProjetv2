@@ -128,8 +128,8 @@ public class TacheService extends TacheDao {
         return taches;
     }
 
-    public double totalTempsCriteria(List<Tache> taches) {
-        double totale = 0.0;
+    public Integer totalTempsCriteria(List<Tache> taches) {
+        Integer totale = 0;
         for (Tache tache : taches) {
             Log.d("tag", "Totale = " + tache.getNbrHeures());
             totale += tache.getNbrHeures();

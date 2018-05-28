@@ -102,7 +102,8 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
         final LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
-        final View tacheView = inflater.inflate(R.layout.item_tache_list, parent, false);
+//        final View tacheView = inflater.inflate(R.layout.item_tache_list, parent, false);
+        final View tacheView = inflater.inflate(R.layout.item_tache_list, null);
 
         // Return a new holder instance
         //final was added here because of toast
