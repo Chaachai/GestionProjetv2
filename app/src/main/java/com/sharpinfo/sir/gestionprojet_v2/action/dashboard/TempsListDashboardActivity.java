@@ -59,8 +59,10 @@ public class TempsListDashboardActivity extends AppCompatActivity {
 
         taches = tacheService.findByCriteria(societe, projet, dateMin, dateMax);
 
-        double totale = tacheService.totalTempsCriteria(taches);
-        totaleTemps.setText(totale + "");
+        Integer totale = tacheService.totalTempsCriteria(taches);
+        int heure = totale / 60;
+        int minute = totale % 60;
+        totaleTemps.setText(String.format("%d:%d", heure, minute));
 
         tempsAdapterDashboard = new TempsAdapterDashboard(taches);
 
