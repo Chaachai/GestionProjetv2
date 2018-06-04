@@ -277,7 +277,8 @@ public class TempsAdapterDashboard extends RecyclerView.Adapter<TempsAdapterDash
                 ImageButton dismissButton = mView.findViewById(R.id.dismiss_tache);
 
                 TextView date = mView.findViewById(R.id.date_popup_tache);
-                TextView heur = mView.findViewById(R.id.heur_popup_tache);
+                TextView heur = mView.findViewById(R.id.heur_debut_popup_tache);
+                TextView heurFin = mView.findViewById(R.id.heur_fin_popup_tache);
                 TextView nbrHeur = mView.findViewById(R.id.nbrheur_popup_tache);
                 TextView commentaire = mView.findViewById(R.id.commentaire_popup_tache);
                 TextView projet = mView.findViewById(R.id.projet_popup_tache);

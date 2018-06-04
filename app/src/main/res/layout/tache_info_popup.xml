@@ -12,7 +12,7 @@
         android:layout_width="49dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/date"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -23,12 +23,11 @@
         android:id="@+id/societe_popup_tache"
         android:layout_width="181dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/sharpinfo_societe_for_infomation"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -37,31 +36,31 @@
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/heures"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/nbrheur_popup_tache"
-        app:layout_constraintTop_toBottomOf="@+id/heur_popup_tache" />
+        app:layout_constraintTop_toBottomOf="@+id/heur_fin_popup_tache" />
 
     <TextView
         android:id="@+id/nbrheur_popup_tache"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/_03"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/heur_popup_tache" />
+        app:layout_constraintTop_toBottomOf="@+id/heur_fin_popup_tache" />
 
     <TextView
-        android:id="@+id/heur_popup_tache"
+        android:id="@+id/heur_debut_popup_tache"
         android:layout_width="74dp"
         android:layout_height="25dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/_15_35"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -69,11 +68,23 @@
         app:layout_constraintTop_toBottomOf="@+id/date_popup_tache" />
 
     <TextView
+        android:id="@+id/heur_fin_popup_tache"
+        android:layout_width="74dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/_15_35"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/heur_debut_popup_tache" />
+
+    <TextView
         android:id="@+id/date_popup_tache"
         android:layout_width="104dp"
         android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:text="@string/_08_05_2018"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -84,9 +95,9 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="81dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/heure"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="8dp"
+        android:text="Heure debut:"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +107,7 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="67dp"
+        android:layout_marginStart="69dp"
         android:layout_marginTop="16dp"
         android:text="@string/societ"
         android:textColor="@color/black"
@@ -109,7 +120,7 @@
         android:layout_width="59dp"
         android:layout_height="24dp"
         android:layout_marginStart="78dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/projet"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -121,23 +132,22 @@
         android:layout_width="57dp"
         android:layout_height="26dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/dur_e_heurs"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <TextView
         android:id="@+id/projet_popup_tache"
         android:layout_width="182dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/g_stion_de_projet_et_de_societes_android"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/societe_popup_tache" />
 
@@ -157,7 +167,7 @@
         android:layout_width="120dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/commentaire"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -168,12 +178,23 @@
         android:id="@+id/commentaire_popup_tache"
         android:layout_width="182dp"
         android:layout_height="81dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/type_whatever_come_to_your_mind_in_this_text_area"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/projet_popup_tache" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
+        android:text="Heure fin:"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 </android.support.constraint.ConstraintLayout>

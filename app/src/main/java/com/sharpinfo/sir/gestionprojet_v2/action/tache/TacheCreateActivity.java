@@ -20,7 +20,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
-import com.sharpinfo.sir.gestionprojet_v2.action.notification.NotificationReceiverDayStart;
 import com.sharpinfo.sir.gestionprojet_v2.action.notification.NotificationReceiverTache;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.ProjetSpinnerAdapter;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.SocieteSpinnerAdapter;
@@ -239,11 +238,11 @@ public class TacheCreateActivity extends AppCompatActivity {
     }
 
     private Integer calculateNbrOfMinutes() {
-        hourFinTache = hourFinTache * 60;
-        Integer totalHeureFin = hourFinTache + minuteFinTache;
+       int hourFinTacheInMinutes = hourFinTache * 60;
+        Integer totalHeureFin = hourFinTacheInMinutes + minuteFinTache;
         Log.d("tacheCreate", totalHeureFin.toString());
-        hourDebutTache = hourDebutTache * 60;
-        Integer totalHeureDebut = hourDebutTache + minuteDebutTache;
+        int hourDebutTacheInMinutes = hourDebutTache * 60;
+        Integer totalHeureDebut = hourDebutTacheInMinutes + minuteDebutTache;
         Log.d("tacheCreate", totalHeureDebut.toString());
 
         Integer nbrMinute = totalHeureFin - totalHeureDebut;
@@ -270,10 +269,10 @@ public class TacheCreateActivity extends AppCompatActivity {
         /////
 //        double montantDouble = Double.valueOf("" + montantDepense.getText());
 //        BigDecimal montantBigDecimal = BigDecimal.valueOf(montantDouble);
+
         Integer totalMinutes = calculateNbrOfMinutes();
-
-
         tache.setNbrHeures(totalMinutes);
+
         tache.setCommentaire("" + commentaireTache.getText());
         tache.setHeureDebut("" + heureDebutTache.getText());
         tache.setHeureFin("" + heureFinTache.getText());
@@ -343,12 +342,13 @@ public class TacheCreateActivity extends AppCompatActivity {
 
     }
 
-    private Societe getSocieteFromSpinner() {
+    private void getSocieteFromSpinner() {
         societeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 societe = societeSpinnerAdapter.getItem(position);
+                assert societe != null;
                 if (societe.getId() == null) {
                     societe = null;
                 }
@@ -358,15 +358,15 @@ public class TacheCreateActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        return societe;
     }
 
-    private Projet getProjetFromSpinner() {
+    private void getProjetFromSpinner() {
         projetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 projet = projetSpinnerAdapter.getItem(position);
+                assert projet != null;
                 if (projet.getId() == null) {
                     projet = null;
                 }
@@ -376,6 +376,5 @@ public class TacheCreateActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        return projet;
     }
 }
