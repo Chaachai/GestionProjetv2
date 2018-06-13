@@ -46,7 +46,7 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
     private TimePickerDialog timePickerDialog;
     private Calendar calendar;
     private int currentHeure;
-    private  int currentMinute;
+    private int currentMinute;
     private int heureDebut, minuteDebut, heureFin, minuteFin;
 
     public TacheAdapter(List<Tache> taches) {

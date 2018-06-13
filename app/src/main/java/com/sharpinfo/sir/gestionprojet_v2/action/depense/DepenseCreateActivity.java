@@ -1,10 +1,13 @@
 package com.sharpinfo.sir.gestionprojet_v2.action.depense;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,6 +22,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.sharpinfo.sir.gestionprojet_v2.R;
+import com.sharpinfo.sir.gestionprojet_v2.action.notification.NotificationReceiverDepense;
+import com.sharpinfo.sir.gestionprojet_v2.action.notification.NotificationReceiverTache;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.DepenseTypeSpinnerAdapter;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.ProjetSpinnerAdapter;
 import com.sharpinfo.sir.gestionprojet_v2.adapter.SocieteSpinnerAdapter;
@@ -228,7 +233,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
         getProjetFromSpinner();
         initDepenseTypeSpinner();
         getDepenseTypeFromSpinner();
-
+        notifyUser();
         depenseTypeCreateBtn = findViewById(R.id.create_depense_type_btn);
         depenseTypeCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,6 +249,17 @@ public class DepenseCreateActivity extends AppCompatActivity {
         initPopupDate();
         initDate();
         initHeurePicker();
+    }
+
+    private void notifyUser() {
+        Intent intent = new Intent(getApplicationContext(), NotificationReceiverDepense.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 2222, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        assert alarmManager != null;
+        Log.d("dpeneseNotif", "dpeneseNotif");
+        alarmManager.set(AlarmManager.RTC_WAKEUP,
+                System.currentTimeMillis() + AlarmManager.INTERVAL_HOUR,
+                pendingIntent);
     }
 
     private void initHeurePicker() {
