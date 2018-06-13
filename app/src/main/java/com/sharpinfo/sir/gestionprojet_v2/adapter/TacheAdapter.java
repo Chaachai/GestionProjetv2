@@ -352,7 +352,6 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
         int heure = nbrOfMinutes / 60;
         int minute = nbrOfMinutes % 60;
         textView.setText(String.format("%d:%d", heure, minute));
-
     }
 
     private void removeFromList(int position, ViewHolder viewHolder, Context context) {
