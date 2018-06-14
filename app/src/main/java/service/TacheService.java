@@ -64,6 +64,16 @@ public class TacheService extends TacheDao {
         return sum;
     }
 
+    public Integer totalTacheByProjet(Projet projet) {
+        open();
+        Cursor mCount = getDb().rawQuery("SELECT SUM(nbr_heures) FROM " + DbStructure.Tache.T_NAME +
+                " where " + DbStructure.Tache.C_ID_PROJET + "=" + projet.getId(), null);
+        mCount.moveToFirst();
+        Integer sum = mCount.getInt(0);
+        mCount.close();
+        return sum;
+    }
+
 
     public void deleteByProjet(Projet projet) {
         open();

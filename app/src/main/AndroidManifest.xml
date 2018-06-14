@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sharpinfo.sir.gestionprojet_v2">
 
-
     <uses-permission android:name="android.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -142,14 +141,20 @@
             android:name=".action.dashboard.TempsListDashboardActivity"
             android:label="@string/dashbord"
             android:parentActivityName=".action.dashboard.TempsDashboardActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <receiver android:name=".action.notification.NotificationReceiver" />
         <receiver android:name=".action.notification.NotificationReceiverDepense" />
         <receiver android:name=".action.notification.NotificationReceiverTache" />
         <receiver android:name=".action.notification.NotificationReceiverDayStart" />
+
+        <activity
+            android:name=".action.statistics.SocieteProjectsActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sharpinfo.sir.gestionprojet_v2.action.societe.SocieteListActivity" />
+        </activity>
     </application>
 
 </manifest>

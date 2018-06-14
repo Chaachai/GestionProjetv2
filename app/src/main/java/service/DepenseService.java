@@ -51,6 +51,23 @@ public class DepenseService extends DepenseDao {
         return montant;
     }
 
+    public BigDecimal totalDepenseByProjet(Projet projet) {
+        open();
+        Cursor mCount = getDb().rawQuery("SELECT SUM(montant) FROM depense where " + DbStructure.Depense.C_ID_PROJET + "=" + projet.getId(), null);
+        mCount.moveToFirst();
+        String s = mCount.getString(0);
+        BigDecimal montant;
+        Log.d("depenseservice", s + "");
+        if (s == null) {
+            montant = BigDecimal.ZERO;
+        } else {
+            montant = new BigDecimal(s);
+        }
+        close();
+        mCount.close();
+        return montant;
+    }
+
     public BigDecimal totalDepenseProjet() {
         open();
         Cursor mCount = getDb().rawQuery("SELECT SUM(montant) FROM depense where " + DbStructure.Depense.C_ID_PROJET + " IS NOT NULL", null);

@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.sharpinfo.sir.gestionprojet_v2.R;
 import com.sharpinfo.sir.gestionprojet_v2.action.depense.DepenseListActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.projet.ProjetListActivity;
+import com.sharpinfo.sir.gestionprojet_v2.action.statistics.SocieteProjectsActivity;
 import com.sharpinfo.sir.gestionprojet_v2.action.tache.TacheListActivity;
 
 import java.text.ParseException;
@@ -205,6 +206,7 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
                 Button depenseSocieteBtn = mView.findViewById(R.id.depenses_societe_popup);
                 Button tacheSocieteBtn = mView.findViewById(R.id.taches_societe_popup);
                 Button projetSocieteBtn = mView.findViewById(R.id.projets_societe_popup);
+                Button statsProjetSocieteBtn = mView.findViewById(R.id.stats_societe_popup);
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
                 String dateString = dateFormat.format(msocietes.get(viewHolder.getAdapterPosition()).getDateFondation());
@@ -256,6 +258,15 @@ public class SocieteAdapter extends RecyclerView.Adapter<SocieteAdapter.ViewHold
 
                         Session.setAttribute(msocietes.get(viewHolder.getAdapterPosition()), "societeRecherce");
                         Dispacher.forward(context, ProjetListActivity.class);
+                        alertDialog.dismiss();
+                    }
+                });
+
+                statsProjetSocieteBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Session.setAttribute(msocietes.get(viewHolder.getAdapterPosition()), "societeRecherce");
+                        Dispacher.forward(context, SocieteProjectsActivity.class);
                         alertDialog.dismiss();
                     }
                 });

@@ -139,14 +139,30 @@
         android:id="@+id/projets_societe_popup"
         android:layout_width="284dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rounded_button"
         android:text="Consulter les projets"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taches_societe_popup" />
+
+    <Button
+        android:id="@+id/stats_societe_popup"
+        android:layout_width="284dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_button"
+        android:text="Consulter les statistiques"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/projets_societe_popup" />
 
 </android.support.constraint.ConstraintLayout>
