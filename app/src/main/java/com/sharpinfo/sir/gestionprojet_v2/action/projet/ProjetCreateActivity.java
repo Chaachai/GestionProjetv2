@@ -89,7 +89,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
         societeSpinner = findViewById(R.id.societe_spinner);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
-        societeSpinnerAdapter.add(new Societe(null, " ------SELECT A COMPANY------ "));
+        societeSpinnerAdapter.add(new Societe(null, " ------SELECT  COMPANY------ "));
         societeSpinner.setAdapter(societeSpinnerAdapter);
         societeSpinnerAdapter.notifyDataSetChanged();
         societeSpinner.setSelection(societeSpinnerAdapter.getCount() + 1, true);

@@ -102,7 +102,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
         societeSpinner = findViewById(R.id.societe_spinner);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
-        societeSpinnerAdapter.add(new Societe(null, " --SELECT A SOCIETE-- "));
+        societeSpinnerAdapter.add(new Societe(null, " --SELECT  SOCIETE-- "));
         societeSpinner.setAdapter(societeSpinnerAdapter);
         societeSpinnerAdapter.notifyDataSetChanged();
         societeSpinner.setSelection(societeSpinnerAdapter.getCount() + 1, true);

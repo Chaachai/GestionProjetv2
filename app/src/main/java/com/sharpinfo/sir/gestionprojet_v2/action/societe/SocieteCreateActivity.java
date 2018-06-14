@@ -71,7 +71,7 @@ public class SocieteCreateActivity extends AppCompatActivity {
 //            }
 //        }
         managerSpinnerAdapter = new ManagerSpinnerAdapter(this, android.R.layout.simple_spinner_item, managers);
-        managerSpinnerAdapter.add(new Manager(null, "--SELECT A MANAGER--", ""));
+        managerSpinnerAdapter.add(new Manager(null, "--SELECT MANAGER--", ""));
         managerSpinner.setAdapter(managerSpinnerAdapter);
         managerSpinnerAdapter.notifyDataSetChanged();
         managerSpinner.setSelection(managerSpinnerAdapter.getCount() + 1, true);
