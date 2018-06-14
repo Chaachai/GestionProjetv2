@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 public final class DbStructure {
 
     public static final String dbName = "gestion_projet";
-    public static final int DB_VERSION = 19;
+    public static final int DB_VERSION = 20;
 
     public static abstract class User implements BaseColumns {
 

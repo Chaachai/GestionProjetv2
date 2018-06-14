@@ -102,7 +102,6 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
         final LayoutInflater inflater = LayoutInflater.from(context);
 
         //inflate custom layout
-//        final View tacheView = inflater.inflate(R.layout.item_tache_list, parent, false);
         final View tacheView = inflater.inflate(R.layout.item_tache_list, parent, false);
 
         // Return a new holder instance
@@ -355,7 +354,6 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheAdapter.ViewHolder> 
         int heure = nbrOfMinutes / 60;
         int minute = nbrOfMinutes % 60;
         textView.setText(String.format("%d:%d", heure, minute));
-
     }
 
     private void removeFromList(int position, ViewHolder viewHolder, Context context) {
