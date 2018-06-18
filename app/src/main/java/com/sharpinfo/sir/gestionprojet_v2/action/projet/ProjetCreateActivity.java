@@ -89,7 +89,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
         societeSpinner = findViewById(R.id.societe_spinner);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
-        societeSpinnerAdapter.add(new Societe(null, " ------SELECT  COMPANY------ "));
+        societeSpinnerAdapter.add(new Societe(null, " ------CHOIX  SOCIETE------ "));
         societeSpinner.setAdapter(societeSpinnerAdapter);
         societeSpinnerAdapter.notifyDataSetChanged();
         societeSpinner.setSelection(societeSpinnerAdapter.getCount() + 1, true);
@@ -181,13 +181,13 @@ public class ProjetCreateActivity extends AppCompatActivity {
         } else if (projet.getSociete().getId() == null) {
             AlertDialog.Builder alert = new AlertDialog.Builder(ProjetCreateActivity.this);
             alert.setTitle("Info");
-            alert.setMessage("If you don't choose a company, the project will be affected as personal, do you confirm ?");
-            alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            alert.setMessage("Si vous ne choisissez pas de societe , le projet sera affecté comme personel, confirmez-vous?");
+            alert.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if (projet.getDescription().isEmpty()) {
-                        projet.setDescription("No description is available !");
+                        projet.setDescription("Aucune description n'est disponible!");
                         projetService.create(projet);
                         Dispacher.forward(ProjetCreateActivity.this, ProjetListActivity.class);
                         finish();
@@ -199,7 +199,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
                     dialog.dismiss();
                 }
             });
-            alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            alert.setNegativeButton("Non", new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -210,7 +210,7 @@ public class ProjetCreateActivity extends AppCompatActivity {
             alert.show();
         } else {
             if(projet.getDescription().isEmpty()){
-                projet.setDescription("No description is available !");
+                projet.setDescription("Aucune description n'est disponible!");
                 projetService.create(projet);
                 Dispacher.forward(ProjetCreateActivity.this, ProjetListActivity.class);
                 finish();

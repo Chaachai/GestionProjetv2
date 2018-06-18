@@ -102,7 +102,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
         societeSpinner = findViewById(R.id.societe_spinner);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
-        societeSpinnerAdapter.add(new Societe(null, " --SELECT  SOCIETE-- "));
+        societeSpinnerAdapter.add(new Societe(null, " --CHOIX  SOCIETE-- "));
         societeSpinner.setAdapter(societeSpinnerAdapter);
         societeSpinnerAdapter.notifyDataSetChanged();
         societeSpinner.setSelection(societeSpinnerAdapter.getCount() + 1, true);
@@ -112,7 +112,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
         projetSpinner = findViewById(R.id.projet_spinner);
         List<Projet> projets = projetService.findAll();
         projetSpinnerAdapter = new ProjetSpinnerAdapter(this, android.R.layout.simple_spinner_item, projets);
-        projetSpinnerAdapter.add(new Projet(null, " --SELECT A PROJECT-- "));
+        projetSpinnerAdapter.add(new Projet(null, " --CHOIX  PROJET-- "));
         projetSpinner.setAdapter(projetSpinnerAdapter);
         projetSpinnerAdapter.notifyDataSetChanged();
         projetSpinner.setSelection(projetSpinnerAdapter.getCount() + 1, true);
@@ -322,8 +322,8 @@ public class DepenseCreateActivity extends AppCompatActivity {
             if (depense.getProjet().getId() == null && depense.getSociete().getId() == null) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(DepenseCreateActivity.this);
                 alert.setTitle("Info");
-                alert.setMessage("If you don't choose neither a project nor a company, the expense will be affected as personal, do you confirm ?");
-                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                alert.setMessage("Si vous ne choisissez ni un projet ni une societe , la depense sera affecté comme personelle,  confirmez-vous?");
+                alert.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -341,7 +341,7 @@ public class DepenseCreateActivity extends AppCompatActivity {
                     }
                 });
 
-                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("Non", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

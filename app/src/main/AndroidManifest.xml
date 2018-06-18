@@ -95,8 +95,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sharpinfo.sir.gestionprojet_v2.action.menu.SideMenuActivity" />
         </activity>
-        <activity android:name=".action.HamzaTestChartActivity" />
-        <activity android:name=".action.HamzaTestChart2Activity" />
         <activity
             android:name=".action.statistics.SocieteStatisticsActivity"
             android:label="Companies Charts">
