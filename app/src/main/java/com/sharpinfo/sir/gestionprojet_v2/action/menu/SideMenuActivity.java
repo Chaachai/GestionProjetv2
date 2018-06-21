@@ -73,9 +73,9 @@ public class SideMenuActivity extends AppCompatActivity
         Log.d("tag", "Nbr Connection ========= " + user.getNbrConnection());
         if (user.getNbrConnection() == 1) {
             AlertDialog.Builder alert = new AlertDialog.Builder(SideMenuActivity.this);
-            alert.setTitle("Change Password");
-            alert.setMessage("Welcome to Expert Projects, it seems that this is your first time here, therefore, we recommend that you change your password.");
-            alert.setPositiveButton("Later", new DialogInterface.OnClickListener() {
+            alert.setTitle("Changer mot de passe");
+            alert.setMessage("Bienvenu à Expert Projects,Il parait que c'est votre premiere connexion,nous vous recommandons de changer votre mot de passe.");
+            alert.setPositiveButton("Plus tard", new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -83,7 +83,7 @@ public class SideMenuActivity extends AppCompatActivity
                 }
             });
 
-            alert.setNegativeButton("Change Password Now", new DialogInterface.OnClickListener() {
+            alert.setNegativeButton("Changer mot de passe", new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

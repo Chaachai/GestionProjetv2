@@ -153,7 +153,7 @@ public class TempsDashboardActivity extends AppCompatActivity {
         societeSpinner = (Spinner) findViewById(R.id.dashboard_temps_societe_spinner);
         List<Societe> societes = societeService.findAll();
         societeSpinnerAdapter = new SocieteSpinnerAdapter(this, android.R.layout.simple_spinner_item, societes);
-        societeSpinnerAdapter.add(new Societe(null, " --SELECT A COMPANY-- "));
+        societeSpinnerAdapter.add(new Societe(null, " --CHOIX SOCIETE-- "));
         societeSpinner.setAdapter(societeSpinnerAdapter);
         societeSpinnerAdapter.notifyDataSetChanged();
         societeSpinner.setSelection(societeSpinnerAdapter.getCount() + 1, true);
@@ -185,7 +185,7 @@ public class TempsDashboardActivity extends AppCompatActivity {
         projetSpinner = (Spinner) findViewById(R.id.dashboard_temps_projet_spinner);
         List<Projet> projets = projetService.findAll();
         projetSpinnerAdapter = new ProjetSpinnerAdapter(this, android.R.layout.simple_spinner_item, projets);
-        projetSpinnerAdapter.add(new Projet(null, " --SELECT A PROJECT-- "));
+        projetSpinnerAdapter.add(new Projet(null, " --CHOIX  PROJET-- "));
         projetSpinner.setAdapter(projetSpinnerAdapter);
         projetSpinnerAdapter.notifyDataSetChanged();
         projetSpinner.setSelection(projetSpinnerAdapter.getCount() + 1, true);
